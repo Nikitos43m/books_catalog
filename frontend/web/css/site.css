@@ -3,6 +3,12 @@ body {
     height: 100%;
 }
 
+@media (min-width: 1400px) {
+    .container {
+        width: 100%;
+    }
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
@@ -29,6 +35,41 @@ body {
 .jumbotron .btn {
     font-size: 21px;
     padding: 14px 24px;
+}
+
+a.buy_but{
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-family: "Century Gothic";
+}
+.buy_but{
+    text-decoration: none;
+    color: #8b8a8a;
+    border-color: #bccfbe;
+    display: inline-block;
+    padding: 12px 76px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid ;
+    border-radius: 8px;
+    transition: background 1s, color 1.7s;
+}
+
+.buy_but:hover{
+    background: #8e838399;  color: white;
 }
 
 .not-set {
@@ -108,4 +149,10 @@ a.desc:after {
 
 .nav > li > form > button:hover {
     text-decoration: none;
+}
+
+@media (min-width: 1000px) {
+    .apartament_user{
+        margin-left: 20%;
+    }
 }

@@ -28,21 +28,21 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'GNS',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-      //  ['label' => 'Главная', 'url' => ['/site/index']],
+       // ['label' => 'Главная', 'url' => ['/site/index']],
       //  ['label' => 'О нас', 'url' => ['/site/about']],
-      //  ['label' => 'Контакты', 'url' => ['/site/contact']],
-        ['label' => 'Каталог книг', 'url' => ['/authors/index']],
+       // ['label' => 'Контакты', 'url' => ['/site/contact']],
+       // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
     if (Yii::$app->user->isGuest) {
-       // $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
-      //  $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')

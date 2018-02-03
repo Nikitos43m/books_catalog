@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use app\models\Apartament;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -12,6 +13,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\ApartamentForm;
 use common\models\EntryForm;
 
 /**
@@ -73,7 +75,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $apartament = Apartament::find()->asArray()->all();
+       // $coord = $apartament->getLat();
+        return $this->render('index', ['apartament' => $apartament]);
     }
 
 
@@ -236,5 +240,57 @@ class SiteController extends Controller
             // либо страница отображается первый раз, либо есть ошибка в данных
             return $this->render('entry', ['model' => $model]);
         }
+    }
+
+   /* public function actionApartament()
+    {   $model = new Apartament();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            return $this->render('apartament', ['model' => $model]);
+        } {
+            // либо страница отображается первый раз, либо есть ошибка в данных
+            return $this->render('entry', ['model' => $model]);
+        }
+    }*/
+
+    public function actionApartament()
+    {
+        $model = new ApartamentForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+           
+            if ($model->validate()) {
+                $model->save();
+                Yii::$app->session->setFlash('success', "Объявление принято!");
+                return $this->goHome();
+                
+            }
+        }
+
+        return $this->render('apartament', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionApartament_user()
+    {
+        $model = new ApartamentForm();
+       
+        if (Yii::$app->user->isGuest) {
+            Yii::$app->session->setFlash('error', "Зарегистрируйтеь либо войдите");
+            return $this->goHome();
+        }
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->validate()) {
+                $model->save();
+                Yii::$app->session->setFlash('success', "Объявление принято!");
+                return $this->goHome();
+
+            }
+        }
+
+        return $this->render('apartament_user', [
+            'model' => $model,
+        ]);
     }
 }

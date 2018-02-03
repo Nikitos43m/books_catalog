@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use app\models\Apartament;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -125,7 +126,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getPrimaryKey();
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -185,5 +186,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getApartament()
+    {
+        return $this->hasMany(Apartament::className(), ['user_id' => 'id']);
     }
 }
