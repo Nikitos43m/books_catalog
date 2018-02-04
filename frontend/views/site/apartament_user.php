@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -11,19 +10,30 @@ use yii\widgets\ActiveForm;
 
         <?php $form = ActiveForm::begin(); ?>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
         <?= $form->field($model, 'type')->label('Тип объявления')->dropDownList([
             '0' => 'Продать квартиру',
             '1' => 'Сдать квартиру',
-        ]); ?>
+        ],[
+        'prompt' => 'Выберите тип объявления...'
+    ]); ?>
             </div>
     </div>
     <div class="row">
         <div class="col-md-4">
 
-            <?= $form->field($model, 'rooms')->label('Количество комнат') ?>
-            <?= $form->field($model, 'area')->label('Площадь') ?>
-            <?= $form->field($model, 'price')->label('Цена') ?>
+            <?//= $form->field($model, 'rooms')->label('Количество комнат') ?>
+            <?= $form->field($model, 'rooms')->label('Количество комнат')->dropDownList([
+                '1' => '1',
+                '2' => '2',
+                '3' => '3',
+                '4' => '4',
+                '5' => '5'
+            ],[
+            'prompt' => 'Выберите количество комнат...'
+    ]); ?>
+
+            <?= $form->field($model, 'area')->label('Площадь в кв.м.') ?>
             <?= $form->field($model, 'floor')->label('Этаж') ?>
 
             <?= $form->field($model, 'lat')->label('lat')->hiddenInput(['value'=> 0])->label(false) ?>
@@ -32,13 +42,22 @@ use yii\widgets\ActiveForm;
         <div class="col-md-4">
             <?= $form->field($model, 'street')->label('Улица') ?>
             <?= $form->field($model, 'house') ->label('Дом')?>
-            <?= $form->field($model, 'telephone')->label('Телефон') ?>
-            <?//= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->getId()])->label(false) ?>
-            <?= $form->field($model, 'user_id')->textInput(['value' => Yii::$app->user->getId()]) ?>
+            <?= $form->field($model, 'telephone')->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
+                'mask' => '8(999)-999-9999',
+            ]) ?>
+            <?= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->getId()])->label(false) ?>
+            <?//= $form->field($model, 'user_id')->textInput(['value' => Yii::$app->user->getId()]) ?>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'price')->label('Цена / Цена в месяц для сдачи')->textInput(['placeholder' => "руб."]) ?>
+        </div>
+    </div>
+
     <div class="form-group">
-        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 

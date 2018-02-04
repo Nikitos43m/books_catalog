@@ -76,10 +76,36 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $apartament = Apartament::find()->asArray()->all();
+        
        // $coord = $apartament->getLat();
         return $this->render('index', ['apartament' => $apartament]);
     }
+    
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionRent(){
+        $apartament = Apartament::find()
+            ->where(['type' => 1])
+            ->asArray()
+            ->all();
+        return $this->render('index', ['apartament' => $apartament]);
+    }
 
+    /**
+     * Displays homepage.
+     *
+     * @return mixed
+     */
+    public function actionSale(){
+        $apartament = Apartament::find()
+            ->where(['type' => 0])
+            ->asArray()
+            ->all();
+        return $this->render('index', ['apartament' => $apartament]);
+    }
 
     /**
      * Logs in a user.
@@ -274,7 +300,7 @@ class SiteController extends Controller
     public function actionApartament_user()
     {
         $model = new ApartamentForm();
-       
+
         if (Yii::$app->user->isGuest) {
             Yii::$app->session->setFlash('error', "Зарегистрируйтеь либо войдите");
             return $this->goHome();

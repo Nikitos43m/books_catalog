@@ -45,7 +45,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
     <? //endif; ?>
 
     <? if (Yii::$app->user->getId() == 9): ?>
-        <?= Html::a('Добавить на карту', ['apartament'], ['class' => 'btn btn-success']); ?><p></p>
+        <?//= Html::a('Добавить на карту', ['apartament'], ['class' => 'btn btn-success']); ?><p></p>
+        <?= Html::a('Все объявления', ['/apartament/index'], ['class' => 'btn btn-success']); ?><p></p>
     <? endif; ?>
 
     <div style="text-align: center">
@@ -53,6 +54,10 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <?= Html::a('Разместить объявление', ['apartament_user'], ['class' => 'buy_but']); ?>
     </div>
 
+    <div style="text-align: center; margin-bottom: 7px;">
+        <?= Html::a('Квартиры в аренду', ['rent'], ['class' => 'main_but', 'id'=>'rent']); ?>
+        <?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
+    </div>
     <?php
 
     $coord = new LatLng(['lat' => 47.231620, 'lng' => 39.695463]);
@@ -147,7 +152,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
         $mark->attachInfoWindow(
             new InfoWindow([
-                'content' => Html::encode("{$apart["telephone"]}")
+                'content' => 'Телефон:' .Html::encode("{$apart["telephone"]}").
+                             '<p>Цена: '.Html::encode("{$apart["price"]}"). '</p>'
             ])
         );
 
