@@ -44,7 +44,8 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
+        $menuItems[] = '<li>'.Html::a('Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link']).'</li>
+               <li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Выход (' . Yii::$app->user->identity->username . ')',

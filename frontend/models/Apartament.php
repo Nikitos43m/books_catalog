@@ -20,6 +20,7 @@ use Yii;
  * @property string $telephone
  * @property double $lat
  * @property double $lng
+ * @property string $image_path
  */
 class Apartament extends \yii\db\ActiveRecord
 {
@@ -40,6 +41,7 @@ class Apartament extends \yii\db\ActiveRecord
             [['user_id','rooms', 'floor', 'area', 'price'], 'integer'],
             [['lat', 'lng'], 'number'],
             [['type', 'street', 'house', 'telephone'], 'string', 'max' => 100],
+            [['image_path'], 'string'],
         ];
     }
 
@@ -60,7 +62,8 @@ class Apartament extends \yii\db\ActiveRecord
             'telephone' => 'Телефон',
             'lat' => 'Lat',
             'lng' => 'Lng',
-            'user_id' => 'Пользователь'
+            'user_id' => 'Пользователь',
+            'image_path' => 'Путь к фотографиям'
         ];
     }
 

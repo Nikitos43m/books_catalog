@@ -4,7 +4,6 @@ namespace frontend\models;
 use yii\base\Model;
 use app\models\Apartament;
 use yii\web\UploadedFile;
-
 /**
  * Apatament form
  */
@@ -21,6 +20,8 @@ class ApartamentForm extends Model
     public $house;
     public $telephone;
     public $user_id;
+    public $image;
+    public $image_path;
 
     /**
      * @inheritdoc
@@ -31,8 +32,22 @@ class ApartamentForm extends Model
             [['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor'], 'required'],
             [ ['rooms',  'floor', 'area', 'price'], 'number'],
             [ ['lat', 'lng'], 'double'],
+            [['image'], 'file', 'extensions' => 'png, jpg'],
+            [ ['image_path'], 'string'],
         ];
     }
+
+    public function upload(){
+       if($this->validate()){
+           //var_dump($this->image);
+           //$this->image->saveAs("uploads/{$this->image->baseName}.{$this->image->extension}");
+
+       }else{
+           return false;
+       }
+    }
+
+
 
     /**
      * Signs user up.
@@ -57,6 +72,7 @@ class ApartamentForm extends Model
         $apartament->house = $this->house;
         $apartament->telephone = $this->telephone;
         $apartament->user_id = $this->user_id;
+        $apartament->image_path = $this->image_path;
 
         return $apartament->save() ? $apartament : null;
 

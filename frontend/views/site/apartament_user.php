@@ -46,7 +46,9 @@ use yii\widgets\ActiveForm;
                 'mask' => '8(999)-999-9999',
             ]) ?>
             <?= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->getId()])->label(false) ?>
-            <?//= $form->field($model, 'user_id')->textInput(['value' => Yii::$app->user->getId()]) ?>
+            <?//= $form->field($model, 'image_path')->hiddenInput(['value'=> 'testpath'])->label(false) ?>
+
+            <?= $form->field($model, 'image')->fileInput() ?>
         </div>
     </div>
 

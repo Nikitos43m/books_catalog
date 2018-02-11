@@ -36,13 +36,28 @@ class ApartamentController extends Controller
     public function actionIndex()
     {
         $searchModel = new ApartamentSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+
+        $user_id = Yii::$app->user->getId();
+        $user = Yii::$app->user->identity->username;
+        
+       // if ($user == 9){
+        if ($user == "admin"){
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        }else {
+            $dataProvider = $searchModel->searchUser(Yii::$app->request->queryParams, $user_id);
+            return $this->render('user_index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
+
 
     /**
      * Displays a single Apartament model.

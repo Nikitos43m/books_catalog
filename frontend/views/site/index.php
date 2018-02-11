@@ -44,7 +44,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
     <? //echo Html::a('Добавить на карту', ['apartament'], ['class' => 'btn btn-success']); ?><p></p>
     <? //endif; ?>
 
-    <? if (Yii::$app->user->getId() == 9): ?>
+    <?// if (Yii::$app->user->getId() == 9): ?>
+    <? if(Yii::$app->user->identity->username == "admin"): ?>
         <?//= Html::a('Добавить на карту', ['apartament'], ['class' => 'btn btn-success']); ?><p></p>
         <?= Html::a('Все объявления', ['/apartament/index'], ['class' => 'btn btn-success']); ?><p></p>
     <? endif; ?>
@@ -141,21 +142,41 @@ $this->registerJs($script, yii\web\View::POS_READY);
     //$map->addOverlay($marker);
     //$map->addOverlay($marker_home);
 
+
     //Автоматическое добавление маркеров------------------------------------
     foreach ($apartament as $apart){
-
+        $fimg="";
         $mark = new Marker([
             'position' => new LatLng(['lat' => $apart["lat"], 'lng' => $apart["lng"]]),
             //'title' => Html::encode("{$apart["telephone"]}"),
             'title' => $apart["telephone"],
         ]);
 
+        // Для вывода картинок объявления
+
+        $path = "uploads/p.".Html::encode("{$apart["user_id"]}")."/";
+        $images = scandir($path); // сканируем папку
+        $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
+        foreach($images as $image) { // делаем проход по массиву
+            $fimg .= "<img  width='100px' src='".$path.htmlspecialchars(urlencode($image))."' alt='".$image."' />";
+        }
+
         $mark->attachInfoWindow(
             new InfoWindow([
-                'content' => 'Телефон:' .Html::encode("{$apart["telephone"]}").
-                             '<p>Цена: '.Html::encode("{$apart["price"]}"). '</p>'
+                'content' =>
+                             '<p>Цена: '.Html::encode("{$apart["price"]}"). ' руб.</p>'.
+                             '<p>Площадь: '.Html::encode("{$apart["area"]}"). ' м<sup>2</sup></p>'.
+                             '<p>Комнат: '.Html::encode("{$apart["rooms"]}"). '</p>'.
+                             '<p>Этаж: '.Html::encode("{$apart["floor"]}"). '</p>'.
+                             '<p>Адрес: '.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
+                             '<p>Телефон: ' .Html::encode("{$apart["telephone"]}").'</p>'.
+                             '<p>'.$fimg. '</p>'
+
             ])
         );
+
+
+
 
         $map->addOverlay($mark);
     }

@@ -15,7 +15,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\ApartamentForm;
 use common\models\EntryForm;
-
+use yii\web\UploadedFile;
 /**
  * Site controller
  */
@@ -80,6 +80,9 @@ class SiteController extends Controller
        // $coord = $apartament->getLat();
         return $this->render('index', ['apartament' => $apartament]);
     }
+
+    
+
     
     /**
      * Displays homepage.
@@ -308,7 +311,19 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
             if ($model->validate()) {
+                /*Путь к фоткам в базу*/
+                $path = "uploads/p.{$model->user_id}";
+                $model->image_path = $path;
                 $model->save();
+
+                /*Загрузка фотографий */
+                $model->image = UploadedFile::getInstance($model, 'image');
+
+                if (!file_exists($path)) {
+                    mkdir($path, 0775, true);
+                }
+                $model->image->saveAs("{$path}/{$model->image->baseName}.{$model->image->extension}");
+                //$model->upload();
                 Yii::$app->session->setFlash('success', "Объявление принято!");
                 return $this->goHome();
 
@@ -319,4 +334,21 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function createDirectory($path) {
+
+            mkdir($path, 0775, true);
+
+
+    }
+
+    /*public function actionUpload(){
+        $model = new UploadImage();
+        if(Yii::$app->request->isPost){
+            $model->image = UploadedFile::getInstance($model, 'image');
+            $model->upload();
+            return;
+        }
+        return $this->render('upload', ['model' => $model]);
+    }*/
 }
