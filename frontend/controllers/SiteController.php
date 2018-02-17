@@ -16,6 +16,7 @@ use frontend\models\ContactForm;
 use frontend\models\ApartamentForm;
 use common\models\EntryForm;
 use yii\web\UploadedFile;
+use app\models\ApartamentSearch;
 /**
  * Site controller
  */
@@ -75,10 +76,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /*
         $apartament = Apartament::find()->asArray()->all();
-        
-       // $coord = $apartament->getLat();
         return $this->render('index', ['apartament' => $apartament]);
+        */
+
+
+        $searchModel = new ApartamentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
     }
 
     
@@ -311,7 +321,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
 
             if ($model->validate()) {
-                /*Путь к фоткам в базу*/
+                /*Путь к фоткам в базе*/
                 $path = "uploads/p.{$model->user_id}";
                 $model->image_path = $path;
                 $model->save();

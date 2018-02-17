@@ -191,7 +191,7 @@ a.desc:after {
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
-    width: 200px;
+    width: 100px;
     letter-spacing: 0.6px;
 }
 
@@ -204,6 +204,10 @@ a.desc:after {
     text-decoration: none;
     color: white;
     background-color: #bdbdbd;
+}
+
+.filter{
+    display: block;
 }
 
 @media(max-width:450px) {

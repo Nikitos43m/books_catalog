@@ -4,6 +4,7 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Carousel;
 use yii\helpers\Html;
 
+use yii\grid\GridView;
 
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\DirectionsWayPoint;
@@ -19,6 +20,9 @@ use dosamigos\google\maps\overlays\Polygon;
 use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $this yii\web\View */
 /* @var $apartament array*/
+
+/* @var $searchModel app\models\ApartamentSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'My Yii Application';
 
@@ -38,6 +42,12 @@ JS;
 $this->registerJs($script, yii\web\View::POS_READY);
 ?>
 
+<style>
+    tbody{
+        display: none;
+    }
+</style>
+
 <div class="site-index">
 
     <? //if (!Yii::$app->user->isGuest): ?>
@@ -55,12 +65,19 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <?= Html::a('Разместить объявление', ['apartament_user'], ['class' => 'buy_but']); ?>
     </div>
 
-    <div style="text-align: center; margin-bottom: 7px;">
-        <?= Html::a('Квартиры в аренду', ['rent'], ['class' => 'main_but', 'id'=>'rent']); ?>
-        <?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
+    <!-- <div style="text-align: center; margin-bottom: 7px;">
+        <//?= Html::a('Квартиры в аренду', ['rent'], ['class' => 'main_but', 'id'=>'rent']); ?>
+        <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
+    </div> -->
+    <div style="text-align: center; margin-bottom: 10px;">
+        <div style="margin: 0 auto;width: 210px; font-size: 16px; cursor: pointer">
+            Поиск по фильтрам <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px;"></i>
+        </div>
+    </div>
+    <div class="filter">
+        <?php  echo $this->render('/apartament/_search_index', ['model' => $searchModel]); ?>
     </div>
     <?php
-
     $coord = new LatLng(['lat' => 47.231620, 'lng' => 39.695463]);
     $map = new Map([
         'center' => $coord,
@@ -144,12 +161,13 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
 
     //Автоматическое добавление маркеров------------------------------------
-    foreach ($apartament as $apart){
+    foreach ($dataProvider->models as $apart){
         $fimg="";
         $mark = new Marker([
             'position' => new LatLng(['lat' => $apart["lat"], 'lng' => $apart["lng"]]),
             //'title' => Html::encode("{$apart["telephone"]}"),
             'title' => $apart["telephone"],
+            'icon' =>'images/marker2.png'
         ]);
 
         // Для вывода картинок объявления

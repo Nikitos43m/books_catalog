@@ -9,16 +9,32 @@ use app\models\Apartament;
 
 /**
  * ApartamentSearch represents the model behind the search form about `app\models\Apartament`.
+ *
+ * @property integer $cost_from
+ * @property integer $cost_to
+ * @property integer $floor_from
+ * @property integer $floor_to
+ * @property integer $area_from
+ * @property integer $area_to
  */
 class ApartamentSearch extends Apartament
 {
+    public $cost_from;
+    public $cost_to;
+
+    public $floor_from;
+    public $floor_to;
+
+    public $area_from;
+    public $area_to;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'rooms', 'floor', 'area', 'price', 'user_id'], 'integer'],
+            [['id', 'rooms', 'floor', 'area', 'price', 'user_id', 'cost_from', 'cost_to', 'floor_from','floor_to','area_from','area_to'], 'integer'],
             [['type', 'street', 'house', 'telephone'], 'safe'],
             [['lat', 'lng'], 'number'],
         ];
@@ -64,16 +80,23 @@ class ApartamentSearch extends Apartament
             'rooms' => $this->rooms,
             'floor' => $this->floor,
             'area' => $this->area,
-            'price' => $this->price,
+            //'price' => $this->price,
             'lat' => $this->lat,
             'lng' => $this->lng,
             'user_id' => $this->user_id,
         ]);
 
+       /* if($this->cost_from == null){
+            $this->cost_from = 0;
+        }*/
+
         $query->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'street', $this->street])
             ->andFilterWhere(['like', 'house', $this->house])
-            ->andFilterWhere(['like', 'telephone', $this->telephone]);
+            ->andFilterWhere(['like', 'telephone', $this->telephone])
+        ->andFilterWhere(['between', 'price', $this->cost_from, $this->cost_to])
+        ->andFilterWhere(['between', 'floor', $this->floor_from, $this->floor_to])
+        ->andFilterWhere(['between', 'area', $this->area_from, $this->area_to]);
 
         return $dataProvider;
     }
