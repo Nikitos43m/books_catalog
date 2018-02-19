@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?//php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Разместить объявление', ['site/apartament_user'], ['class' => 'btn btn-success']); ?>
+        <?= Html::a('Разместить объявление', ['site/apartament_user'], ['class' => 'in_but']); ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

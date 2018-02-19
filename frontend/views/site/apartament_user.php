@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use kartik\file\FileInput;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\ApartamentForm */
 /* @var $form ActiveForm */
@@ -49,6 +49,9 @@ use yii\widgets\ActiveForm;
             <?//= $form->field($model, 'image_path')->hiddenInput(['value'=> 'testpath'])->label(false) ?>
 
             <?= $form->field($model, 'image')->fileInput() ?>
+            <?/*= $form->field($model, 'avatar')->widget(FileInput::classname(), [
+            'options' => ['accept' => 'image/*'],
+            ]);*/?>
         </div>
     </div>
 
@@ -58,8 +61,8 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
+    <div class="form-group" style="text-align: center">
+        <?= Html::submitButton('Отправить', ['class' => 'in_but']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 

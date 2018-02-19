@@ -317,12 +317,15 @@ class SiteController extends Controller
         if (Yii::$app->user->isGuest) {
             Yii::$app->session->setFlash('error', "Зарегистрируйтеь либо войдите");
             return $this->goHome();
+
+            
         }
         if ($model->load(Yii::$app->request->post())) {
 
             if ($model->validate()) {
                 /*Путь к фоткам в базе*/
                 $path = "uploads/p.{$model->user_id}";
+                //$path = "uploads/p.{$model->user_id}/{$model->area}{$model->floor}{$model->rooms}/";
                 $model->image_path = $path;
                 $model->save();
 

@@ -3,6 +3,7 @@ namespace frontend\models;
 
 use yii\base\Model;
 use app\models\Apartament;
+use common\models\User;
 use yii\web\UploadedFile;
 /**
  * Apatament form
@@ -76,5 +77,18 @@ class ApartamentForm extends Model
 
         return $apartament->save() ? $apartament : null;
 
+    }
+    
+    
+    // Уже не нужна
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsername($id)
+    {
+        //получить User, затем у этого User получить username
+        $user = User::findById($id);
+        $username = $user->username;
+        return $username;
     }
 }

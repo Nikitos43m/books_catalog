@@ -71,7 +71,7 @@ a.buy_but{
 }
 
 .buy_but:hover{
-    background: #8e838399;  color: white;
+    background: #8e838352;  color: white;
 }
 
 .not-set {
@@ -169,7 +169,7 @@ a.desc:after {
 
 .main_but{
     font-family: "Century Gothic";
-    background-color: #accaac;
+    background-color: #000000bd;
     border-color: #f2f2f2;
     color: white;
     display: inline-block;
@@ -191,7 +191,7 @@ a.desc:after {
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
-    width: 100px;
+    width: 170px;
     letter-spacing: 0.6px;
 }
 
@@ -203,15 +203,63 @@ a.desc:after {
 .main_but:hover{
     text-decoration: none;
     color: white;
-    background-color: #bdbdbd;
+    background-color: #747171;
 }
 
+
+.in_but{
+    font-family: "Century Gothic";
+    background-color: #000000bd;
+    border-color: #f2f2f2;
+    color: white;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 200px;
+    letter-spacing: 0.6px;
+}
+
+.in_but a{
+
+    text-decoration: none;
+}
+
+.in_but:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #747171;
+}
 .filter{
-    display: block;
+    display: none;
 }
 
-@media(max-width:450px) {
-    .main_but{
-        margin-bottom: 10px;
+
+@media (min-width: 900px) {
+    .i-am-centered {
+        margin-left: 37%;
     }
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+    .i-am-centered{
+        margin-left: 27%;
+        width: 50%;
+    }
+
 }

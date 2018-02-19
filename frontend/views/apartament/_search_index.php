@@ -6,7 +6,41 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\ApartamentSearch */
 /* @var $form yii\widgets\ActiveForm */
+
+$js = <<<JS
+/*
+ $('form').on('beforeSubmit', function(){
+var data = $(this).serialize();
+var action = $(this).attr("action");
+
+    $.ajax({
+        url: action,
+        type: 'get',
+        data: data,
+        success: function(data){
+            $("#gmap0-map-canvas").html(data); 
+        },
+        error: function(){
+        alert('Error!');
+        }
+    });
+ 
+ 
+ return false;
+ });*/
+
+JS;
+
+$this->registerJs($js);
+
 ?>
+<style>
+
+    .col-md-1, .col-md-2{
+        padding-right: 6px;
+    }
+</style>
+
 
 <div class="apartament-search">
 
@@ -31,7 +65,7 @@ use yii\widgets\ActiveForm;
     <div class="col-md-1">
         <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом"]) ?>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
         <?= $form->field($model, 'rooms')->label(false)->dropDownList([
             '1' => '1',
             '2' => '2',
@@ -39,10 +73,13 @@ use yii\widgets\ActiveForm;
             '4' => '4',
             '5' => '5'
         ],[
-            'prompt' => 'Комнат...'
+            'prompt' => 'Комнат...',
         ]); ?>
+
+       
+
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
         <?php//  echo $form->field($model, 'floor') ?>
         <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от"]) ?>
         <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "Этаж до"]) ?>

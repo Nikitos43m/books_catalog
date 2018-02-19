@@ -18,6 +18,7 @@ use dosamigos\google\maps\Map;
 use dosamigos\google\maps\services\DirectionsRequest;
 use dosamigos\google\maps\overlays\Polygon;
 use dosamigos\google\maps\layers\BicyclingLayer;
+
 /* @var $this yii\web\View */
 /* @var $apartament array*/
 
@@ -46,6 +47,11 @@ $this->registerJs($script, yii\web\View::POS_READY);
     tbody{
         display: none;
     }
+
+    .site-index{
+        background-image: url("images/k.jpg");
+        padding-bottom: 100px;
+    }
 </style>
 
 <div class="site-index">
@@ -70,8 +76,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
-        <div style="margin: 0 auto;width: 210px; font-size: 16px; cursor: pointer">
-            Поиск по фильтрам <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px;"></i>
+        <div  class="open-filter" style="margin: 0 auto;width: 210px; font-size: 16px; cursor: pointer">
+            Поиск по фильтрам &nbsp  <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px;"></i>
         </div>
     </div>
     <div class="filter">
@@ -167,12 +173,15 @@ $this->registerJs($script, yii\web\View::POS_READY);
             'position' => new LatLng(['lat' => $apart["lat"], 'lng' => $apart["lng"]]),
             //'title' => Html::encode("{$apart["telephone"]}"),
             'title' => $apart["telephone"],
-            'icon' =>'images/marker2.png'
+            'icon' =>'images/point.png'
         ]);
 
         // Для вывода картинок объявления
 
         $path = "uploads/p.".Html::encode("{$apart["user_id"]}")."/";
+
+        //$path = "uploads/p.".Html::encode("{$apart["user_id"]}")."/".Html::encode("{$apart["area"]}{$apart["floor"]}{$apart["rooms"]}");
+
         $images = scandir($path); // сканируем папку
         $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
         foreach($images as $image) { // делаем проход по массиву

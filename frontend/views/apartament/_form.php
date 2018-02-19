@@ -21,7 +21,9 @@ use yii\widgets\ActiveForm;
        <?= $form->field($model, 'floor')->textInput() ?>
        <?= $form->field($model, 'area')->textInput() ?>
        <?= $form->field($model, 'price')->textInput() ?>
-       <?= $form->field($model, 'telephone')->textInput(['maxlength' => true]) ?>
+       <?= $form->field($model, 'telephone')->textInput(['maxlength' => true])->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
+           'mask' => '8(999)-999-9999',
+       ]) ?>
     </div>
 
      <? if(Yii::$app->user->identity->username == "admin"): ?>
@@ -35,7 +37,7 @@ use yii\widgets\ActiveForm;
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'in_but']) ?>
         </div>
       </div>
     </div>
@@ -43,3 +45,9 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+<style>
+    .apartament-form{
+        background-image: url("images/k.jpg");
+        padding-bottom: 100px;
+    }
+</style>

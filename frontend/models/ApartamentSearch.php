@@ -96,8 +96,16 @@ class ApartamentSearch extends Apartament
             ->andFilterWhere(['like', 'telephone', $this->telephone])
         ->andFilterWhere(['between', 'price', $this->cost_from, $this->cost_to])
         ->andFilterWhere(['between', 'floor', $this->floor_from, $this->floor_to])
-        ->andFilterWhere(['between', 'area', $this->area_from, $this->area_to]);
+        ->andFilterWhere(['between', 'area', $this->area_from, $this->area_to])
 
+        ->andFilterWhere(['<=', 'price', $this->cost_to])
+        ->andFilterWhere(['>=', 'price', $this->cost_from])
+
+        ->andFilterWhere(['<=', 'floor', $this->floor_to])
+        ->andFilterWhere(['>=', 'floor', $this->floor_from])
+
+        ->andFilterWhere(['<=', 'area', $this->area_to])
+        ->andFilterWhere(['>=', 'area', $this->area_from]);
         return $dataProvider;
     }
 
