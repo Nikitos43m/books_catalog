@@ -31,6 +31,7 @@ class ApartamentForm extends Model
     {
         return [
             [['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor'], 'required'],
+            [['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
             [ ['rooms',  'floor', 'area', 'price'], 'number'],
             [ ['lat', 'lng'], 'double'],
             [['image'], 'file', 'extensions' => 'png, jpg'],

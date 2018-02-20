@@ -62,7 +62,8 @@ use dosamigos\google\maps\layers\BicyclingLayer;
             ]) ?>
             <?= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->getId()])->label(false) ?>
             <?//= $form->field($model, 'image_path')->hiddenInput(['value'=> 'testpath'])->label(false) ?>
-
+           
+            
             <?= $form->field($model, 'image')->fileInput() ?>
             <?/*= $form->field($model, 'avatar')->widget(FileInput::classname(), [
             'options' => ['accept' => 'image/*'],
@@ -78,7 +79,11 @@ use dosamigos\google\maps\layers\BicyclingLayer;
         
     
 <div class="row">
+    
     <div class="col-md-10">
+        <h4 style="text-align: center">Укажите местоположение вашего объекта недвижимости</h4>
+        <?= $form->field($model, 'lat')->label(false)->hiddenInput(['value'=>NULL]); ?>
+        <?= $form->field($model, 'lng')->label(false)->hiddenInput(['value'=>NULL]); ?>
     <div id="map-canvas" style="height: 512px;"></div> 
     </div>
 </div>
@@ -89,7 +94,7 @@ function GoogleMap_init () {
     var mapCanvas = document.getElementById('map-canvas');
 
     window.Map = new google.maps.Map(mapCanvas, {
-        zoom: 15,
+        zoom: 12,
         center: new google.maps.LatLng(47.231620, 39.695463)
     });
 
@@ -97,7 +102,8 @@ function GoogleMap_init () {
       position: new google.maps.LatLng(47.228492, 39.715496),
       animation: google.maps.Animation.DROP,
       map: window.Map,
-      draggable: true
+      draggable: true,
+      icon :'images/point.png'
     });
   
   google.maps.event.addListener(baseMarker, 'dragend', function (a,b,c,d) {
@@ -120,18 +126,13 @@ document.body.appendChild(script);
 
 
  </script>   
-    
-    
- <div class="row">
-        <div class="col-md-4">   
-           <?= $form->field($model, 'lat')->label('lat')->textInput() ?>
-           <?= $form->field($model, 'lng')->label('lng')->textInput() ?>
+ <div class="row" style="padding-top: 25px;">
+     <div class="col-md-10">
+        <div class="form-group" style="text-align: center">
+            <?= Html::submitButton('Отправить', ['class' => 'in_but']) ?>
         </div>
+     </div>
  </div>
- 
-    <div class="form-group" style="text-align: center">
-        <?= Html::submitButton('Отправить', ['class' => 'in_but']) ?>
-    </div>
     <?php ActiveForm::end(); ?>
 
 </div><!-- apartament -->
