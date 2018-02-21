@@ -52,6 +52,10 @@ $this->registerJs($script, yii\web\View::POS_READY);
         background-image: url("images/k.jpg");
         padding-bottom: 100px;
     }
+    
+    #apartamentsearch-rooms label{
+        margin-left: 15px;
+    }
 </style>
 
 <div class="site-index">

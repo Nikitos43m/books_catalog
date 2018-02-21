@@ -66,16 +66,16 @@ $this->registerJs($js);
         <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом"]) ?>
     </div>
     <div class="col-md-2">
-        <?= $form->field($model, 'rooms')->label(false)->dropDownList([
-            '1' => '1',
-            '2' => '2',
-            '3' => '3',
-            '4' => '4',
-            '5' => '5'
-        ],[
-            'prompt' => 'Комнат...',
-        ]); ?>
+       
 
+       <?=  $form->field($model, 'rooms')
+    ->checkboxList([
+        1 => '1',
+        2 => '2',
+        3 => '3',
+        4 => '4',
+        5 => '5',
+    ]); ?>
        
 
     </div>
