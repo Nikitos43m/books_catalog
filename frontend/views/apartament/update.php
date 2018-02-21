@@ -25,7 +25,8 @@ if((Yii::$app->user->getId() != $model->user_id) && (Yii::$app->user->identity->
     <h2>Фотографии</h2>
     <div class="container">
         <?php
-        $path = "uploads/p.".Html::encode("{$model->user_id}")."/";
+        //$path = "uploads/p.".Html::encode("{$model->user_id}")."/";
+        $path = $model->image_path;
         $images = scandir($path); // сканируем папку
         $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
         foreach($images as $image) { // делаем проход по массиву

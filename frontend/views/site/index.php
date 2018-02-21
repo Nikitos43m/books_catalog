@@ -182,8 +182,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
         // Для вывода картинок объявления
 
-        $path = "uploads/p.".Html::encode("{$apart["user_id"]}")."/";
-
+        //$path = "uploads/p.".Html::encode("{$apart["user_id"]}")."/";
+        $path = $apart['image_path'];
         //$path = "uploads/p.".Html::encode("{$apart["user_id"]}")."/".Html::encode("{$apart["area"]}{$apart["floor"]}{$apart["rooms"]}");
 
         $images = scandir($path); // сканируем папку

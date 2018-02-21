@@ -324,8 +324,8 @@ class SiteController extends Controller
 
             if ($model->validate()) {
                 /*Путь к фоткам в базе*/
-                $path = "uploads/p.{$model->user_id}";
-                //$path = "uploads/p.{$model->user_id}/{$model->area}{$model->floor}{$model->rooms}/";
+                //$path = "uploads/p.{$model->user_id}";
+                $path = "uploads/p.{$model->user_id}/{$model->area}{$model->floor}{$model->rooms}/";
                 $model->image_path = $path;
                 $model->save();
 
