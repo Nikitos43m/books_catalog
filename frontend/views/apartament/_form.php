@@ -66,14 +66,14 @@ use yii\helpers\Url ;
         $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
         foreach($images as $image) { // делаем проход по массиву
           //  $fimg .= "<img  width='100px' src='".$path.htmlspecialchars(urlencode($image))."' alt='".$image."' />";
-            
-            //$img_source .= $path.htmlspecialchars(urlencode($image)).',';
-            
             $img_source .= "'".$path.htmlspecialchars(urlencode($image))."',";
         }
-        $img_source = str_replace(array('"'), '', $img_source);
+        
+         foreach($images as $image){
+             $initialPreview[] = $path.htmlspecialchars(urlencode($image));
+         }
 
-        //var_dump($img_source); die();
+
         ?>
     </div>
     </div>
@@ -100,13 +100,10 @@ use yii\helpers\Url ;
                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                     'browseLabel' =>  'Выбрать фотографии',
                     'allowedFileExtensions' => ['jpg','gif','png'],
-                    'overwriteInitial' => true,
+                    'overwriteInitial' => false,
                     
                      'initialPreviewAsData'=>true,
-                     'initialPreview'=>[
-                         $img_source
-
-                       ],
+                     'initialPreview'=> $initialPreview,
                     
                     'initialPreviewConfig' => [
                         'showDelete' => true
