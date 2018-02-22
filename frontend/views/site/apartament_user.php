@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
-
+use yii\helpers\Url ;
 /* ДЛЯ КАРТЫ */
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\DirectionsWayPoint;
@@ -23,7 +23,7 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 ?>
 <div class="apartament_user">
 
-        <?php $form = ActiveForm::begin(); ?>
+        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <div class="row">
         <div class="col-md-6">
         <?= $form->field($model, 'type')->label('Тип объявления')->dropDownList([
@@ -64,10 +64,39 @@ use dosamigos\google\maps\layers\BicyclingLayer;
             <?//= $form->field($model, 'image_path')->hiddenInput(['value'=> 'testpath'])->label(false) ?>
            
             
-            <?= $form->field($model, 'image')->fileInput() ?>
-            <?/*= $form->field($model, 'avatar')->widget(FileInput::classname(), [
-            'options' => ['accept' => 'image/*'],
-            ]);*/?>
+            <?//= $form->field($model, 'image')->fileInput() ?>
+           
+        </div>
+    </div>
+    
+    <div class="row">
+        
+        <div class="col-md-8"><h4>Загрузите фотографии</h4>
+         <?= $form->field($model, 'image[]')->label(false)->widget(FileInput::classname(), [
+             
+                'language' => 'ru',
+                'options' => [
+                    'multiple' => true, 
+                ],
+                
+                'pluginOptions' => [
+                    'uploadUrl' => Url::to (['/uploads/']),  
+                    'showCaption' => true,
+                    'showRemove' => true,
+                    'showUpload' => false,
+                    'showPreview' => true,
+                    
+                    'browseClass' => 'btn btn-primary btn-block',
+                    'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
+                    'browseLabel' =>  'Выбрать фотографии',
+                    'allowedFileExtensions' => ['jpg','gif','png'],
+                    'overwriteInitial' => false,
+                    
+                    'initialPreviewConfig' => [
+                        'showDelete' => true
+                     ],
+                ],
+            ]);?>
         </div>
     </div>
 

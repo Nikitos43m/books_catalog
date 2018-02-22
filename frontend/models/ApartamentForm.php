@@ -30,11 +30,11 @@ class ApartamentForm extends Model
     public function rules()
     {
         return [
-            [['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor'], 'required'],
-            [['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
+            [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor'], 'required'],
+            [ ['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
             [ ['rooms',  'floor', 'area', 'price'], 'number'],
             [ ['lat', 'lng'], 'double'],
-            [['image'], 'file', 'extensions' => 'png, jpg'],
+            [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],
         ];
     }
