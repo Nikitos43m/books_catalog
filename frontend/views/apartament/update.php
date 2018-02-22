@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Apartament */
+/* @var $model2 frontend\models\UploadForm */
 
 $this->title = 'Редактирование объявления: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Apartaments', 'url' => ['index']];
@@ -20,20 +21,6 @@ if((Yii::$app->user->getId() != $model->user_id) && (Yii::$app->user->identity->
 
     <?= $this->render('_form', [
         'model' => $model,
+        'model2' => $model2
     ]) ?>
-
-    <h2>Фотографии</h2>
-    <div class="container">
-        <?php
-        //$path = "uploads/p.".Html::encode("{$model->user_id}")."/";
-        $path = $model->image_path;
-        $images = scandir($path); // сканируем папку
-        $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
-        foreach($images as $image) { // делаем проход по массиву
-            $fimg .= "<img  width='100px' src='".$path.htmlspecialchars(urlencode($image))."' alt='".$image."' />";
-        }
-        print_r($fimg);
-        ?>
-    </div>
-
 </div>

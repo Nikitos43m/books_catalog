@@ -8,6 +8,8 @@ use app\models\ApartamentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * ApartamentController implements the CRUD actions for Apartament model.
@@ -98,12 +100,23 @@ class ApartamentController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model2 = new UploadForm();    //    var_dump($model2) ; die();
+        $path = $model->image_path;
+        
+        
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if (($model->load(Yii::$app->request->post()) && $model->save()) || Yii::$app->request->isPost) {
+          
+              $model2->image = UploadedFile::getInstances($model2, 'image');
+              $model2->upload($path);
+            
+            
+            return $this->redirect(['update', 'id' => $model->id]);
+        } else {            //var_dump($path);  die();
+        
             return $this->render('update', [
                 'model' => $model,
+                'model2' => $model2,
             ]);
         }
     }
