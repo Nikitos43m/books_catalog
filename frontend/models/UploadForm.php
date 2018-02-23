@@ -30,4 +30,8 @@ class UploadForm extends Model
             return false;
         }
     }
+    
+    public function delete($path_img){
+        unlink('$path_img');
+    }
 }

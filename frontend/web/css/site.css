@@ -44,7 +44,7 @@ a.buy_but{
 }
 .buy_but{
     width: 400px;
-    background: #bb060657;
+    background: #000000bd;
     text-decoration: none;
     color: white;
     border-color: #bccfbe;
@@ -71,7 +71,7 @@ a.buy_but{
 }
 
 .buy_but:hover{
-    background: #8e838352;  color: white;
+    background: #5d55559e;  color: white;
 }
 
 .not-set {
