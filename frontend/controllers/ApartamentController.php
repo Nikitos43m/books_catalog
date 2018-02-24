@@ -126,21 +126,18 @@ class ApartamentController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpload_img()
+    public function actionUpload_img($path)
     {
         $model2 = new UploadForm();
-        $path = "uploads/p.5/34122";
 
-      //  if (Yii::$app->request->isPost) {
+        if(Yii::$app->request->isAjax) {
             $model2->image = UploadedFile::getInstances($model2, 'image');
             Yii::$app->response->format = Response::FORMAT_JSON;
             if ($model2->upload($path)) {
                 // file is uploaded successfully
-                return;
-            }
-       // }
 
-        return $this->render('update', ['model2' => $model2]);
+            }
+        } return true;
     }
 
     /**

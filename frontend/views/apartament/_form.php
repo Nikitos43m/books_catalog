@@ -74,13 +74,15 @@ use yii\helpers\ArrayHelper;
              $initialPreview[] = $path.htmlspecialchars(urlencode($image));
          }
 
+        if(empty($initialPreview)){
+            $initialPreview = false;
+        }
 
         foreach($images as $image) {
             $array[] = array(
                 "key" => $image
             );
         }
-        print_r($array);
 
         ?>
     </div>
@@ -98,11 +100,11 @@ use yii\helpers\ArrayHelper;
                 ],
                 
                 'pluginOptions' => [
-                    'uploadUrl' => Url::to (['/apartament/upload_img']),
+                    'uploadUrl' => Url::to (['/apartament/upload_img', 'path' => $path]),
                     'deleteUrl' => Url::to (['/apartament/delete_img', 'path' => $path]),
                     'showCaption' => true,
                     'showRemove' => true,
-                    'showUpload' => false,
+                    'showUpload' => true,
                     'showPreview' => true,
                     
                     'browseClass' => 'btn btn-primary btn-block',
@@ -115,21 +117,12 @@ use yii\helpers\ArrayHelper;
                      'initialPreview'=> $initialPreview,
                     
                     'initialPreviewConfig' => $array,
-
-
                 ],
 
-                'pluginEvents' => [
-                    //'filebeforedelete' => new \yii\web\JsExpression('function(){alert("dsadsadsad");}'),
-                    /*'filesorted' => new \yii\web\JsExpression('function(event, params){
-                    
-                    $.post("'.Url::toRoute(["/apartament/delete_img","path"=>$path.$image]).'",{sort: params});
-                    
-                    }'),*/
-
-                ],
             ]);?>
-             <?= Html::submitButton('Обновить фотографии', ['class' => 'in_but']) ?>
+
+            <!-- Загрузка через модель, пока стоит через аякс -->
+             <?//= Html::submitButton('Загрузить фотографии', ['class' => 'in_but']) ?>
              <?php ActiveForm::end(); ?>
         </div>
     </div>
