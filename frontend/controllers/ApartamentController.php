@@ -148,18 +148,24 @@ class ApartamentController extends Controller
      * @return mixed
      */
     public function actionDelete_img($path)
-    {   var_dump($path); die();
+    {
         $model2 = new UploadForm();
-        //$path = "uploads/p.5/34122";
-
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if ($model2->delete($path)) {
+
+            if(Yii::$app->request->isAjax) {
+                // var_dump(Yii::$app->request->post()); die();
+                $img = Yii::$app->request->post();// var_dump($img['1']); die();
+                $n = array_values($img); //var_dump($n); die();
+                foreach ($img as $name){
+                 }
+
+            if ($model2->delete($path.$name)) {
                 // file is uploaded successfully
                 Yii::$app->session->setFlash('success', "принято!");
             }
+        }
 
-
-        return $this->goHome();
+        return true;
     }
 
 

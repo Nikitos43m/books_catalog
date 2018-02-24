@@ -92,6 +92,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     $map = new Map([
         'center' => $coord,
         'zoom' => 12,
+        'scrollwheel' => true,
     ]);
 
 

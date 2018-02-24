@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 use yii\helpers\Url ;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Apartament */
@@ -73,10 +74,14 @@ use yii\helpers\Url ;
              $initialPreview[] = $path.htmlspecialchars(urlencode($image));
          }
 
-        foreach($images as $image){
-            $initialPreviewConfig[] = htmlspecialchars(urlencode($image));
+
+        foreach($images as $image) {
+            $array[] = array(
+                "key" => $image
+            );
         }
-            print_r($initialPreviewConfig);
+        print_r($array);
+
         ?>
     </div>
     </div>
@@ -94,7 +99,7 @@ use yii\helpers\Url ;
                 
                 'pluginOptions' => [
                     'uploadUrl' => Url::to (['/apartament/upload_img']),
-                    'deleteUrl' => Url::to (['/apartament/delete_img', 'path' => $path.$image]),
+                    'deleteUrl' => Url::to (['/apartament/delete_img', 'path' => $path]),
                     'showCaption' => true,
                     'showRemove' => true,
                     'showUpload' => false,
@@ -109,18 +114,18 @@ use yii\helpers\Url ;
                      'initialPreviewAsData'=>true,
                      'initialPreview'=> $initialPreview,
                     
-                    'initialPreviewConfig' => $initialPreviewConfig,
+                    'initialPreviewConfig' => $array,
 
 
                 ],
 
                 'pluginEvents' => [
-                      //  'filebeforedelete' => new \yii\web\JsExpression('function(){alert("erwerwer");}'),
-                    'filebeforedelete' => new \yii\web\JsExpression('function(event, key, data){
+                    //'filebeforedelete' => new \yii\web\JsExpression('function(){alert("dsadsadsad");}'),
+                    /*'filesorted' => new \yii\web\JsExpression('function(event, params){
                     
-                    alert(key);
+                    $.post("'.Url::toRoute(["/apartament/delete_img","path"=>$path.$image]).'",{sort: params});
                     
-                    }'),
+                    }'),*/
 
                 ],
             ]);?>
