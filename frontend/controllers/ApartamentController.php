@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\UploadForm;
 use yii\web\UploadedFile;
+use yii\web\Response;
 
 /**
  * ApartamentController implements the CRUD actions for Apartament model.
@@ -120,6 +121,48 @@ class ApartamentController extends Controller
             ]);
         }
     }
+
+    /**
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpload_img()
+    {
+        $model2 = new UploadForm();
+        $path = "uploads/p.5/34122";
+
+      //  if (Yii::$app->request->isPost) {
+            $model2->image = UploadedFile::getInstances($model2, 'image');
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if ($model2->upload($path)) {
+                // file is uploaded successfully
+                return;
+            }
+       // }
+
+        return $this->render('update', ['model2' => $model2]);
+    }
+
+    /**
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDelete_img($path)
+    {   var_dump($path); die();
+        $model2 = new UploadForm();
+        //$path = "uploads/p.5/34122";
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if ($model2->delete($path)) {
+                // file is uploaded successfully
+                Yii::$app->session->setFlash('success', "принято!");
+            }
+
+
+        return $this->goHome();
+    }
+
+
 
     /**
      * Deletes an existing Apartament model.

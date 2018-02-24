@@ -32,6 +32,6 @@ class UploadForm extends Model
     }
     
     public function delete($path_img){
-        unlink('$path_img');
+        unlink($path_img);
     }
 }

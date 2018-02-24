@@ -73,7 +73,10 @@ use yii\helpers\Url ;
              $initialPreview[] = $path.htmlspecialchars(urlencode($image));
          }
 
-
+        foreach($images as $image){
+            $initialPreviewConfig[] = htmlspecialchars(urlencode($image));
+        }
+            print_r($initialPreviewConfig);
         ?>
     </div>
     </div>
@@ -90,7 +93,8 @@ use yii\helpers\Url ;
                 ],
                 
                 'pluginOptions' => [
-                    'uploadUrl' => Url::to (['/uploads/']),  
+                    'uploadUrl' => Url::to (['/apartament/upload_img']),
+                    'deleteUrl' => Url::to (['/apartament/delete_img', 'path' => $path.$image]),
                     'showCaption' => true,
                     'showRemove' => true,
                     'showUpload' => false,
@@ -105,9 +109,19 @@ use yii\helpers\Url ;
                      'initialPreviewAsData'=>true,
                      'initialPreview'=> $initialPreview,
                     
-                    'initialPreviewConfig' => [
-                        'showDelete' => true
-                     ],
+                    'initialPreviewConfig' => $initialPreviewConfig,
+
+
+                ],
+
+                'pluginEvents' => [
+                      //  'filebeforedelete' => new \yii\web\JsExpression('function(){alert("erwerwer");}'),
+                    'filebeforedelete' => new \yii\web\JsExpression('function(event, key, data){
+                    
+                    alert(key);
+                    
+                    }'),
+
                 ],
             ]);?>
              <?= Html::submitButton('Обновить фотографии', ['class' => 'in_but']) ?>
