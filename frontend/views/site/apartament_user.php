@@ -22,7 +22,9 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $form ActiveForm */
 ?>
 <div class="apartament_user">
-
+    <div class="step">
+        <h2 class="title-step">Шаг 1</h2>
+    </div>
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <div class="row">
         <div class="col-md-6">
@@ -68,7 +70,16 @@ use dosamigos\google\maps\layers\BicyclingLayer;
            
         </div>
     </div>
-    
+
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'price')->label('Цена / Цена в месяц для сдачи')->textInput(['placeholder' => "руб."]) ?>
+        </div>
+    </div>
+    <br>
+    <div class="step">
+        <h2 class="title-step">Шаг 2</h2>
+    </div>
     <div class="row">
         
         <div class="col-md-8"><h4>Загрузите фотографии</h4>
@@ -100,17 +111,14 @@ use dosamigos\google\maps\layers\BicyclingLayer;
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <?= $form->field($model, 'price')->label('Цена / Цена в месяц для сдачи')->textInput(['placeholder' => "руб."]) ?>
-        </div>
+    <br>
+    <div class="step">
+        <h2 class="title-step">Шаг 3</h2>
     </div>
-        
-    
 <div class="row">
     
     <div class="col-md-10">
-        <h4 style="text-align: center">Укажите местоположение вашего объекта недвижимости</h4>
+        <h4 >Переместите маркер на ваш объект недвижимости</h4>
         <?= $form->field($model, 'lat')->label(false)->hiddenInput(['value'=>NULL]); ?>
         <?= $form->field($model, 'lng')->label(false)->hiddenInput(['value'=>NULL]); ?>
     <div id="map-canvas" style="height: 512px;"></div> 

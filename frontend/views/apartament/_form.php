@@ -15,6 +15,7 @@ use yii\helpers\ArrayHelper;
 
 <div class="apartament-form">
  <div class="row">
+
     <?php $form = ActiveForm::begin(); ?>
     <div class="col-md-4">
        
@@ -27,7 +28,7 @@ use yii\helpers\ArrayHelper;
        <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
        <?= $form->field($model, 'rooms')->textInput() ?>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
        <?= $form->field($model, 'floor')->textInput() ?>
        <?= $form->field($model, 'area')->textInput() ?>
        <?= $form->field($model, 'price')->textInput() ?>
@@ -43,6 +44,7 @@ use yii\helpers\ArrayHelper;
        <?= $form->field($model, 'user_id')->textInput() ?>
     </div>
      <? endif; ?>
+
  </div>
     
 
@@ -129,8 +131,8 @@ use yii\helpers\ArrayHelper;
     
 </div>
 <style>
-    .apartament-form{
-        background-image: url("images/k.jpg");
+    .apartament_user{
+
         padding-bottom: 100px;
     }
 </style>

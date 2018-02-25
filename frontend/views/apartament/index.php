@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+           // 'id',
             'user_id',
             'type',
             'street',
@@ -48,8 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
              'area',
              'price',
              'telephone',
-             'lat',
-             'lng',
+            // 'lat',
+           //  'lng',
 
 
             ['class' => 'yii\grid\ActionColumn'],

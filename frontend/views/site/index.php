@@ -56,6 +56,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
     #apartamentsearch-rooms label{
         margin-left: 15px;
     }
+
+    .container{width:100%;}
 </style>
 
 <div class="site-index">

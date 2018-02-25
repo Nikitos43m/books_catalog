@@ -249,11 +249,20 @@ a.desc:after {
     display: none;
 }
 
+.step{
+    background-color: #d3d3d3;
+    width: 30%;
+    border-radius: 0px 0px 15px 0px;
+}
 
-@media (min-width: 900px) {
-    .i-am-centered {
-        margin-left: 37%;
-    }
+.title-step{
+    padding: 5px;
+}
+
+
+
+.navbar-inverse .navbar-nav > li > a >i:hover, .navbar-inverse .navbar-nav > li > a> i:focus{
+    color: white;
 }
 
 @media (min-width: 800px) and (max-width: 1200px) {
