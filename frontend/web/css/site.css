@@ -260,10 +260,11 @@ a.desc:after {
 }
 
 
-
 .navbar-inverse .navbar-nav > li > a >i:hover, .navbar-inverse .navbar-nav > li > a> i:focus{
     color: white;
 }
+
+
 
 @media (min-width: 800px) and (max-width: 1200px) {
     .i-am-centered{
