@@ -25,42 +25,52 @@ use yii\helpers\ArrayHelper;
         ]); ?>
         
        <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
-       <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
-       <?= $form->field($model, 'rooms')->textInput() ?>
-    </div>
-    <div class="col-md-4">
-       <?= $form->field($model, 'floor')->textInput() ?>
-       <?= $form->field($model, 'area')->textInput() ?>
-       <?= $form->field($model, 'price')->textInput() ?>
+       <?= $form->field($model, 'price')->textInput()->label('Цена (руб.)') ?>
        <?= $form->field($model, 'telephone')->textInput(['maxlength' => true])->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
            'mask' => '8(999)-999-9999',
        ]) ?>
+      
     </div>
-
-     <? if(Yii::$app->user->identity->username == "admin"): ?>
     <div class="col-md-2">
-       <?= $form->field($model, 'lat')->textInput() ?>
-       <?= $form->field($model, 'lng')->textInput() ?>
-       <?= $form->field($model, 'user_id')->textInput() ?>
+       <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
+       <?= $form->field($model, 'floor')->textInput() ?>
+       
+       
     </div>
-     <? endif; ?>
+     
+    <div class="col-md-3">
+       <?= $form->field($model, 'rooms')->textInput() ?>
+       <?= $form->field($model, 'area')->textInput() ?>
 
- </div>
-    
+    </div> 
 
+     
+    <div class="col-md-2">
+       <?= $form->field($model, 'lat')->label(false)->hiddenInput(); ?>
+       <?= $form->field($model, 'lng')->label(false)->hiddenInput(); ?>
+       <?= $form->field($model, 'user_id')->label(false)->hiddenInput(); ?>
+    </div>
+     
+   </div>
     
     
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'in_but']) ?>
+        <h3 class="open-filter" id="place"  style="cursor: pointer;">Местопложение <i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></h3>
+        <div class="filter">
+            <div class="col-md-10">
+                <div id="map-canvas" style="height: 512px;"></div> 
+            </div>
         </div>
-      </div>
+   
+     
+    <div class="row" id="save" >
+        <div class="col-md-10" style="margin-top:40px">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'in_but']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
     <div class="row">
-        <h2>Фотографии</h2>
+        <h3>Фотографии</h3>
     <div class="container">
         <?php
         //$path = "uploads/p.".Html::encode("{$model->user_id}")."/";
@@ -92,7 +102,7 @@ use yii\helpers\ArrayHelper;
     
     <div class="row">
         
-        <div class="col-md-8"><h4>Загрузите фотографии</h4>
+        <div class="col-md-8">
          <?php $form2 = ActiveForm::begin(); ?>
          <?= $form2->field($model2, 'image[]')->label(false)->widget(FileInput::classname(), [
              
@@ -136,3 +146,42 @@ use yii\helpers\ArrayHelper;
         padding-bottom: 100px;
     }
 </style>
+
+ <script>
+function GoogleMap_init () {
+
+    var mapCanvas = document.getElementById('map-canvas');
+
+    window.Map = new google.maps.Map(mapCanvas, {
+        zoom: 12,
+        center: new google.maps.LatLng(47.231620, 39.695463)
+    });
+
+    var baseMarker = new google.maps.Marker({
+      position: new google.maps.LatLng(<?php echo $model->lat;?>, <?php echo $model->lng;?>),
+      animation: google.maps.Animation.DROP,
+      map: window.Map,
+      draggable: true,
+      icon :'images/point.png'
+    });
+  
+  google.maps.event.addListener(baseMarker, 'dragend', function (a,b,c,d) {
+  
+    var lat = baseMarker.getPosition().lat();
+    var lng = baseMarker.getPosition().lng();
+    $("#apartament-lat").val(lat)
+    $("#apartament-lng").val(lng);
+    
+  });
+  
+}
+
+// Google Maps loading
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.async = true;
+script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=GoogleMap_init';
+document.body.appendChild(script);
+
+
+ </script>  

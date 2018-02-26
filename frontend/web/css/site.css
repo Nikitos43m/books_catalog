@@ -3,7 +3,12 @@ body {
     height: 100%;
 }
 
-@media (min-width: 1400px) {
+
+.container{
+    width:90%;
+}
+
+@media (max-width: 768px) {
     .container {
         width: 100%;
     }
@@ -264,12 +269,34 @@ a.desc:after {
     color: white;
 }
 
+#place{
+    margin-left: 30%;
+}
+
+#save{
+     margin-left: 29%;
+     margin-right: 0px;
+}
+
+@media (max-width: 600px){
+   #place, #save{
+      margin-left: 0;
+   }
+}
 
 
 @media (min-width: 800px) and (max-width: 1200px) {
     .i-am-centered{
         margin-left: 27%;
         width: 50%;
+    }
+
+}
+
+
+@media (min-width: 1200px) {
+    .i-am-centered{
+        margin-left: 40%;
     }
 
 }

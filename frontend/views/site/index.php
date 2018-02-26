@@ -57,7 +57,6 @@ $this->registerJs($script, yii\web\View::POS_READY);
         margin-left: 15px;
     }
 
-    .container{width:100%;}
 </style>
 
 <div class="site-index">
@@ -74,7 +73,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
     <div style="text-align: center">
        <!-- <a class="buy_but" href="#">Разместить объявление</a>-->
-        <?= Html::a('Разместить объявление', ['apartament_user'], ['class' => 'buy_but']); ?>
+        <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['apartament_user'], ['class' => 'buy_but']); ?>
     </div>
 
     <!-- <div style="text-align: center; margin-bottom: 7px;">
