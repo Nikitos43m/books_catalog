@@ -25,16 +25,17 @@ use yii\helpers\ArrayHelper;
         ]); ?>
         
        <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
+       <?=  $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
        <?= $form->field($model, 'price')->textInput()->label('Цена (руб.)') ?>
        <?= $form->field($model, 'telephone')->textInput(['maxlength' => true])->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
            'mask' => '8(999)-999-9999',
        ]) ?>
+        
       
     </div>
     <div class="col-md-2">
        <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
        <?= $form->field($model, 'floor')->textInput() ?>
-       
        
     </div>
      

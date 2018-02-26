@@ -59,14 +59,15 @@ use dosamigos\google\maps\layers\BicyclingLayer;
         <div class="col-md-4">
             <?= $form->field($model, 'street')->label('Улица') ?>
             <?= $form->field($model, 'house') ->label('Дом')?>
+            <?//= $form->field($model, 'description')->textInput()->label('Описание') ?>
+            <?=  $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
+
             <?= $form->field($model, 'telephone')->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
                 'mask' => '8(999)-999-9999',
             ]) ?>
             <?= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->getId()])->label(false) ?>
-            <?//= $form->field($model, 'image_path')->hiddenInput(['value'=> 'testpath'])->label(false) ?>
-           
+            <?= $form->field($model, 'active')->hiddenInput(['value'=> 1])->label(false) ?>
             
-            <?//= $form->field($model, 'image')->fileInput() ?>
            
         </div>
     </div>

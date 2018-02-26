@@ -27,6 +27,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'lng')->label('lng') ?>
             <?= $form->field($model, 'street')->label('Улица') ?>
             <?= $form->field($model, 'house') ->label('Дом')?>
+            <?= $form->field($model, 'description')->textInput()->label('Описание') ?>
             <?= $form->field($model, 'telephone')->label('Телефон') ?>
         </div>
     </div>

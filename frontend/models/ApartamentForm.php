@@ -23,6 +23,8 @@ class ApartamentForm extends Model
     public $user_id;
     public $image;
     public $image_path;
+    public $active;
+    public $description;
 
     /**
      * @inheritdoc
@@ -36,6 +38,8 @@ class ApartamentForm extends Model
             [ ['lat', 'lng'], 'double'],
             [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],
+            [['description'], 'string', 'max' => 255],
+            [['active'], 'boolean']
         ];
     }
 
@@ -75,6 +79,8 @@ class ApartamentForm extends Model
         $apartament->telephone = $this->telephone;
         $apartament->user_id = $this->user_id;
         $apartament->image_path = $this->image_path;
+        $apartament->description = $this->description;
+        $apartament->active = $this->active;
 
         return $apartament->save() ? $apartament : null;
 
