@@ -32,11 +32,13 @@ $var = 123;
 $script = <<< JS
     $(document).ready(function() {
     //alert( "ready!" );
-    google.maps.event.addListener(marker, 'click', function() {
-
-    alert('Спасибо, за правильный выбор');
-
-});
+        
+     google.maps.event.addListener(gmap0infoWindow,'domready',function(){
+      $('.kl').click(function() {
+           alert('YES!');
+      });
+     });   
+        
 });
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
@@ -188,11 +190,52 @@ $this->registerJs($script, yii\web\View::POS_READY);
         $path = $apart['image_path'];
         //$path = "uploads/p.".Html::encode("{$apart["user_id"]}")."/".Html::encode("{$apart["area"]}{$apart["floor"]}{$apart["rooms"]}");
 
+        
+        //FANCYBOX Для фотографий
+       
+        echo newerton\fancybox\FancyBox::widget([
+            'target' => 'a[rel=fancybox]',
+            'helpers' => true,
+            'mouse' => true,
+            'config' => [
+                    'maxWidth' => '90%',
+                    'maxHeight' => '90%',
+                    'playSpeed' => 7000,
+                    'padding' => 0,
+                    'fitToView' => false,
+                    'width' => '70%',
+                    'height' => '70%',
+                    'autoSize' => false,
+                    'closeClick' => false,
+                    'openEffect' => 'elastic',
+                    'closeEffect' => 'elastic',
+                    'prevEffect' => 'elastic',
+                    'nextEffect' => 'elastic',
+                    'closeBtn' => false,
+                    'openOpacity' => true,
+             'helpers' => [
+                'title' => ['type' => 'float'],
+                        'buttons' => [],
+                        'thumbs' => ['width' => 68, 'height' => 50],
+                        'overlay' => [
+                            'css' => [
+                                'background' => 'rgba(0, 0, 0, 0.8)'
+                             ]
+                         ]
+               ],
+               ]
+            ]);
+        
         $images = scandir($path); // сканируем папку
         $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
         foreach($images as $image) { // делаем проход по массиву
-            $fimg .= "<img  width='100px' src='".$path.htmlspecialchars(urlencode($image))."' alt='".$image."' />";
+          //  $fimg .= "<img  width='100px' src='".$path.htmlspecialchars(urlencode($image))."' alt='".$image."' rel='fancybox' />";
+          //$fimg .= Html::a(Html::img('".$path.htmlspecialchars(urlencode($image))."', ['width'=>'300px']), '".$path.htmlspecialchars(urlencode($image))."', ['rel' => 'fancybox']);
+          
+          $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox'><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
         }
+        
+        $fimg .= "<p class='kl'>CLICK ME</p>";
 
         $mark->attachInfoWindow(
             new InfoWindow([
@@ -203,7 +246,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
                              '<p>Этаж: '.Html::encode("{$apart["floor"]}"). '</p>'.
                              '<p>Адрес: '.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
                              '<p>Телефон: ' .Html::encode("{$apart["telephone"]}").'</p>'.
-                             '<p>'.$fimg. '</p>'
+                             '<p>'.$fimg.'</p>'
+                            //  Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox'])
+                          // '<a href="uploads/sant.jpg" rel="fancybox"><img src="uploads/sant.jpg" width="300px"></a>'
 
             ])
         );
@@ -245,11 +290,16 @@ $this->registerJs($script, yii\web\View::POS_READY);
     // Display the map -finally :)
     echo $map->display();
     ?>
+    
     </div>
         <div class="row">
             <div class="col-lg-4">
+                
+                    <? echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
+                    <? echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
+                    <a href='uploads/sant.jpg' rel='fancybox'><img src='uploads/sant.jpg' width='300px'></a>
                 <h2>Heading</h2>
-
+           
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                     ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
