@@ -30,15 +30,10 @@ $this->title = 'My Yii Application';
 $var = 123;
 //начало многосточной строки, можно использовать любые кавычки
 $script = <<< JS
+    
     $(document).ready(function() {
     //alert( "ready!" );
-        
-     google.maps.event.addListener(gmap0infoWindow,'domready',function(){
-      $('.kl').click(function() {
-           alert('YES!');
-      });
-     });   
-        
+    // $('a').fancybox();    
 });
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
@@ -232,11 +227,12 @@ $this->registerJs($script, yii\web\View::POS_READY);
           //  $fimg .= "<img  width='100px' src='".$path.htmlspecialchars(urlencode($image))."' alt='".$image."' rel='fancybox' />";
           //$fimg .= Html::a(Html::img('".$path.htmlspecialchars(urlencode($image))."', ['width'=>'300px']), '".$path.htmlspecialchars(urlencode($image))."', ['rel' => 'fancybox']);
           
-          $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox'><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
+          //$fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' onclick='alert(\" AAA! \"); return false;'><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
+           $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
         }
         
-        $fimg .= "<p class='kl'>CLICK ME</p>";
-
+        //$fimg .= "<p class='kl'>CLICK ME</p>";
+        
         $mark->attachInfoWindow(
             new InfoWindow([
                 'content' =>
@@ -252,12 +248,13 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
             ])
         );
-
-
-
-
+                
         $map->addOverlay($mark);
+       
     }
+     //$js = "gmap0infoWindow = new google.maps.InfoWindow(); google.maps.event.addListener(gmap0infoWindow,'domready',function(){alert('YES!');});";
+     //$map->appendScript($js);
+   
    //----------------------------------------------------------------------
     // Now lets write a polygon
     $coords = [
@@ -285,19 +282,37 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
     // Append its resulting script
     $map->appendScript($bikeLayer->getJs());
-
+    
 
     // Display the map -finally :)
     echo $map->display();
+
     ?>
     
     </div>
+<script>
+ function message(url){  
+          //$('a').fancybox();
+        $.fancybox(
+            //'<h2>Hi!</h2><p>Content of popup</p>',
+            '<img src="'+url+'">',
+            {
+                'autoDimensions'    : false,
+                'width'             : 350,
+                'height'            : 'auto',
+                'transitionIn'      : 'none',
+                'transitionOut'     : 'none',
+            }
+        );
+
+        }
+</script>
         <div class="row">
             <div class="col-lg-4">
                 
                     <? echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
                     <? echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
-                    <a href='uploads/sant.jpg' rel='fancybox'><img src='uploads/sant.jpg' width='300px'></a>
+                    <a href='uploads/sant.jpg' rel='fancybox' onclick='message(); return false;'><img src='uploads/sant.jpg' width='300px'></a>
                 <h2>Heading</h2>
            
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
