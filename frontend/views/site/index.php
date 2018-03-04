@@ -70,7 +70,11 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
     <div style="text-align: center">
        <!-- <a class="buy_but" href="#">Разместить объявление</a>-->
-        <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['apartament_user'], ['class' => 'buy_but']); ?>
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['apartament_user'], ['class' => 'buy_but']); ?>
+            <?else: ?>
+            <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['/site/login'], ['class' => 'buy_but']); ?>
+        <?php endif; ?>
     </div>
 
     <!-- <div style="text-align: center; margin-bottom: 7px;">
@@ -227,8 +231,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
           //  $fimg .= "<img  width='100px' src='".$path.htmlspecialchars(urlencode($image))."' alt='".$image."' rel='fancybox' />";
           //$fimg .= Html::a(Html::img('".$path.htmlspecialchars(urlencode($image))."', ['width'=>'300px']), '".$path.htmlspecialchars(urlencode($image))."', ['rel' => 'fancybox']);
           
-          //$fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' onclick='alert(\" AAA! \"); return false;'><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
-           $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
+          //$fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' ><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
+           $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."'  onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
         }
         
         //$fimg .= "<p class='kl'>CLICK ME</p>";
@@ -242,7 +246,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
                              '<p>Этаж: '.Html::encode("{$apart["floor"]}"). '</p>'.
                              '<p>Адрес: '.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
                              '<p>Телефон: ' .Html::encode("{$apart["telephone"]}").'</p>'.
-                             '<p>'.$fimg.'</p>'
+                             '<p>'.$fimg.'</p>'.
+                             '<p>'.Html::a("Подробно", ["/apartament/view", "id"=>$apart->id]).'</p>'
                             //  Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox'])
                           // '<a href="uploads/sant.jpg" rel="fancybox"><img src="uploads/sant.jpg" width="300px"></a>'
 
@@ -310,9 +315,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <div class="row">
             <div class="col-lg-4">
                 
-                    <? echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
-                    <? echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
-                    <a href='uploads/sant.jpg' rel='fancybox' onclick='message(); return false;'><img src='uploads/sant.jpg' width='300px'></a>
+                    <?// echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
+                    <?// echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
+                   <!-- <a href='uploads/ban1.jpg'  rel="fancybox"><img src='uploads/ban1.jpg' width='300px'></a> -->
                 <h2>Heading</h2>
            
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et

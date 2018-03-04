@@ -49,7 +49,7 @@ a.buy_but{
 }
 .buy_but{
     width: 400px;
-    background-color: #000000bd;
+    background-color: rgba(0, 0, 0, 0.69);
     text-decoration: none;
     color: white;
     border-color: #bccfbe;
@@ -76,7 +76,7 @@ a.buy_but{
 }
 
 .buy_but:hover{
-    background-color: #5d55559e;  color: white;
+    background-color: rgba(93, 85, 85, 0.64);  color: white;
 }
 
 .not-set {
@@ -174,7 +174,7 @@ a.desc:after {
 
 .main_but{
     font-family: "Century Gothic";
-    background-color: #000000bd;
+    background-color:  rgba(0, 0, 0, 0.69);
     border-color: #f2f2f2;
     color: white;
     display: inline-block;
@@ -214,7 +214,7 @@ a.desc:after {
 
 .in_but{
     font-family: "Century Gothic";
-    background-color: #000000bd;
+    background-color:  rgba(0, 0, 0, 0.69);
     border-color: #f2f2f2;
     color: white;
     display: inline-block;
@@ -276,6 +276,16 @@ a.desc:after {
 #save{
      margin-left: 29%;
      margin-right: 0px;
+}
+
+.photo-view{
+    margin-right: 5px;
+    padding: 1.5px;
+    border: 1.5px solid rgb(205, 205, 210);
+}
+
+a{
+    color: rgb(48, 61, 72);
 }
 
 @media (max-width: 600px){

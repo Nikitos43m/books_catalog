@@ -44,7 +44,7 @@ class Apartament extends \yii\db\ActiveRecord
             [['lat', 'lng'], 'number'],
             [['type', 'street', 'house', 'telephone'], 'string', 'max' => 100],
             [['image_path'], 'string'],
-            [['description'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 1000],
             [['active'], 'boolean']
         ];
     }

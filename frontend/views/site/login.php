@@ -35,6 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
             <?php ActiveForm::end(); ?>
+            <div class="form-group" style="text-align: center">
+                <?= Html::a('<i class="glyphicon glyphicon-user" aria-hidden="true"></i> Зарегистрироваться', ['/site/signup'], ['class' => '']); ?>
+            </div>
         </div>
     </div>
     </div>

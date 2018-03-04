@@ -38,7 +38,7 @@ class ApartamentForm extends Model
             [ ['lat', 'lng'], 'double'],
             [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],
-            [['description'], 'string', 'max' => 255],
+            [['description'], 'string', 'max' => 1000],
             [['active'], 'boolean']
         ];
     }

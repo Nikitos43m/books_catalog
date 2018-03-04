@@ -50,7 +50,7 @@ $this->registerJs($js);
     ]); ?>
 
 
-<div class="row">
+<div>
     <div class="col-md-2">
 
         <?= $form->field($model, 'type')->label(false)->dropDownList([
