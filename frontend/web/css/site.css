@@ -288,12 +288,21 @@ a{
     color: rgb(48, 61, 72);
 }
 
+.info-view{
+    width: 100%;
+}
+
 @media (max-width: 600px){
    #place, #save{
       margin-left: 0;
    }
 }
 
+@media (max-width: 990px){
+    .info-view{
+        display: inline-block;
+    }
+}
 
 @media (min-width: 800px) and (max-width: 1200px) {
     .i-am-centered{

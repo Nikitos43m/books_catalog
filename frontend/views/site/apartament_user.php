@@ -60,7 +60,7 @@ use dosamigos\google\maps\layers\BicyclingLayer;
             <?= $form->field($model, 'street')->label('Улица') ?>
             <?= $form->field($model, 'house') ->label('Дом')?>
             <?//= $form->field($model, 'description')->textInput()->label('Описание') ?>
-            <?=  $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
+
 
             <?= $form->field($model, 'telephone')->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
                 'mask' => '8(999)-999-9999',
@@ -69,6 +69,9 @@ use dosamigos\google\maps\layers\BicyclingLayer;
             <?= $form->field($model, 'active')->hiddenInput(['value'=> 1])->label(false) ?>
             
            
+        </div>
+        <div class="col-md-8">
+            <?=  $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 30])->label('Описание'); ?>
         </div>
     </div>
 
