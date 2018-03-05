@@ -40,7 +40,17 @@ use yii\helpers\ArrayHelper;
     </div>
      
     <div class="col-md-3">
-       <?= $form->field($model, 'rooms')->textInput() ?>
+       <?//= $form->field($model, 'rooms')->textInput() ?>
+        
+       <?= $form->field($model, 'rooms')->dropDownList([
+                '1' => '1',
+                '2' => '2',
+                '3' => '3',
+                '4' => '4',
+                '5' => '5',
+                '11' => 'Студия'
+            ]); ?>
+        
        <?= $form->field($model, 'area')->textInput() ?>
 
     </div> 

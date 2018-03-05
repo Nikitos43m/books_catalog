@@ -92,6 +92,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?=$model->street;?>
                 <?=$model->house;?>
             </div>
+            <div class="col-sm-2" style="float: right">
+                <?php $created_date = date('d-m-Y H:i', $model->created_at); ?>
+                <div class="view-date"><i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i> Размещено: <?=$created_date ?> </div> 
+            </div>
         </div>
 
 
@@ -105,8 +109,9 @@ $this->params['breadcrumbs'][] = $this->title;
           <div style="width:300px; display: inline-block">
               <div class="col-md-12" style="margin-bottom: 10px"><span style="font-size: 20px;font-weight: 700;">
                        <?php
-	                        $number = $model->price;
-	                        $prise = number_format($number, 0, "", " ");
+	                    $number = $model->price;
+	                    $prise = number_format($number, 0, "", " ");
+                             
                         ?>
                       <?=$prise?></span><i class="glyphicon glyphicon-ruble" aria-hidden="true"></i>
                       <?php if ($model->type == 0): ?>
@@ -115,6 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       <? endif;?>
               </div>
               <div class="col-md-12"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>  Телефон: <?=$model->telephone;?></div>
+
           </div>
         </div>
     </div>

@@ -37,7 +37,7 @@ class ApartamentSearch extends Apartament
             [['id', 'floor', 'area', 'price', 'user_id', 'cost_from', 'cost_to', 'floor_from','floor_to','area_from','area_to'], 'integer'],
             [['type', 'street', 'house', 'telephone'], 'safe'],
             [['lat', 'lng'], 'number'],
-            ['rooms', 'in', 'range' => [1,2,3,4,5], 'allowArray' => true]
+            ['rooms', 'in', 'range' => [1,2,3,4,5,11], 'allowArray' => true]
         ];
     }
 

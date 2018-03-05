@@ -232,10 +232,17 @@ $this->registerJs($script, yii\web\View::POS_READY);
           //$fimg .= Html::a(Html::img('".$path.htmlspecialchars(urlencode($image))."', ['width'=>'300px']), '".$path.htmlspecialchars(urlencode($image))."', ['rel' => 'fancybox']);
           
           //$fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' ><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
+           $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' style='width:170px'  onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img src='".$path.htmlspecialchars(urlencode($image))."' height='40px' alt='".$image."'></a>";
         }
         
         //$fimg .= "<p class='kl'>CLICK ME</p>";
         $price = number_format($apart['price'], 0, "", " ");
+        
+        $room = 'комн.';
+        if($apart['rooms'] == 11 ){
+            $apart['rooms'] = 'Студия';
+            $room = '';
+        }
         
         $mark->attachInfoWindow(
             new InfoWindow([
@@ -243,6 +250,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
                                 '<div class="col-xs-6" '.
                                     '<p><b>'.Html::encode("{$price}"). ' руб.</b></p>'.
                                     '<p><b>'.Html::encode("{$apart["area"]}"). ' м<sup>2</sup></b></p>'.
+                                    '<p><b>'.Html::encode("{$apart["rooms"]}").' '.$room.'</b></p>'.
                                 '</div>'.
                                 '<div class="col-xs-6" '.
                                     '<p>'.Html::encode("{$apart["floor"]}").' этаж </p>'.
@@ -251,6 +259,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
                                 '</div>'.
                              
                                      
+                             '<div class="col-md-12 info-wind">'.$fimg.'</div>'.
                              '<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id],  
                                     ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
                                    . '</div>'

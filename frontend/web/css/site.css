@@ -300,6 +300,20 @@ a{
     padding-top: 10px;
 }
 
+.gm-style img {
+    width: 75px;
+    border: 1px solid rgb(186, 187, 187);
+    padding: 2px;
+    max-width: none;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.view-date{
+   font-size: 14px;
+   color: gray;
+}
+
 @media (max-width: 600px){
    #place, #save{
       margin-left: 0;
