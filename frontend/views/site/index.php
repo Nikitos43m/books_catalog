@@ -232,22 +232,29 @@ $this->registerJs($script, yii\web\View::POS_READY);
           //$fimg .= Html::a(Html::img('".$path.htmlspecialchars(urlencode($image))."', ['width'=>'300px']), '".$path.htmlspecialchars(urlencode($image))."', ['rel' => 'fancybox']);
           
           //$fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' ><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
-           $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."'  onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img src='".$path.htmlspecialchars(urlencode($image))."' width='100px' alt='".$image."'></a>";
         }
         
         //$fimg .= "<p class='kl'>CLICK ME</p>";
+        $price = number_format($apart['price'], 0, "", " ");
         
         $mark->attachInfoWindow(
             new InfoWindow([
-                'content' =>
-                             '<p>Цена: '.Html::encode("{$apart["price"]}"). ' руб.</p>'.
-                             '<p>Площадь: '.Html::encode("{$apart["area"]}"). ' м<sup>2</sup></p>'.
-                             '<p>Комнат: '.Html::encode("{$apart["rooms"]}"). '</p>'.
-                             '<p>Этаж: '.Html::encode("{$apart["floor"]}"). '</p>'.
-                             '<p>Адрес: '.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
-                             '<p>Телефон: ' .Html::encode("{$apart["telephone"]}").'</p>'.
-                             '<p>'.$fimg.'</p>'.
-                             '<p>'.Html::a("Подробно", ["/apartament/view", "id"=>$apart->id]).'</p>'
+                'content' => '<div style="max-width:350px; padding: 12px 0px;"> '.
+                                '<div class="col-xs-6" '.
+                                    '<p><b>'.Html::encode("{$price}"). ' руб.</b></p>'.
+                                    '<p><b>'.Html::encode("{$apart["area"]}"). ' м<sup>2</sup></b></p>'.
+                                '</div>'.
+                                '<div class="col-xs-6" '.
+                                    '<p>'.Html::encode("{$apart["floor"]}").' этаж </p>'.
+                                    '<p>'.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
+                                    '<p><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> ' .Html::encode("{$apart["telephone"]}").'</p>'.
+                                '</div>'.
+                             
+                                     
+                             '<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id],  
+                                    ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
+                                   . '</div>'
+                             . '</div>'
                             //  Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox'])
                           // '<a href="uploads/sant.jpg" rel="fancybox"><img src="uploads/sant.jpg" width="300px"></a>'
 

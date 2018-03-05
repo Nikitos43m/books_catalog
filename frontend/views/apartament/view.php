@@ -136,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             window.Map = new google.maps.Map(mapCanvas, {
                 zoom: 12,
-                center: new google.maps.LatLng(47.231620, 39.695463)
+                center: new google.maps.LatLng(<?php echo $model->lat;?>, <?php echo $model->lng;?>)
             });
 
             var baseMarker = new google.maps.Marker({
@@ -145,15 +145,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 map: window.Map,
                 draggable: false,
                 icon :'images/point.png'
-            });
-
-            google.maps.event.addListener(baseMarker, 'dragend', function (a,b,c,d) {
-
-                var lat = baseMarker.getPosition().lat();
-                var lng = baseMarker.getPosition().lng();
-                $("#apartament-lat").val(lat)
-                $("#apartament-lng").val(lng);
-
             });
 
         }

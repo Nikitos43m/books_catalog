@@ -155,7 +155,7 @@ function GoogleMap_init () {
 
     window.Map = new google.maps.Map(mapCanvas, {
         zoom: 12,
-        center: new google.maps.LatLng(47.231620, 39.695463)
+        center: new google.maps.LatLng(<?php echo $model->lat;?>, <?php echo $model->lng;?>)
     });
 
     var baseMarker = new google.maps.Marker({
