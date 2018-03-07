@@ -17,6 +17,8 @@ use frontend\models\ApartamentForm;
 use common\models\EntryForm;
 use yii\web\UploadedFile;
 use app\models\ApartamentSearch;
+use yii\data\ActiveDataProvider;
+use yii\web\Response;
 /**
  * Site controller
  */
@@ -309,6 +311,71 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    
+    public function actionMyappart()
+    {  
+       $user_id = Yii::$app->user->getId();
+       $model = \common\models\User::findById($user_id); 
+       
+       $saved_str = $model->my_appart;
+       $saved_ad = explode(",", $saved_str);
+       
+       foreach ($saved_ad as $val){
+           $arr_int[] = (int)$val;
+       }
+       $query = Apartament::find()->where(['in','id', $arr_int]);
+      
+       $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
+       
+       return $this->render('/apartament/my_appart', [
+         //   'model' => $model,
+        //    'saved_ad' => $saved_ad
+           'dataProvider' => $dataProvider
+        ]); 
+    }
+    
+    public function actionDeletead($id)
+    {  
+       $user_id = Yii::$app->user->getId();
+       $model = \common\models\User::findById($user_id);
+       
+       /*Преобразование в массив*/
+       $saved_str = $model->my_appart;
+       $saved_ad = explode(",", $saved_str);
+       foreach ($saved_ad as $val){
+           $arr_int[] = (int)$val;
+       }
+       
+       /*Удаление в массиве */
+       foreach($arr_int as $key => $value) {
+         if ($id == $value) {
+             unset($arr_int[$key]);
+         }
+       }
+       
+        /*Преобразование обратно в строку*/
+       $str = implode(",", $arr_int);
+       $model->my_appart = $str;
+       $model->save();
+      // var_dump($arr_int); die();
+        //return true;
+        Yii::$app->runAction('site/myappart');
+
+         
+    }
+
+    
+
 
     public function actionApartament_user()
     {
@@ -360,13 +427,12 @@ class SiteController extends Controller
 
     }
 
-    /*public function actionUpload(){
-        $model = new UploadImage();
-        if(Yii::$app->request->isPost){
-            $model->image = UploadedFile::getInstance($model, 'image');
-            $model->upload();
-            return;
+    protected function findModel($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
-        return $this->render('upload', ['model' => $model]);
-    }*/
+    }
 }

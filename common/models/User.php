@@ -155,9 +155,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->username;
     }
-    
-
     /**
+     * 
+     * @return type
+     */
+    public function getMyappart(){
+        return $this->my_appart;
+    }
+
+
+        /**
      * @inheritdoc
      */
     public function validateAuthKey($authKey)
@@ -216,6 +223,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function getApartament()
     {
         return $this->hasMany(Apartament::className(), ['user_id' => 'id']);
+    }
+    
+    public function deleteMyAd($id_ad)
+    {    
+        //Yii::$app->db->createCommand('DELETE my_appart FROM post')->execute();    
     }
 
 

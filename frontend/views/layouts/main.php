@@ -48,6 +48,8 @@ AppAsset::register($this);
         $menuItems[] = '<li>'.Html::a('<i class="glyphicon glyphicon-log-in" aria-hidden="true"></i> Вход', ['/site/login'], ['class' => 'btn btn-link']).'</li>
                <li>';
     } else {
+        $menuItems[] = '<li>'.Html::a('<i class="glyphicon glyphicon-log-in" aria-hidden="true"></i> Сохраненные объявления', ['/site/myappart'], ['class' => 'btn btn-link']).'</li>';
+        
         $menuItems[] = '<li>'.Html::a('<i class="glyphicon glyphicon-home" aria-hidden="true" style=" margin-right: 10px;"></i>Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link']).'</li>
                <li>'
             . Html::beginForm(['/site/logout'], 'post')

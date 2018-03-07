@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <?php if (!Yii::$app->user->isGuest): ?>
            <?php $form = ActiveForm::begin();?>
-               <?= $form->field($model2, 'my_appart')->textInput(['value'=> $model->id])->label(false) ?>
+               <?= $form->field($model2, 'my_appart')->hiddenInput(['value'=> $model->id])->label(false) ?>
                <?= Html::submitButton('Сохранить объявление', ['class' => 'in_but']) ?>
            <?php ActiveForm::end(); ?>
         <? endif;?>
