@@ -244,6 +244,17 @@ $this->registerJs($script, yii\web\View::POS_READY);
             $room = '';
         }
         
+        if(Yii::$app->user->isGuest){
+            $button_info =  '<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/viewguest", "id"=>$apart->id],  
+                                    ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
+                                   . '</div>';
+        }else{
+            $button_info = '<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id, "user_id"=> Yii::$app->user->getId()],  
+                                    ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
+                                   . '</div>';
+        }
+        
+               
         $mark->attachInfoWindow(
             new InfoWindow([
                 'content' => '<div style="max-width:350px; padding: 12px 0px;"> '.
@@ -260,9 +271,10 @@ $this->registerJs($script, yii\web\View::POS_READY);
                              
                                      
                              '<div class="col-md-12 info-wind">'.$fimg.'</div>'.
-                             '<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id],  
+                             /*'<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id, "user_id"=> $user_id],  
                                     ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
-                                   . '</div>'
+                                   . '</div>'*/
+                                          $button_info  
                              . '</div>'
                             //  Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox'])
                           // '<a href="uploads/sant.jpg" rel="fancybox"><img src="uploads/sant.jpg" width="300px"></a>'

@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use app\models\Apartament;
 use app\models\ApartamentSearch;
+use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -63,14 +64,40 @@ class ApartamentController extends Controller
 
 
     /**
-     * Displays a single Apartament model.
+     * Action 'подробнее' для залогиненных пользователей
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id, $user_id)
+    {   
+        $model2 = $this->findUserModel($user_id);
+        
+        if ($model2->load(Yii::$app->request->post()) ) {           
+            $post = Yii::$app->request->post();
+            foreach ($post as $key){}
+            
+            /* Дозапись к пользователю сохраненного объявления */
+            Yii::$app->db->createCommand('UPDATE user SET  my_appart=concat(my_appart,",'.$key[my_appart].'") WHERE id='.$user_id.' ')->execute();
+
+            return $this->redirect(['index']);
+
+        } else {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'model2' => $model2
+            
+        ]);}
+    }
+    /**
+     * Action 'подробнее' для НЕзалогиненных пользователей
+     * @param type $id
+     * @return type
+     */
+    
+    public function actionViewguest($id)
+    {   
+        return $this->render('view', [
+            'model' => $this->findModel($id),            
         ]);
     }
 
@@ -190,6 +217,15 @@ class ApartamentController extends Controller
     protected function findModel($id)
     {
         if (($model = Apartament::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    protected function findUserModel($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

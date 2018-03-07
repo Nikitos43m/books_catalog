@@ -2,9 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Apartament */
+/* @var $model2 app\models\User */
+/* @var $form ActiveForm */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Apartaments', 'url' => ['index']];
@@ -97,9 +99,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="view-date"><i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i> Размещено: <?=$created_date ?> </div> 
             </div>
         </div>
-
-
-
+        
+        <?php if (!Yii::$app->user->isGuest): ?>
+           <?php $form = ActiveForm::begin();?>
+               <?= $form->field($model2, 'my_appart')->textInput(['value'=> $model->id])->label(false) ?>
+               <?= Html::submitButton('Сохранить объявление', ['class' => 'in_but']) ?>
+           <?php ActiveForm::end(); ?>
+        <? endif;?>
     <div>
         
     </div>
@@ -133,7 +139,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
 
     </div>
-
+    
 
     <script>
         function GoogleMap_init () {
