@@ -24,7 +24,7 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 
 /* @var $searchModel app\models\ApartamentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+/* @var $count integer*/
 $this->title = 'My Yii Application';
 
 $var = 123;
@@ -70,10 +70,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
     <div style="text-align: center">
        <!-- <a class="buy_but" href="#">Разместить объявление</a>-->
-        <?php if (!Yii::$app->user->isGuest): ?>
-            <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['apartament_user'], ['class' => 'buy_but']); ?>
-            <?else: ?>
-            <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['/site/login'], ['class' => 'buy_but']); ?>
+        <?php if ((!Yii::$app->user->isGuest) && ($count == 0)): ?>
+                <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['apartament_user'], ['class' => 'buy_but']); ?>
+                
         <?php endif; ?>
     </div>
 

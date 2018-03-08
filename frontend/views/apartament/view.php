@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Apartament */
 /* @var $model2 app\models\User */
 /* @var $form ActiveForm */
+/* @var $arr_ads array */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Apartaments', 'url' => ['index']];
@@ -100,19 +101,14 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         
-        <?php if (!Yii::$app->user->isGuest): ?>
-           <?php $form = ActiveForm::begin();?>
-               <?= $form->field($model2, 'my_appart')->hiddenInput(['value'=> $model->id])->label(false) ?>
-               <?= Html::submitButton('Сохранить объявление', ['class' => 'in_but']) ?>
-           <?php ActiveForm::end(); ?>
-        <? endif;?>
+
     <div>
         
     </div>
 </div>
     <div  class="info-view" style="width: 100%">
         <div style="float: right; font-size: 16px; border-bottom: 1px solid rgb(225, 225, 225);">
-          <div style="width:300px; display: inline-block">
+          <div style="width:300px; display: inline-block; padding: 10px;">
               <div class="col-md-12" style="margin-bottom: 10px"><span style="font-size: 20px;font-weight: 700;">
                        <?php
 	                    $number = $model->price;
@@ -127,14 +123,27 @@ $this->params['breadcrumbs'][] = $this->title;
               </div>
               <div class="col-md-12"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>  Телефон: <?=$model->telephone;?></div>
 
+              <div class="col-md-12 col-xs-12" style="margin-top: 10px">
+              <?php if (!Yii::$app->user->isGuest): ?>
+                  <?php if (in_array($model->id ,$arr_ads)): ?>
+                      <span style="color: grey; font-size: 13px;">Вы сохранили данное объявление</span>
+                  <? else: ?>
+                      <?php $form = ActiveForm::begin();?>
+                      <?= $form->field($model2, 'my_appart')->hiddenInput(['value'=> $model->id])->label(false) ?>
+                      <?= Html::submitButton('<i class="glyphicon glyphicon-heart" aria-hidden="true"></i> Сохранить', ['class' => 'in_but']) ?>
+                      <?php ActiveForm::end(); ?>
+
+                  <? endif;?>
+              <? endif;?>
+              </div>
           </div>
         </div>
     </div>
     <div>
-        <div class="col-lg-3"><b>Описание</b></div>
+        <div class="col-md-3" style="font-size: 16px"><b>Описание</b></div>
 
     </div>
-    <div class="col-md-9" style=" background: rgb(250, 250, 250); margin-top: 10px">
+    <div class="col-md-8" style=" background: rgb(250, 250, 250); margin-top: 10px; padding: 7px">
 
         <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
 

@@ -82,8 +82,8 @@ $this->registerJs($js);
     </div>
     <div class="col-md-1">
         <?php//  echo $form->field($model, 'floor') ?>
-        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от"]) ?>
-        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "Этаж до"]) ?>
+        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от", 'style'=>'padding:0px;']) ?>
+        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "Этаж до", 'style'=>'padding:0px;']) ?>
     </div>
 
     <div class="col-md-2">

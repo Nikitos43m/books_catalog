@@ -7,6 +7,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\base\BaseObject;
 
 /**
  * User model
@@ -223,6 +224,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function getApartament()
     {
         return $this->hasMany(Apartament::className(), ['user_id' => 'id']);
+
     }
     
     public function deleteMyAd($id_ad)

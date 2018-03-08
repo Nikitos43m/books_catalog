@@ -78,10 +78,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        /*
-        $apartament = Apartament::find()->asArray()->all();
-        return $this->render('index', ['apartament' => $apartament]);
-        */
+        $count = null;
+        if(!Yii::$app->user->isGuest) {
+            /* Количество объявлений пользователя */
+            $user_id = Yii::$app->user->getId();
+            $model = \common\models\User::findById($user_id);
+            $counts = $model->getApartament()->count();
+            $count = (int)$counts;
+            //var_dump($count); die();
+
+        }
 
 
         $searchModel = new ApartamentSearch();
@@ -89,6 +95,7 @@ class SiteController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'count' => $count
         ]);
 
     }

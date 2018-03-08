@@ -69,22 +69,32 @@ class ApartamentController extends Controller
      * @return mixed
      */
     public function actionView($id, $user_id)
-    {   
+    {
+
         $model2 = $this->findUserModel($user_id);
-        
-        if ($model2->load(Yii::$app->request->post()) ) {           
+
+        $saved_str = $model2->my_appart;
+        $saved_ad = explode(",", $saved_str);
+
+        foreach ($saved_ad as $val){
+            $arr_int[] = (int)$val;
+        }
+
+        if ($model2->load(Yii::$app->request->post()) ) {
+
             $post = Yii::$app->request->post();
             foreach ($post as $key){}
-            
+
             /* Дозапись к пользователю сохраненного объявления */
             Yii::$app->db->createCommand('UPDATE user SET  my_appart=concat(my_appart,",'.$key[my_appart].'") WHERE id='.$user_id.' ')->execute();
 
-            return $this->redirect(['index']);
+            return $this->refresh();
 
         } else {
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'model2' => $model2
+            'model2' => $model2,
+            'arr_ads' => $arr_int
             
         ]);}
     }
