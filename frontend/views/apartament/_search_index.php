@@ -37,7 +37,7 @@ $this->registerJs($js);
 <style>
 
     .col-md-1, .col-md-2{
-        padding-right: 6px;
+        padding-right: 0px;
     }
 </style>
 
@@ -45,13 +45,16 @@ $this->registerJs($js);
 <div class="apartament-search">
 
     <?php $form = ActiveForm::begin([
+        'options' => [
+            'class' => 'search-form'
+        ],
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
 
 <div>
-    <div class="col-md-2">
+    <div class="col-md-2 ">
 
         <?= $form->field($model, 'type')->label(false)->dropDownList([
             '0' => 'Купить',
@@ -80,21 +83,20 @@ $this->registerJs($js);
        
 
     </div>
-    <div class="col-md-1">
-        <?php//  echo $form->field($model, 'floor') ?>
-        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от", 'style'=>'padding:0px;']) ?>
-        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "Этаж до", 'style'=>'padding:0px;']) ?>
+    <div class="col-md-1 price">
+        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от"]) ?>
+        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'margin-top:-12px']) ?>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-2 sq">
         <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от"]) ?>
-        <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "Площадь до"]) ?>
+        <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'margin-top:-12px']) ?>
     </div>
 
-    <div class="col-md-2">
-        <?//php  echo $form->field($model, 'price') ?>
+    <div class="col-md-4 price">
+
         <?php  echo $form->field($model, 'cost_from')->label(false)->textInput(['placeholder' => "Цена от"]) ?>
-        <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "Цена до"]) ?>
+        <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'margin-top:-12px']) ?>
     </div>
 
 
@@ -107,7 +109,7 @@ $this->registerJs($js);
     <?php // echo $form->field($model, 'user_id') ?>
 
 
-    <div class="form-group" style="text-align: center">
+    <div class="form-group" style="text-align: center; clear: both">
         <?= Html::submitButton('Показать', ['class' => 'main_but']) ?>
         <?//= Html::resetButton('Очистить', ['class' => 'btn btn-default']) ?>
     </div>

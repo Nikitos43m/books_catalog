@@ -47,7 +47,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
     .site-index{
         background-image: url("images/k.jpg");
-        padding-bottom: 100px;
+        padding-bottom: 20px;
     }
     
     #apartamentsearch-rooms label{
@@ -72,7 +72,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
        <!-- <a class="buy_but" href="#">Разместить объявление</a>-->
         <?php if ((!Yii::$app->user->isGuest) && ($count == 0)): ?>
                 <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['apartament_user'], ['class' => 'buy_but']); ?>
-                
+
         <?php endif; ?>
     </div>
 
@@ -81,13 +81,14 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
-        <div  class="open-filter" style="margin: 0 auto;width: 210px; font-size: 16px; cursor: pointer">
+        <div  class="open-filter clear" style="margin: 0 auto;width: 210px; font-size: 16px; cursor: pointer">
             Поиск по фильтрам &nbsp  <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px;"></i>
         </div>
     </div>
     <div class="filter">
         <?php  echo $this->render('/apartament/_search_index', ['model' => $searchModel]); ?>
     </div>
+
     <?php
     $coord = new LatLng(['lat' => 47.231620, 'lng' => 39.695463]);
     $map = new Map([
@@ -130,46 +131,6 @@ $this->registerJs($script, yii\web\View::POS_READY);
         'polylineOptions' => $polylineOptions
     ]);
 
-    // Finally the directions service
-    /*    $directionsService = new DirectionsService([
-            'directionsRenderer' => $directionsRenderer,
-            'directionsRequest' => $directionsRequest
-        ]);*/
-
-    // Thats it, append the resulting script to the map
-    //   $map->appendScript($directionsService->getJs());
-
-    // Lets add a marker now
-    /*$mark = new LatLng(['lat' => 47.231620, 'lng' => 39.695463]);
-    $marker = new Marker([
-        'position' => $mark,
-        'title' => 'My Home Town',
-    ]);
-
-    $home = new LatLng(['lat' => 47.197279, 'lng' => 39.6275719]);
-    $marker_home = new Marker([
-        'position' => $home,
-        'title' => 'Dom',
-        
-    ]);*/
-
-    // Provide a shared InfoWindow to the marker
-    /*
-    $marker->attachInfoWindow(
-        new InfoWindow([
-            'content' => '<p>This is my super cool content</p>'
-        ])
-    );
-
-    $marker_home->attachInfoWindow(
-        new InfoWindow([
-            'content' => '<p>This is my home</p>'
-        ])
-    );
-*/
-    // Add marker to the map
-    //$map->addOverlay($marker);
-    //$map->addOverlay($marker_home);
 
 
     //Автоматическое добавление маркеров------------------------------------
@@ -327,7 +288,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
           //$('a').fancybox();
         $.fancybox(
             //'<h2>Hi!</h2><p>Content of popup</p>',
-            '<img src="'+url+'">',
+            '<img style="max-width:500px; height: auto;" src="'+url+'">',
             {
                 'autoDimensions'    : false,
                 'width'             : 350,
@@ -340,6 +301,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
         }
 </script>
         <div class="row">
+            <div class=""></div>
             <div class="col-lg-4">
                 
                     <?// echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>

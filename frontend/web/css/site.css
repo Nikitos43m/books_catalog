@@ -311,8 +311,28 @@ a{
 
 .view-date{
    font-size: 14px;
-   color: gray;
+   color: grey;
 }
+
+:-ms-input-placeholder { /* IE 10+ */
+    color: grey;
+}
+
+.font-menu{
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.search-form input{
+    border: 1.5px solid rgb(208, 208, 208);
+    border-radius: 3px;
+    box-shadow: none;
+    font-weight: 200;
+}
+
+.bottom-search{
+ margin-top: -12px;
+}
+
 
 @media (max-width: 600px){
    #place, #save{
@@ -323,6 +343,16 @@ a{
 @media (max-width: 990px){
     .info-view{
         display: inline-block;
+    }
+}
+
+@media (min-width: 991px) {
+    .price{
+        width: 130px;
+    }
+
+    .sq{
+        width: 140px;
     }
 }
 

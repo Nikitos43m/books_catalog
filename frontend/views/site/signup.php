@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-signup">
   <div style="text-align: center">
       <h1><?= Html::encode($this->title) ?></h1>
-      <p>Зарегистрируйтесь для того, чтобы разместить свои объявления</p>
+      <p>Зарегистрируйтесь, чтобы разместить свои объявления</p>
   </div>
 
 

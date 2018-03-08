@@ -42,19 +42,19 @@ AppAsset::register($this);
     ];
     if (Yii::$app->user->isGuest) {
        // $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
-        $menuItems[] = '<li>'.Html::a('<i class="glyphicon glyphicon-user" aria-hidden="true"></i> Регистрация', ['/site/signup'], ['class' => 'btn btn-link']).'</li>
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-user" aria-hidden="true"></i> Регистрация', ['/site/signup'], ['class' => 'btn btn-link']).'</li>
                <li>';
         //$menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
-        $menuItems[] = '<li>'.Html::a('<i class="glyphicon glyphicon-log-in" aria-hidden="true"></i> Вход', ['/site/login'], ['class' => 'btn btn-link']).'</li>
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-log-in" aria-hidden="true"></i> Вход', ['/site/login'], ['class' => 'btn btn-link']).'</li>
                <li>';
     } else {
-        $menuItems[] = '<li>'.Html::a('<i class="glyphicon glyphicon-star" aria-hidden="true"></i> Избранное', ['/site/myappart'], ['class' => 'btn btn-link']).'</li>';
-        
-        $menuItems[] = '<li>'.Html::a('<i class="glyphicon glyphicon-home" aria-hidden="true" style=" margin-right: 10px;"></i>Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link']).'</li>
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-star" aria-hidden="true"></i> Избранное', ['/site/myappart'], ['class' => 'btn btn-link']).'</li>';
+
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-home" aria-hidden="true" style=" margin-right: 10px;"></i>Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link']).'</li>
                <li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                '<i class="glyphicon glyphicon-log-out" aria-hidden="true"></i> Выход (' . Yii::$app->user->identity->username . ')',
+                '<i class="glyphicon glyphicon-log-out" aria-hidden="true"></i> <span class="font-menu"> Выход </span>(<span class="font-menu">' . Yii::$app->user->identity->username . '</span>)',
                 ['class' => 'btn btn-link']
             )
             . Html::endForm()

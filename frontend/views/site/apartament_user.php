@@ -137,6 +137,7 @@ function GoogleMap_init () {
 
     window.Map = new google.maps.Map(mapCanvas, {
         zoom: 12,
+        scrollwheel: true,
         center: new google.maps.LatLng(47.231620, 39.695463)
     });
 
