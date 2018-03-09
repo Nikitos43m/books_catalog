@@ -25,7 +25,11 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $searchModel app\models\ApartamentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $count integer*/
-$this->title = 'My Yii Application';
+$this->title = 'Поиск недвижимости';
+$this->registerMetaTag([
+  'name' => 'description',
+  'content' => 'Купить, продать, снять квартиру. Поиск по карте. Размещение бесплатных объявлений.'
+]);
 
 $var = 123;
 //начало многосточной строки, можно использовать любые кавычки
@@ -82,7 +86,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
         <div  class="open-filter clear" style="margin: 0 auto;width: 210px; font-size: 16px; cursor: pointer">
-            Поиск по фильтрам &nbsp  <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px;"></i>
+            <b> Поиск по фильтрам &nbsp </b> <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px;"></i>
         </div>
     </div>
     <div class="filter">
@@ -300,41 +304,33 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
         }
 </script>
-        <div class="row">
-            <div class=""></div>
+    <div class="row ad" >
+        <div class="text-center"><h2 class="main-title">Размещение объявления</h2></div>
+    </div>
+        <div class="row steps">
+           
             <div class="col-lg-4">
                 
                     <?// echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
                     <?// echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
                    <!-- <a href='uploads/ban1.jpg'  rel="fancybox"><img src='uploads/ban1.jpg' width='300px'></a> -->
-                <h2>Heading</h2>
+                <h4>1. Регистрация</h4>
            
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p>Пройдите быструю регистрацию, чтобы размещать объявления и сохранять понравившееся при поиске.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+                <h4>2. Заполните форму с информацией об объекте.</h4>
+                <p>Продать/сдать, кол-во комнат, площадь и т.д.</p>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                <h4>3. Добавьте фотографии Вашего объекта.</h4>
+                <p>Максимальное количество фотографий:8.<br> Принимаются объявления и без фотографий.</p>
+            </div>
+            
+            <div class="col-lg-4">
+                <h4>4. Укажите местоположение.</h4>
+                <p>Перетащите маркер на Ваш объект недвижимости.</p>
             </div>
         </div>
 

@@ -79,9 +79,24 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 contacts">
+                
+                <ul>
+                    <h3>Контакты</h3>
+                    <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> г. Ростов-на-Дону, ул. Заводская, 11</li>
+                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@credit-history24.ru"> info@credit-history24.ru</a></li>
+                    <li>
+                        <a target="_blank" href="https://vk.com"><div class="icon-button vk"></div></a>
+                        <a target="_blank" href="https://instagramm.com"><div class="icon-button inst"></div></a>
+                    </li>
+                </ul>
+            </div>
+          </div>
+        <br>
+        <p class="pull-left">&copy; GNS <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        
     </div>
 </footer>
 
