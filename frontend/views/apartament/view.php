@@ -143,7 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-3" style="font-size: 16px"><b>Описание</b></div>
 
     </div>
-    <div class="col-md-8" style=" background: rgb(250, 250, 250); margin-top: 10px; padding: 7px">
+    <div class="col-md-9 col-sm-12" style=" background: rgb(250, 250, 250); margin-top: 10px; padding: 7px">
 
         <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
 
