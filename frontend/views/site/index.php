@@ -304,39 +304,77 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
         }
 </script>
-    <div class="row ad" >
-        <div class="text-center"><h2 class="main-title">Размещение объявления</h2></div>
-    </div>
-        <div class="col-sm-12 steps">
-           
-            <div class="col-md-6 col-xs-12">
-                
-                    <?// echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
-                    <?// echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
-                   <!-- <a href='uploads/ban1.jpg'  rel="fancybox"><img src='uploads/ban1.jpg' width='300px'></a> -->
-                <div class="howto-label"><div>1</div></div><h4> Регистрация</h4>
-           
-                <p>Пройдите быструю регистрацию, чтобы размещать объявления и сохранять понравившееся при поиске.</p>
 
-            </div>
-            <div class="col-md-6 col-xs-12">
-                <div class="howto-label"><div>2</div></div><h4> Заполните форму.</h4>
-                <p>Продать/сдать, кол-во комнат, площадь и т.д.</p>
-            </div>
-            <div class="col-md-6 col-xs-12" style="clear: both">
-                <div class="howto-label"><div>3</div></div><h4> Добавьте фотографии Вашего объекта.</h4>
-                <p>Максимальное количество фотографий:8.<br> Принимаются объявления и без фотографий.</p>
-            </div>
-            
-            <div class="col-md-6 col-xs-12">
-                <div class="howto-label"><div>4</div></div> <h4> Укажите местоположение.</h4>
-                <p>Перетащите маркер на Ваш объект недвижимости.</p>
-            </div>
-        </div>
 
     </div>
 </div>
 
+<div class="container" style="width: 100%">
+    <div class="row ad" >
+        <div class="text-center"><h2 class="main-title">Размещение объявления</h2></div>
+    </div>
+    <div class="col-sm-12 steps">
+
+        <div class="col-md-6 col-xs-12">
+
+            <?// echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
+            <?// echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
+            <!-- <a href='uploads/ban1.jpg'  rel="fancybox"><img src='uploads/ban1.jpg' width='300px'></a> -->
+            <div class="howto-label"><div>1</div></div><h4> Регистрация</h4>
+
+            <p>Пройдите быструю регистрацию, чтобы размещать объявления и сохранять понравившееся при поиске.</p>
+
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <div class="howto-label"><div>2</div></div><h4> Заполните форму.</h4>
+            <p>Продать/сдать, кол-во комнат, площадь и т.д.</p>
+        </div>
+        <div class="col-md-6 col-xs-12" style="clear: both">
+            <div class="howto-label"><div>3</div></div><h4> Добавьте фотографии Вашего объекта.</h4>
+            <p>Максимальное количество фотографий:8.<br> Принимаются объявления и без фотографий.</p>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="howto-label"><div>4</div></div> <h4> Укажите местоположение.</h4>
+            <p>Перетащите маркер на Ваш объект недвижимости.</p>
+        </div>
+    </div>
+</div>
 <section class="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center" style="margin-bottom: 60px;">
+                <h1 class="title-service">Наши услуги</h1>
+            </div>
+            <div class="col-sm-12 text-center">
+                <div class="row" style="color: white">
+                    <div class="ico-xs col-md-4 col-sm-6 col-xs-12">
+                        <div class="img-ico one"></div>
+                        <h3>Поиск недвижимости</h3>
+                        <p>На нашем ресурсе реализован максимально удобный поиск недвижимости.</p>
+                    </div>
+
+                    <div class="ico-xs col-md-4 col-sm-4 col-xs-12">
+                        <div class="img-ico two"></div>
+                        <h3>Размещение объявлений</h3>
+                        <p>Простой и удобный интерфейс для публикации объявлений.</p>
+                    </div>
+
+                    <div class="ico-xs col-md-4 col-sm-4 col-xs-12">
+                        <div class="img-ico three"></div>
+                        <h3>Сотрудничетво с агентствами</h3>
+                        <p>Предоставление услуг для риэлторов.</p>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
 
 </section>
