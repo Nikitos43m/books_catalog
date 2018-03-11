@@ -83,22 +83,22 @@ $this->registerJs($js);
        
 
     </div>
-    <div class="col-md-2 col-xs-6 fl">
+    <div class="col-md-2 col-xs-12 fl flex">
         <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от"]) ?>
-        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'margin-top:-12px']) ?>
+        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
     </div>
 
-    <div class="col-md-2 col-xs-6 sq">
+    <div class="col-md-2 col-xs-12 sq flex">
         <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от", 'style'=>'']) ?>
-        <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'margin-top:-12px; ']) ?>
-      <!--  <span class='m2'> м<sup>2</sup> </span>  -->
+        <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
+        <span class='m2'> м<sup>2</sup> </span>  
     </div>
 
-    <div class="col-md-2 col-xs-6 price">
+    <div class="col-md-2 col-xs-12 price flex">
         
         <?php  echo $form->field($model, 'cost_from')->label(false)->textInput(['placeholder' => "Цена от", ]) ?>
-        <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'margin-top:-12px;']) ?>
-       <!--<i class="glyphicon glyphicon-rub" aria-hidden="true" style="color:rgb(148, 147, 147)"></i>-->
+        <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
+        <span class='m2'> руб. </span>
     </div>
 
 

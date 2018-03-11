@@ -401,6 +401,10 @@ footer li {
     color: white;
 }
 
+.flex{
+    display: inline-flex;
+}
+
 .img-ico {
     margin-left: 37%;
     width: 120px;
@@ -418,6 +422,20 @@ footer li {
 .img-ico.three {
     background: url(../images/rel.png) no-repeat;
 }
+
+.m2{
+    margin-top: 12px;
+    font-size: 17px;
+    color: #625e5e;
+    font-weight: bold;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus,
+.navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus{
+    padding-bottom: 5px;
+    border-bottom: 2px solid;
+}
+
 
 @media (max-width: 600px){
    #place, #save{
@@ -438,11 +456,12 @@ footer li {
 
 @media (min-width: 991px) {
     .price{
-        width: 130px;
+        width: 270px;
+        margin-top: -15px;
     }
 
     .sq{
-        width: 140px;
+        width: 247px;
     }
 
 }
