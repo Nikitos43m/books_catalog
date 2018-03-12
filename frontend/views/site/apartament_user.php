@@ -20,6 +20,39 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\ApartamentForm */
 /* @var $form ActiveForm */
+
+$script = <<< JS
+    
+    $(document).ready(function() {
+        var realty;
+        
+        $('#apartamentform-realty_type').change(function () {
+         realty = $('#apartamentform-realty_type option:selected').val();
+          if( realty == 2){
+              $(".field-apartamentform-rooms").hide();
+              $('#apartamentform-rooms').append($("<option></option>", {value:0, text: 0}));
+              $('#apartamentform-rooms').val(0);
+          }else{
+              $('#apartamentform-rooms :last').remove();
+              $(".field-apartamentform-rooms").show();
+          }
+        
+         if( realty == 1){
+            $(".field-apartamentform-floor").hide();
+            $('#apartamentform-floor').val(0);
+         }else{
+            $(".field-apartamentform-floor").show(); 
+            $('#apartamentform-floor').val('');
+         }
+        
+    });  
+        
+       
+        
+});
+JS;
+//маркер конца строки, обязательно сразу, без пробелов и табуляции
+$this->registerJs($script, yii\web\View::POS_READY);
 ?>
 <div class="apartament_user">
     <div class="step">
@@ -27,14 +60,28 @@ use dosamigos\google\maps\layers\BicyclingLayer;
     </div>
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
         <?= $form->field($model, 'type')->label('Тип объявления')->dropDownList([
-            '0' => 'Продать квартиру',
-            '1' => 'Сдать квартиру',
-        ],[
-        'prompt' => 'Выберите тип объявления...'
-    ]); ?>
-            </div>
+            '0' => 'Продать',
+            '1' => 'Сдать',
+            '2' => 'Посуточно'
+            ],[
+               'prompt' => 'Выберите тип объявления...'
+              ]); 
+        ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <?= $form->field($model, 'realty_type')->label('Тип недвижимости')->dropDownList([
+            '0' => 'Квартира',
+            '1' => 'Дом',
+            '2' => 'Комната'
+            ],[
+               'prompt' => 'Выберите тип недвижимости...'
+              ]); 
+        ?>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4">

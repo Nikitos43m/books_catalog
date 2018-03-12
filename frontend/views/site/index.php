@@ -218,34 +218,76 @@ $this->registerJs($script, yii\web\View::POS_READY);
                                    . '</div>';
         }
         
+        
+        if ($apart['realty_type'] == 0){
                
-        $mark->attachInfoWindow(
-            new InfoWindow([
-                'content' => '<div style="max-width:350px; padding: 12px 0px;"> '.
-                                '<div class="col-xs-6" '.
-                                    '<p><b>'.Html::encode("{$price}"). ' руб.</b></p>'.
-                                    '<p><b>'.Html::encode("{$apart["area"]}"). ' м<sup>2</sup></b></p>'.
-                                    '<p><b>'.Html::encode("{$apart["rooms"]}").' '.$room.'</b></p>'.
-                                '</div>'.
-                                '<div class="col-xs-6" '.
-                                    '<p>'.Html::encode("{$apart["floor"]}").' этаж </p>'.
-                                    '<p>'.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
-                                    '<p><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> ' .Html::encode("{$apart["telephone"]}").'</p>'.
-                                '</div>'.
-                             
-                                     
-                             '<div class="col-md-12 info-wind">'.$fimg.'</div>'.
-                             /*'<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id, "user_id"=> $user_id],  
-                                    ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
-                                   . '</div>'*/
-                                          $button_info  
-                             . '</div>'
-                            //  Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox'])
-                          // '<a href="uploads/sant.jpg" rel="fancybox"><img src="uploads/sant.jpg" width="300px"></a>'
+            $mark->attachInfoWindow(
+                new InfoWindow([
+                    'content' => '<div style="max-width:350px; padding: 12px 0px;"> '.
+                                     '<div class="attach-title">Квартира</div> 
+                                    <div class="col-xs-6"> '.
+                                        '<p><b>'.Html::encode("{$price}"). ' руб.</b></p>'.
+                                        '<p><b>'.Html::encode("{$apart["area"]}"). ' м<sup>2</sup></b></p>'.
+                                        '<p><b>'.Html::encode("{$apart["rooms"]}").' '.$room.'</b></p>'.
+                                    '</div>'.
+                                    '<div class="col-xs-6"> '.
+                                        '<p>'.Html::encode("{$apart["floor"]}").' этаж </p>'.
+                                        '<p>'.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
+                                        '<p><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> ' .Html::encode("{$apart["telephone"]}").'</p>'.
+                                    '</div>'.                   
+                                 '<div class="col-md-12 info-wind">'.$fimg.'</div>'.
+                                              $button_info  
+                                 . '</div>'
 
-            ])
-        );
-                
+                ])
+            );
+                                    
+        }elseif ($apart['realty_type'] == 1) {
+            $mark->attachInfoWindow(
+                new InfoWindow([
+                    'content' => '<div style="max-width:350px; padding: 12px 0px;"> '.
+                                    '<div class="attach-title">Дом</div> 
+                                    <div class="col-xs-6"> '.
+                                        '<p><b>'.Html::encode("{$price}"). ' руб.</b></p>'.
+                                        '<p><b>'.Html::encode("{$apart["area"]}"). ' м<sup>2</sup></b></p>'.
+                                        '<p><b>'.Html::encode("{$apart["rooms"]}").' '.$room.'</b></p>'.
+                                    '</div>'.
+                                    '<div class="col-xs-6"> '.
+                                        '<p>'.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
+                                        '<p><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> ' .Html::encode("{$apart["telephone"]}").'</p>'.
+                                    '</div>'.                   
+                                 '<div class="col-md-12 info-wind">'.$fimg.'</div>'.
+                                              $button_info  
+                                 . '</div>'
+
+                ])
+            );
+        
+        } elseif ($apart['realty_type'] == 2) {
+             $mark->attachInfoWindow(
+                new InfoWindow([
+                    'content' => '<div style="max-width:350px; padding: 12px 0px;"> '.
+                                    '<div class="attach-title">Комната</div> 
+                                    <div class="col-xs-6"> '.
+                                        '<p><b>'.Html::encode("{$price}"). ' руб.</b></p>'.
+                                        '<p><b>'.Html::encode("{$apart["area"]}"). ' м<sup>2</sup></b></p>'.
+                                    '</div>'.
+                                    '<div class="col-xs-6"> '.
+                                        '<p>'.Html::encode("{$apart["floor"]}").' этаж </p>'.
+                                        '<p>'.Html::encode("{$apart["street"]}")." ".Html::encode("{$apart["house"]}"). '</p>'.
+                                        '<p><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> ' .Html::encode("{$apart["telephone"]}").'</p>'.
+                                    '</div>'.                   
+                                 '<div class="col-md-12 info-wind">'.$fimg.'</div>'.
+                                              $button_info  
+                                 . '</div>'
+
+                ])
+            );
+        
+        } 
+        
+        
+        
         $map->addOverlay($mark);
        
     }

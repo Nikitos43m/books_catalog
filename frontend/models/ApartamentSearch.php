@@ -34,7 +34,7 @@ class ApartamentSearch extends Apartament
     public function rules()
     {
         return [
-            [['id', 'floor', 'area', 'price', 'user_id', 'cost_from', 'cost_to', 'floor_from','floor_to','area_from','area_to'], 'integer'],
+            [['id', 'floor', 'area', 'price', 'user_id', 'cost_from', 'cost_to', 'floor_from','floor_to','area_from','area_to', 'realty_type'], 'integer'],
             [['type', 'street', 'house', 'telephone'], 'safe'],
             [['lat', 'lng'], 'number'],
             ['rooms', 'in', 'range' => [1,2,3,4,5,11], 'allowArray' => true]
@@ -81,6 +81,7 @@ class ApartamentSearch extends Apartament
             'rooms' => $this->rooms,
             'floor' => $this->floor,
             'area' => $this->area,
+            'realty_type' => $this->realty_type,
             //'price' => $this->price,
             'lat' => $this->lat,
             'lng' => $this->lng,
@@ -95,18 +96,18 @@ class ApartamentSearch extends Apartament
             ->andFilterWhere(['like', 'street', $this->street])
             ->andFilterWhere(['like', 'house', $this->house])
             ->andFilterWhere(['like', 'telephone', $this->telephone])
-        ->andFilterWhere(['between', 'price', $this->cost_from, $this->cost_to])
-        ->andFilterWhere(['between', 'floor', $this->floor_from, $this->floor_to])
-        ->andFilterWhere(['between', 'area', $this->area_from, $this->area_to])
+            ->andFilterWhere(['between', 'price', $this->cost_from, $this->cost_to])
+            ->andFilterWhere(['between', 'floor', $this->floor_from, $this->floor_to])
+            ->andFilterWhere(['between', 'area', $this->area_from, $this->area_to])
 
-        ->andFilterWhere(['<=', 'price', $this->cost_to])
-        ->andFilterWhere(['>=', 'price', $this->cost_from])
+            ->andFilterWhere(['<=', 'price', $this->cost_to])
+            ->andFilterWhere(['>=', 'price', $this->cost_from])
 
-        ->andFilterWhere(['<=', 'floor', $this->floor_to])
-        ->andFilterWhere(['>=', 'floor', $this->floor_from])
+            ->andFilterWhere(['<=', 'floor', $this->floor_to])
+            ->andFilterWhere(['>=', 'floor', $this->floor_from])
 
-        ->andFilterWhere(['<=', 'area', $this->area_to])
-        ->andFilterWhere(['>=', 'area', $this->area_from]);
+            ->andFilterWhere(['<=', 'area', $this->area_to])
+            ->andFilterWhere(['>=', 'area', $this->area_from]);
         return $dataProvider;
     }
 

@@ -81,16 +81,33 @@ $this->params['breadcrumbs'][] = $this->title;
         <?=$fimg ?>
     </div>
     <div style="text-align: center; font-size: 18px">
+        <div style="float: left">
+         <?php switch($model->type): 
+             case 0:?> Продается <? break; ?>
+            <?php case 1: ?> Сдается <? break; ?>
+            <?php case 2: ?> Сдается посуточно <? break; ?>
+         <?php endswitch ?>
+            
+           <?php switch($model->realty_type): 
+             case 0:?> квартира <? break; ?>
+            <?php case 1: ?> дом <? break; ?>
+            <?php case 2: ?> комната <? break; ?>
+         <?php endswitch ?> 
+         </div>
         <div class="row" style="margin-bottom: 30px">
-            <div class="col-sm-2">
-               Площадь:<span style="font-weight: bold"> <?=$model->area;?> м<sup>2</sup></span>
+            <div class="col-sm-1">
+               <span style="font-weight: bold"> <?=$model->area;?> м<sup>2</sup></span>
             </div>
-            <div class="col-sm-2">
-               Комнат: <?=$model->rooms;?>
-            </div>
-            <div class="col-sm-2">
-                Этаж: <?=$model->floor;?>
-            </div>
+            <?php if ($model->realty_type != 2): ?>
+                <div class="col-sm-1">
+                    <?=$model->rooms;?>-комн.
+                </div>
+            <? endif;?>
+            <?php if ($model->realty_type != 1): ?>
+                <div class="col-sm-1">
+                    <?=$model->floor;?> этаж
+                </div>
+            <? endif;?>
             <div class="col-sm-2">
                 <?=$model->street;?>
                 <?=$model->house;?>
@@ -116,6 +133,10 @@ $this->params['breadcrumbs'][] = $this->title;
                              
                         ?>
                       <?=$prise?></span><i class="glyphicon glyphicon-ruble" aria-hidden="true"></i>
+                       <?php if ($model->type == 2): ?>
+                      <b>в сутки</b>
+                       <? endif;?>
+                      
                       <?php if ($model->type == 0): ?>
                           <?php $month = $model->price/$model->area; $month = number_format($month, 0, "", " ") ?>
                          <span style="font-size: 14px; color: gray; margin-left: 10px"> <?= $month ?> &#x584;/м² </span>

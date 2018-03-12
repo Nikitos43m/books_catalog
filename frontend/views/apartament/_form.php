@@ -11,6 +11,45 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $form2 yii\widgets\ActiveForm */
 /* @var $model2 frontend\models\UploadForm */
+
+$script = <<< JS
+    
+    $(document).ready(function() {
+        var realty;
+        
+        realty = $('#apartament-realty_type option:selected').val();
+          if( realty == 2){
+              $(".field-apartament-rooms").hide();
+          }
+        
+          if( realty == 1){
+            $(".field-apartament-floor").hide();  
+          }
+        
+        
+        $('#apartament-realty_type').change(function () {
+         realty = $('#apartament-realty_type option:selected').val();
+          if( realty == 2){
+              $(".field-apartament-rooms").hide();
+          }else{
+              $(".field-apartament-rooms").show();
+          }
+        
+         if( realty == 1){
+            $(".field-apartament-floor").hide();
+            
+         }else{
+            $(".field-apartament-floor").show(); 
+         }
+        
+    });  
+        
+       
+        
+});
+JS;
+//маркер конца строки, обязательно сразу, без пробелов и табуляции
+$this->registerJs($script, yii\web\View::POS_READY);
 ?>
 
 <div class="apartament-form">
@@ -20,8 +59,15 @@ use yii\helpers\ArrayHelper;
     <div class="col-md-4">
        
         <?= $form->field($model, 'type')->label('Тип объявления')->dropDownList([
-            '0' => 'Продать квартиру',
-            '1' => 'Сдать квартиру',
+            '0' => 'Продать',
+            '1' => 'Сдать',
+            '2' => 'Посуточно'
+        ]); ?>
+        
+        <?= $form->field($model, 'realty_type')->label('Тип недвижимости')->dropDownList([
+            '0' => 'Квартира',
+            '1' => 'Дом',
+            '2' => 'Комната'
         ]); ?>
         
        <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>

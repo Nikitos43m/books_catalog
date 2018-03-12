@@ -8,26 +8,27 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 
 $js = <<<JS
-/*
- $('form').on('beforeSubmit', function(){
-var data = $(this).serialize();
-var action = $(this).attr("action");
+ $(document).ready(function() {
+    var realty;
+    $('#apartamentsearch-realty_type').change(function () {
+        realty = $('#apartamentsearch-realty_type option:selected').val();
+        
+        if( realty == 2){
+              $(".room").hide();
 
-    $.ajax({
-        url: action,
-        type: 'get',
-        data: data,
-        success: function(data){
-            $("#gmap0-map-canvas").html(data); 
-        },
-        error: function(){
-        alert('Error!');
-        }
-    });
- 
- 
- return false;
- });*/
+          }else{
+              $(".room").show();
+          }
+        
+        if( realty == 1){
+              $(".fl").hide();
+
+          }else{
+              $(".fl").show();
+          }
+    });    
+        
+ });
 
 JS;
 
@@ -54,23 +55,25 @@ $this->registerJs($js);
 
 
 <div>
-    <div class="col-md-2 ">
+    <div class="col-lg-1 col-md-2 col-sm-4 ">
 
         <?= $form->field($model, 'type')->label(false)->dropDownList([
             '0' => 'Купить',
             '1' => 'Снять',
+            '2' => 'Посуточно'
         ]); ?>
 
     </div>
-    <div class="col-md-2">
-        <?= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица"]) ?>
+    
+    <div class="col-lg-1 col-md-2 col-sm-4">
+        <?= $form->field($model, 'realty_type')->label(false)->dropDownList([
+            '0' => 'Квартиру',
+            '1' => 'Дом',
+            '2' => 'Комнату'
+        ]); ?>
     </div>
-    <div class="col-md-1">
-        <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом"]) ?>
-    </div>
-    <div class="col-md-2">
-       
-
+     
+    <div class="col-md-2 col-sm-12 room">
        <?=  $form->field($model, 'rooms')
     ->checkboxList([
         1 => '1',
@@ -80,19 +83,28 @@ $this->registerJs($js);
         5 => '5',
         11 => 'Студия'
     ]); ?>
-       
-
     </div>
-    <div class="col-md-2 col-xs-12 fl flex">
-        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от"]) ?>
-        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
-    </div>
-
+    
     <div class="col-md-2 col-xs-12 sq flex">
         <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от", 'style'=>'']) ?>
         <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
         <span class='m2'> м<sup>2</sup> </span>  
     </div>
+    
+    <div class="col-md-2 col-sm-6">
+        <?= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица"]) ?>
+    </div>
+    
+    <div class="col-md-1 col-sm-6">
+        <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом"]) ?>
+    </div>
+
+    <div class="col-md-2 col-xs-12 fl flex">
+        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от"]) ?>
+        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
+    </div>
+
+
 
     <div class="col-md-2 col-xs-12 price flex">
         

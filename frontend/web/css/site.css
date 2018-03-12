@@ -430,12 +430,18 @@ footer li {
     font-weight: bold;
 }
 
+
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus,
 .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus{
     padding-bottom: 5px;
     border-bottom: 2px solid;
 }
 
+.attach-title{
+    margin-left: 15px;
+    font-weight: bold;
+    margin-bottom:20px;
+}
 
 @media (max-width: 600px){
    #place, #save{
@@ -457,11 +463,19 @@ footer li {
 @media (min-width: 991px) {
     .price{
         width: 270px;
-        margin-top: -15px;
     }
 
     .sq{
-        width: 247px;
+        width: 205px;
+    }
+    
+    .form-group.field-apartamentsearch-area_to{
+        width: 110px;
+    }
+
+    
+    .fl{
+        width: 170px;
     }
 
 }

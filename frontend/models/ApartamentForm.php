@@ -25,6 +25,7 @@ class ApartamentForm extends Model
     public $image_path;
     public $active;
     public $description;
+    public $realty_type;
 
     /**
      * @inheritdoc
@@ -32,9 +33,9 @@ class ApartamentForm extends Model
     public function rules()
     {
         return [
-            [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor'], 'required'],
+            [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type'], 'required'],
             [ ['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
-            [ ['rooms',  'floor', 'area', 'price'], 'number'],
+            [ ['rooms',  'floor', 'area', 'price', 'realty_type'], 'number'],
             [ ['lat', 'lng'], 'double'],
             [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],
@@ -80,6 +81,7 @@ class ApartamentForm extends Model
         $apartament->user_id = $this->user_id;
         $apartament->image_path = $this->image_path;
         $apartament->description = $this->description;
+        $apartament->realty_type = $this->realty_type;
         $apartament->active = $this->active;
 
         return $apartament->save() ? $apartament : null;
