@@ -9,6 +9,8 @@ use yii\widgets\ActiveForm;
 
 $js = <<<JS
  $(document).ready(function() {
+     $('#apartamentsearch-rooms').multiselect();    
+        
     var realty;
     $('#apartamentsearch-realty_type').change(function () {
         realty = $('#apartamentsearch-realty_type option:selected').val();
@@ -55,7 +57,7 @@ $this->registerJs($js);
 
 
 <div>
-    <div class="col-lg-1 col-md-2 col-sm-4 ">
+    <div class="col-lg-2 col-md-2 col-sm-4 ">
 
         <?= $form->field($model, 'type')->label(false)->dropDownList([
             '0' => 'Купить',
@@ -65,7 +67,7 @@ $this->registerJs($js);
 
     </div>
     
-    <div class="col-lg-1 col-md-2 col-sm-4">
+    <div class="col-lg-2 col-md-2 col-sm-4">
         <?= $form->field($model, 'realty_type')->label(false)->dropDownList([
             '0' => 'Квартиру',
             '1' => 'Дом',
@@ -73,8 +75,8 @@ $this->registerJs($js);
         ]); ?>
     </div>
      
-    <div class="col-md-2 col-sm-12 room">
-       <?=  $form->field($model, 'rooms')
+    <div class="col-lg-2 col-md-2 col-sm-12 room">
+       <?/*=  $form->field($model, 'rooms')
     ->checkboxList([
         1 => '1',
         2 => '2',
@@ -82,10 +84,24 @@ $this->registerJs($js);
         4 => '4',
         5 => '5',
         11 => 'Студия'
-    ]); ?>
+    ]); */?>
+    <?= $form->field($model, 'rooms')->label(false)->dropDownList([
+            1 => '1',
+            2 => '2',
+            3 => '3',
+            4 => '4',
+            5 => '5',
+            11 => 'Студия'
+        ],
+            [
+               'multiple' => 'true'
+              ]
+            
+            ); ?>
     </div>
     
-    <div class="col-md-2 col-xs-12 sq flex">
+    
+    <div class="col-md-2 col-sm-6 col-xs-12 col-lg-3 sq flex">
         <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от", 'style'=>'']) ?>
         <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
         <span class='m2'> м<sup>2</sup> </span>  

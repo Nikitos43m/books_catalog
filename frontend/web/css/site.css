@@ -430,6 +430,19 @@ footer li {
     font-weight: bold;
 }
 
+.btn-group, .btn-group > .btn:first-child{
+    width: 100%;
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+    background-color: unset;
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+    color: rgb(103, 103, 103);
+}
+
+
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus,
 .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus{
