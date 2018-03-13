@@ -178,7 +178,7 @@ a.desc:after {
     color: white;
     display: inline-block;
     padding: 6px 12px;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     font-size: 14px;
     font-weight: normal;
     line-height: 1.42857143;
@@ -263,7 +263,6 @@ a.desc:after {
     padding: 5px;
 }
 
-
 .navbar-inverse .navbar-nav > li > a >i:hover, .navbar-inverse .navbar-nav > li > a> i:focus{
     color: white;
 }
@@ -326,7 +325,7 @@ h1, h2, h3,h4{
 }
 
 .search-form input{
-    border: 1.5px solid rgb(208, 208, 208);
+   
     border-radius: 3px;
     box-shadow: none;
     font-weight: 200;
@@ -335,6 +334,11 @@ h1, h2, h3,h4{
 .bottom-search{
  margin-top: -12px;
 }
+
+.form-group{
+    margin-bottom: unset;
+}
+
 
 footer li {
     list-style-type: none;
@@ -454,6 +458,16 @@ footer li {
     margin-left: 15px;
     font-weight: bold;
     margin-bottom:20px;
+}
+
+.multiselect-selected-text{
+    float: left;
+    color: #555;
+}
+
+.caret{
+   float: right;
+   margin-top: 10px;
 }
 
 @media (max-width: 600px){

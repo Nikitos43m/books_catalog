@@ -87,7 +87,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
         <div  class="open-filter clear" style="margin: 0 auto;width: 210px; font-size: 16px; cursor: pointer">
-            <b> Поиск по фильтрам &nbsp </b> <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px;"></i>
+            <b> Поиск по фильтрам &nbsp </b> <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; color:rgba(60, 119, 142, 0.8);"></i>
         </div>
     </div>
     <div class="filter">

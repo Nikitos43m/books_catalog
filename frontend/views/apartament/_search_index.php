@@ -9,7 +9,9 @@ use yii\widgets\ActiveForm;
 
 $js = <<<JS
  $(document).ready(function() {
-     $('#apartamentsearch-rooms').multiselect();    
+     $('#apartamentsearch-rooms').multiselect({
+         nonSelectedText: 'Комнат'   
+     });    
         
     var realty;
     $('#apartamentsearch-realty_type').change(function () {
@@ -75,7 +77,7 @@ $this->registerJs($js);
         ]); ?>
     </div>
      
-    <div class="col-lg-2 col-md-2 col-sm-12 room">
+    <div class="col-lg-2 col-md-2 col-sm-4 room">
        <?/*=  $form->field($model, 'rooms')
     ->checkboxList([
         1 => '1',
@@ -111,11 +113,11 @@ $this->registerJs($js);
         <?= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица"]) ?>
     </div>
     
-    <div class="col-md-1 col-sm-6">
+    <div class="col-md-1 col-sm-3">
         <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом"]) ?>
     </div>
 
-    <div class="col-md-2 col-xs-12 fl flex">
+    <div class="col-md-2 col-sm-3 col-xs-12 fl flex">
         <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от"]) ?>
         <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
     </div>
