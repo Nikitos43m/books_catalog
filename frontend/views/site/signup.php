@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?//= $form->field($model, 'address') ?>
 
                 <div class="form-group" style="text-align: center">
-                    <?= Html::submitButton('Зарегистрироваться', ['class' => 'in_but', 'name' => 'signup-button',
+                    <?= Html::submitButton('Зарегистрироваться', ['class' => 'in_but', 'name' => 'signup-button', 'style'=>'margin-bottom:15px'
                     ]) ?>
                 </div>
 

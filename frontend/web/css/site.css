@@ -335,9 +335,7 @@ h1, h2, h3,h4{
  margin-top: -12px;
 }
 
-.form-group{
-    margin-bottom: unset;
-}
+
 
 
 footer li {
@@ -450,7 +448,7 @@ footer li {
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus,
 .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus{
-    padding-bottom: 5px;
+
     border-bottom: 2px solid;
 }
 

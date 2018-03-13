@@ -44,6 +44,10 @@ $this->registerJs($js);
     .col-md-1, .col-md-2{
         padding-right: 0px;
     }
+    
+    .form-group{
+       margin-bottom: unset;
+    }
 </style>
 
 
@@ -124,7 +128,7 @@ $this->registerJs($js);
 
 
 
-    <div class="col-md-2 col-xs-12 price flex">
+    <div class="col-md-2 col-sm-6 col-xs-12 price flex">
         
         <?php  echo $form->field($model, 'cost_from')->label(false)->textInput(['placeholder' => "Цена от", ]) ?>
         <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>

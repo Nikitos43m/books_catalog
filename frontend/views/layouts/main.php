@@ -55,7 +55,7 @@ AppAsset::register($this);
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 '<i class="glyphicon glyphicon-log-out" aria-hidden="true"></i> <span class="font-menu"> Выход </span>(<span class="font-menu">' . Yii::$app->user->identity->username . '</span>)',
-                ['class' => 'btn btn-link']
+                ['class' => 'btn btn-link', 'style' => 'width:100%' ]
             )
             . Html::endForm()
             . '</li>';
