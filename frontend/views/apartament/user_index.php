@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'area',
             'price',
             'telephone',
+            'count_views',
            // 'lat',
           //  'lng',
 
