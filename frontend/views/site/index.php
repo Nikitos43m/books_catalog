@@ -43,6 +43,10 @@ $script = <<< JS
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
 $this->registerJs($script, yii\web\View::POS_READY);
+
+
+$session = Yii::$app->session;
+$session->open();
 ?>
 
 <style>

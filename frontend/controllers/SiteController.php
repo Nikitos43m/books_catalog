@@ -401,6 +401,7 @@ class SiteController extends Controller
                 //$path = "uploads/p.{$model->user_id}";
                 $path = "uploads/p.{$model->user_id}/{$model->area}{$model->floor}{$model->rooms}/";
                 $model->image_path = $path;
+                $model->count_views = 0;
                 $model->save();
 
                 /*Загрузка фотографий */

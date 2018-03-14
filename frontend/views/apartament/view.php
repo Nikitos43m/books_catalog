@@ -12,7 +12,11 @@ use yii\widgets\ActiveForm;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Apartaments', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$session = Yii::$app->session;
+$session->open();
 ?>
+
 <div class="apartament-view">
 
     <h1><?//= Html::encode($this->title) ?></h1>
@@ -116,6 +120,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $created_date = date('d-m-Y', $model->created_at); ?>
                 <div class="view-date"><i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i> Размещено: <?=$created_date ?> </div> 
             </div>
+            
+            <div class="col-sm-2">
+                <div class="view-date"> Просмотров: <?=$model->count_views ?> </div>
+                 
+            </div>
         </div>
         
 
@@ -145,16 +154,22 @@ $this->params['breadcrumbs'][] = $this->title;
               <div class="col-md-12"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>  Телефон: <?=$model->telephone;?></div>
 
               <div class="col-md-12 col-xs-12" style="margin-top: 10px">
-              <?php if (!Yii::$app->user->isGuest): ?>
-                  <?php if (in_array($model->id ,$arr_ads)): ?>
-                      <span style="color: grey; font-size: 13px;">Вы сохранили данное объявление</span>
-                  <? else: ?>
-                      <?php $form = ActiveForm::begin();?>
-                      <?= $form->field($model2, 'my_appart')->hiddenInput(['value'=> $model->id])->label(false) ?>
-                      <?= Html::submitButton('<i class="glyphicon glyphicon-heart" aria-hidden="true"></i> Сохранить', ['class' => 'in_but']) ?>
-                      <?php ActiveForm::end(); ?>
+              <?php if ($model->getAuthorId() == Yii::$app->user->id): ?>
+                  <span style="color: grey; font-size: 13px;">Ваше объявление</span>
+              <? else: ?>
+              
+                <?php if (!Yii::$app->user->isGuest): ?>
+                    <?php if (in_array($model->id ,$arr_ads)): ?>
+                        <span style="color: grey; font-size: 13px;">Вы сохранили данное объявление</span>
+                    <? else: ?>
+                        <?php $form = ActiveForm::begin();?>
+                        <?= $form->field($model2, 'my_appart')->hiddenInput(['value'=> $model->id])->label(false) ?>
+                        <?= Html::submitButton('<i class="glyphicon glyphicon-heart" aria-hidden="true"></i> Сохранить', ['class' => 'in_but']) ?>
+                        <?php ActiveForm::end(); ?>
 
-                  <? endif;?>
+                    <? endif;?>
+                <? endif;?>
+                
               <? endif;?>
               </div>
           </div>

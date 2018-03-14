@@ -69,10 +69,24 @@ class ApartamentController extends Controller
      * @return mixed
      */
     public function actionView($id, $user_id)
-    {
-
+    {   
         $model2 = $this->findUserModel($user_id);
-
+        $model = $this->findModel($id);
+        
+        $session = Yii::$app->session;
+        $session->open();
+        //Cессия для ограничения счетчика
+       
+        if(!isset($session['count.'.$model->id])){
+            
+            if(Yii::$app->user->id!= $model->getAuthorId()){
+               $model->count_views = ++$model->count_views; 
+               $model->save();
+               $session['count.'.$model->id] = 'set';
+            }
+            
+        }
+        
         $saved_str = $model2->my_appart;
         $saved_ad = explode(",", $saved_str);
 
@@ -92,7 +106,7 @@ class ApartamentController extends Controller
 
         } else {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
             'model2' => $model2,
             'arr_ads' => $arr_int
             
@@ -105,9 +119,21 @@ class ApartamentController extends Controller
      */
     
     public function actionViewguest($id)
-    {   
+    {    
+        $model = $this->findModel($id);
+        
+        //Cессия для ограничения счетчика
+        $session = Yii::$app->session;
+        $session->open();
+        
+        if(!isset($session['count.'.$model->id])){
+            
+            $model->count_views = ++$model->count_views; 
+            $model->save();
+            $session['count.'.$model->id] = 'set';
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),            
+            'model' => $model,            
         ]);
     }
 
@@ -119,10 +145,11 @@ class ApartamentController extends Controller
     public function actionCreate()
     {
         $model = new Apartament();
-
+        //$model->count_views = 0;
+        //$model->save();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        } else { 
             return $this->render('create', [
                 'model' => $model,
             ]);

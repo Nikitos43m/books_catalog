@@ -25,6 +25,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $description
  * @property boolean $active
  * @property integer $realty_type
+ * $property integer $count_views
  */
 class Apartament extends \yii\db\ActiveRecord
 {
@@ -49,7 +50,7 @@ class Apartament extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id','rooms', 'floor', 'area', 'price', 'realty_type'], 'integer'],
+            [['user_id','rooms', 'floor', 'area', 'price', 'realty_type', 'count_views'], 'integer'],
             [['lat', 'lng'], 'number'],
             [['type', 'street', 'house', 'telephone'], 'string', 'max' => 100],
             [['image_path'], 'string'],
@@ -79,7 +80,8 @@ class Apartament extends \yii\db\ActiveRecord
             'image_path' => 'Путь к фотографиям',
             'active' => 'Активность',
             'description' => 'Описание',
-            'realty_type' => 'Тип недвижимости'
+            'realty_type' => 'Тип недвижимости',
+            'count_views' => 'Просмотров' 
          
         ];
     }
@@ -98,6 +100,17 @@ class Apartament extends \yii\db\ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    
+    public function getAuthorId()
+    {
+        return $this->user_id;    
+    }
+
+
+    public function getCountViews()
+    {
+        return $this->count_views;
     }
 
     /**
