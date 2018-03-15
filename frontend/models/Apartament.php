@@ -26,7 +26,9 @@ use yii\behaviors\TimestampBehavior;
  * @property boolean $active
  * @property integer $realty_type
  * $property integer $count_views
- */
+ * $property integer type_appart
+ * $property integer otdelka
+ */ 
 class Apartament extends \yii\db\ActiveRecord
 {
     /**
@@ -50,7 +52,7 @@ class Apartament extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id','rooms', 'floor', 'area', 'price', 'realty_type', 'count_views'], 'integer'],
+            [['user_id','rooms', 'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka'], 'integer'],
             [['lat', 'lng'], 'number'],
             [['type', 'street', 'house', 'telephone'], 'string', 'max' => 100],
             [['image_path'], 'string'],
@@ -81,7 +83,9 @@ class Apartament extends \yii\db\ActiveRecord
             'active' => 'Активность',
             'description' => 'Описание',
             'realty_type' => 'Тип недвижимости',
-            'count_views' => 'Просмотров' 
+            'count_views' => 'Просмотров',
+            'type_appart' => 'Типо дома',
+            'otdelka' => 'Отделка'
          
         ];
     }

@@ -11,7 +11,26 @@ $js = <<<JS
  $(document).ready(function() {
      $('#apartamentsearch-rooms').multiselect({
          nonSelectedText: 'Комнат'   
-     });    
+     });
+         
+    var kv = $('#apartamentsearch-type_appart option:selected').val();
+        if (kv == 0){
+            $(".otd").hide();
+        }else{
+            $(".otd").show();
+        }
+        
+     $('#apartamentsearch-type_appart').change(function () {
+     var kv = $('#apartamentsearch-type_appart option:selected').val();   
+        if (kv == 1){
+            $(".otd").show();
+        }else{
+            $(".otd").hide();
+            $('#apartamentsearch-otdelka').val('');
+        }
+         
+     });   
+        
         
     var realty;
     $('#apartamentsearch-realty_type').change(function () {
@@ -19,6 +38,9 @@ $js = <<<JS
         
         if( realty == 2){
               $(".room").hide();
+              $("#apartamentsearch-type_appart").val('');
+              $('#apartamentsearch-otdelka').val('');
+              $("#apartamentsearch-rooms").val('');
 
           }else{
               $(".room").show();
@@ -26,6 +48,8 @@ $js = <<<JS
         
         if( realty == 1){
               $(".fl").hide();
+              $("#apartamentsearch-type_appart").val('');
+              $('#apartamentsearch-otdelka').val('');
 
           }else{
               $(".fl").show();
@@ -80,6 +104,26 @@ $this->registerJs($js);
             '2' => 'Комнату'
         ]); ?>
     </div>
+    
+    <div class="col-lg-2 col-md-2 col-sm-4">
+         <?= $form->field($model, 'type_appart')->label(false)->dropDownList([
+            '0' => 'Вторичка',
+            '1' => 'Новостройка'
+        ],
+            ['prompt'=> 'Все...'
+            ]     
+                 ); ?>
+    </div>
+    
+     <div class="col-lg-2 col-md-2 col-sm-4 otd">
+         <?= $form->field($model, 'otdelka')->label(false)->dropDownList([
+            '0' => 'Строй вариант',
+            '1' => 'Чистовая',
+            '2' => 'Под ключ'
+             ], 
+            ['prompt'=> 'Отделка...'
+            ]); ?>
+     </div>    
      
     <div class="col-lg-2 col-md-2 col-sm-4 room">
        <?/*=  $form->field($model, 'rooms')

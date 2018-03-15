@@ -34,7 +34,7 @@ class ApartamentSearch extends Apartament
     public function rules()
     {
         return [
-            [['id', 'floor', 'area', 'price', 'user_id', 'cost_from', 'cost_to', 'floor_from','floor_to','area_from','area_to', 'realty_type'], 'integer'],
+            [['id', 'floor', 'area', 'price', 'user_id', 'cost_from', 'cost_to', 'floor_from','floor_to','area_from','area_to', 'realty_type', 'type_appart', 'otdelka'], 'integer'],
             [['type', 'street', 'house', 'telephone'], 'safe'],
             [['lat', 'lng'], 'number'],
             ['rooms', 'in', 'range' => [1,2,3,4,5,11], 'allowArray' => true]
@@ -86,6 +86,8 @@ class ApartamentSearch extends Apartament
             'lat' => $this->lat,
             'lng' => $this->lng,
             'user_id' => $this->user_id,
+            'type_appart' => $this->type_appart,
+            'otdelka' => $this->otdelka
         ]);
 
        /* if($this->cost_from == null){

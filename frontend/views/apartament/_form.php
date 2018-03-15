@@ -15,34 +15,75 @@ use yii\helpers\ArrayHelper;
 $script = <<< JS
     
     $(document).ready(function() {
+
+       
         var realty;
         
         realty = $('#apartament-realty_type option:selected').val();
+        
+          if( realty == 0){
+              $(".field-apartament-type_appart").show();
+        
+          } else{
+              $(".field-apartament-type_appart").hide();
+             
+           }
+        
           if( realty == 2){
               $(".field-apartament-rooms").hide();
           }
         
           if( realty == 1){
-            $(".field-apartament-floor").hide();  
-          }
+              $(".field-apartament-floor").hide();  
+          } 
         
+          vtor = $('#apartament-type_appart option:selected').val();        
+            if( vtor == 0){
+                  $(".field-apartament-otdelka").hide();
+             }else{
+                 $(".field-apartament-otdelka").show();
+             }
+
         
         $('#apartament-realty_type').change(function () {
-         realty = $('#apartament-realty_type option:selected').val();
-          if( realty == 2){
+         real = $('#apartament-realty_type option:selected').val();
+        
+          if( real == 2){
               $(".field-apartament-rooms").hide();
+              $(".field-apartament-type_appart").show();
+              $(".field-apartament-otdelka").hide();
+
           }else{
               $(".field-apartament-rooms").show();
           }
         
-         if( realty == 1){
+         if( real == 1){
+            $(".field-apartament-otdelka").hide();
             $(".field-apartament-floor").hide();
+            $(".field-apartament-type_appart").hide();
             
          }else{
             $(".field-apartament-floor").show(); 
          }
         
+        if( real == 0){
+              $(".field-apartament-type_appart").show();
+
+          } else{
+              $(".field-apartament-type_appart").hide();
+             
+           }
+        
     });  
+        
+         $('#apartament-type_appart').change(function () {
+         vtor = $('#apartament-type_appart option:selected').val();        
+        if( vtor == 0){
+              $(".field-apartament-otdelka").hide();
+         }else{
+             $(".field-apartament-otdelka").show();
+         }
+   });     
         
        
         
@@ -68,10 +109,21 @@ $this->registerJs($script, yii\web\View::POS_READY);
             '0' => 'Квартира',
             '1' => 'Дом',
             '2' => 'Комната'
+        ],['disabled' => true]); ?>
+        
+        <?= $form->field($model, 'type_appart')->label('Тип квартиры')->dropDownList([
+            '0' => 'Вторичка',
+            '1' => 'Новостройка'
+        ]); ?>
+        
+        <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
+            '0' => 'Строй вариант',
+            '1' => 'Чистовая',
+            '2' => 'Под ключ'
         ]); ?>
         
        <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
-       <?=  $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
+       <?= $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
        <?= $form->field($model, 'price')->textInput()->label('Цена (руб.)') ?>
        <?= $form->field($model, 'telephone')->textInput(['maxlength' => true])->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
            'mask' => '8(999)-999-9999',
@@ -80,15 +132,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
       
     </div>
     <div class="col-md-2">
-       <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
-       <?= $form->field($model, 'floor')->textInput() ?>
-       
-    </div>
-     
-    <div class="col-md-3">
-       <?//= $form->field($model, 'rooms')->textInput() ?>
-        
-       <?= $form->field($model, 'rooms')->dropDownList([
+        <?= $form->field($model, 'rooms')->dropDownList([
                 '1' => '1',
                 '2' => '2',
                 '3' => '3',
@@ -98,6 +142,17 @@ $this->registerJs($script, yii\web\View::POS_READY);
             ]); ?>
         
        <?= $form->field($model, 'area')->textInput() ?>
+        
+
+       
+    </div>
+     
+    <div class="col-md-3">
+       <?//= $form->field($model, 'rooms')->textInput() ?>
+        
+       <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
+       <?= $form->field($model, 'floor')->textInput() ?>
+        
 
     </div> 
 

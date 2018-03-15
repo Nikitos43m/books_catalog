@@ -27,6 +27,8 @@ class ApartamentForm extends Model
     public $description;
     public $realty_type;
     public $count_views;
+    public $type_appart;
+    public $otdelka;
 
     /**
      * @inheritdoc
@@ -36,12 +38,12 @@ class ApartamentForm extends Model
         return [
             [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type'], 'required'],
             [ ['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
-            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views'], 'number'],
+            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka'], 'number'],
             [ ['lat', 'lng'], 'double'],
             [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],
-            [['description'], 'string', 'max' => 1000],
-            [['active'], 'boolean']
+            [ ['description'], 'string', 'max' => 1000],
+            [ ['active'], 'boolean']
         ];
     }
 
@@ -85,6 +87,8 @@ class ApartamentForm extends Model
         $apartament->realty_type = $this->realty_type;
         $apartament->active = $this->active;
         $apartament->count_views = $this->count_views;
+        $apartament->type_appart = $this->type_appart;
+        $apartament->otdelka = $this->otdelka;
 
         return $apartament->save() ? $apartament : null;
 

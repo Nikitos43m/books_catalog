@@ -21,14 +21,58 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $model frontend\models\ApartamentForm */
 /* @var $form ActiveForm */
 
+
 $script = <<< JS
     
     $(document).ready(function() {
+        $('#field-apartamentform-otdelka').hide();
+        $(".field-apartamentform-type_appart").hide();
+        $(".field-apartamentform-otdelka").hide();
+        
+        var tip;
+        
+        
+        $("#apartamentform-type").change(function () {
+        tip = $('#apartamentform-type').val();
+             if( tip == 0){
+                $(".cost").css('display','inline-block');
+                $(".sale").show();
+                $(".arenda").hide(); 
+                $(".sutki").hide(); 
+             }
+        
+             if( tip == 1){
+                $("cost").css('display','inline-block');
+                $(".arenda").show();
+                $(".sale").hide(); 
+                $(".sutki").hide(); 
+             }
+        
+             if( tip == 2){
+                $(".cost").css('display','inline-block');
+                $(".sutki").show();
+                $(".sale").hide(); 
+                $(".arenda").hide(); 
+             }
+        
+         });  
+        
         var realty;
         
         $('#apartamentform-realty_type').change(function () {
          realty = $('#apartamentform-realty_type option:selected').val();
+        
+         if( realty == 0){
+              $(".field-apartamentform-type_appart").show();
+
+         } else{
+              $(".field-apartamentform-type_appart").hide();
+             
+           }
+        
+        
           if( realty == 2){
+        
               $(".field-apartamentform-rooms").hide();
               $('#apartamentform-rooms').append($("<option></option>", {value:0, text: 0}));
               $('#apartamentform-rooms').val(0);
@@ -38,6 +82,7 @@ $script = <<< JS
           }
         
          if( realty == 1){
+        
             $(".field-apartamentform-floor").hide();
             $('#apartamentform-floor').val(0);
          }else{
@@ -47,13 +92,24 @@ $script = <<< JS
         
     });  
         
-       
+        
+        
+   $('#apartamentform-type_appart').change(function () {
+         vtor = $('#apartamentform-type_appart option:selected').val();
+         if( vtor == 1){
+              $(".field-apartamentform-otdelka").show();
+         }else{
+             $(".field-apartamentform-otdelka").hide();
+         }
+   });     
         
 });
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
 $this->registerJs($script, yii\web\View::POS_READY);
 ?>
+
+
 <div class="apartament_user">
     <div class="step">
         <h2 class="title-step">Шаг 1</h2>
@@ -83,6 +139,27 @@ $this->registerJs($script, yii\web\View::POS_READY);
         ?>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col-md-5">
+            <?= $form->field($model, 'type_appart')->label('Тип квартиры')->dropDownList([
+            '0' => 'Вторичка',
+            '1' => 'Новостройка'
+        ]); ?>
+        </div>
+
+        <div class="col-md-5">
+            <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
+            '0' => 'Строй вариант',
+            '1' => 'Чистовая',
+            '2' => 'Под ключ'
+             ], 
+            ['prompt'=> 'Выберите отделку'
+            ]); ?>
+        </div>
+    </div>
+            
+            
     <div class="row">
         <div class="col-md-4">
 
@@ -125,7 +202,11 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
     <div class="row">
         <div class="col-md-4">
-            <?= $form->field($model, 'price')->label('Цена / Цена в месяц для сдачи')->textInput(['placeholder' => "руб."]) ?>
+            <span class="cost sale">Цена</span>
+            <span class="cost arenda">Цена в месяц</span>
+            <span class="cost sutki">Цена в сутки</span>
+            
+            <?= $form->field($model, 'price')->label(false)->textInput(['placeholder' => "руб."]) ?>
         </div>
     </div>
     <br>
@@ -224,6 +305,19 @@ document.body.appendChild(script);
      </div>
  </div>
     <?php ActiveForm::end(); ?>
-
+ 
 </div><!-- apartament -->
 
+<style>
+    .sale, .sutki, .arenda{
+        display: none;
+    }
+    
+    .cost{
+        font-weight: bold;
+        
+        max-width: 100%;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+</style>

@@ -80,10 +80,25 @@ $session->open();
            $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' ><img class='photo-view' src='".$path.htmlspecialchars(urlencode($image))."' height='100px' alt='".$image."'></a>";
        }
     ?>
-
+      
     <div style="text-align: center; margin-bottom: 40px; padding: 12px; background: rgba(242, 242, 242, 0.3215686274509804)">
         <?=$fimg ?>
     </div>
+    
+    <?php if ($model->type_appart == 0): ?>
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
+            <h3>Вторичка</h3>
+        </div>
+    </div>
+    <? elseif ($model->type_appart == 1): ?>
+        <div class="row">
+        <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
+            <h3>Новостройка</h3>
+        </div>
+    </div>
+    <? endif;?>  
+    
     <div style="text-align: center; font-size: 18px">
         <div style="float: left">
          <?php switch($model->type): 
