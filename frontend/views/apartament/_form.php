@@ -122,7 +122,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
             '2' => 'Под ключ'
         ]); ?>
         
-       <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
+      
+      
        <?= $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
        <?= $form->field($model, 'price')->textInput()->label('Цена (руб.)') ?>
        <?= $form->field($model, 'telephone')->textInput(['maxlength' => true])->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
@@ -131,6 +132,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
         
       
     </div>
+     
+     
     <div class="col-md-2">
         <?= $form->field($model, 'rooms')->dropDownList([
                 '1' => '1',
@@ -149,11 +152,10 @@ $this->registerJs($script, yii\web\View::POS_READY);
      
     <div class="col-md-3">
        <?//= $form->field($model, 'rooms')->textInput() ?>
-        
+       <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
        <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
-       <?= $form->field($model, 'floor')->textInput() ?>
+        <?= $form->field($model, 'floor')->textInput() ?> 
         
-
     </div> 
 
      

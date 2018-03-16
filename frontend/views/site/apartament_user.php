@@ -35,6 +35,8 @@ $script = <<< JS
         $("#apartamentform-type").change(function () {
         tip = $('#apartamentform-type').val();
              if( tip == 0){
+                $(".tip").show();
+        
                 $(".cost").css('display','inline-block');
                 $(".sale").show();
                 $(".arenda").hide(); 
@@ -42,6 +44,8 @@ $script = <<< JS
              }
         
              if( tip == 1){
+                $(".tip").hide();
+             
                 $("cost").css('display','inline-block');
                 $(".arenda").show();
                 $(".sale").hide(); 
@@ -49,6 +53,8 @@ $script = <<< JS
              }
         
              if( tip == 2){
+                $(".tip").hide();
+        
                 $(".cost").css('display','inline-block');
                 $(".sutki").show();
                 $(".sale").hide(); 
@@ -140,7 +146,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
         </div>
     </div>
     
-    <div class="row">
+    <div class="row tip">
         <div class="col-md-5">
             <?= $form->field($model, 'type_appart')->label('Тип квартиры')->dropDownList([
             '0' => 'Вторичка',
@@ -319,5 +325,9 @@ document.body.appendChild(script);
         max-width: 100%;
         margin-bottom: 5px;
         font-weight: bold;
+    }
+    
+    .wrap > .container{
+        background-image: url(images/k.jpg);
     }
 </style>

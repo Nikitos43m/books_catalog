@@ -85,21 +85,23 @@ $session->open();
         <?=$fimg ?>
     </div>
     
-    <?php if ($model->type_appart == 0): ?>
-    <div class="row">
-        <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
-            <h3>Вторичка</h3>
-        </div>
-    </div>
-    <? elseif ($model->type_appart == 1): ?>
+    <?php if ($model->type == 0): ?>
+        <?php if ($model->type_appart == 0): ?>
         <div class="row">
-        <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
-            <h3>Новостройка</h3>
+            <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
+                <h3>Вторичка</h3>
+            </div>
         </div>
-    </div>
-    <? endif;?>  
+        <? elseif ($model->type_appart == 1): ?>
+            <div class="row">
+            <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
+                <h3>Новостройка</h3>
+            </div>
+        </div>
+        <? endif;?>
+    <? endif;?> 
     
-    <div style="text-align: center; font-size: 18px">
+    <div  style="text-align: center; font-size: 18px">
         <div style="float: left">
          <?php switch($model->type): 
              case 0:?> Продается <? break; ?>
@@ -112,18 +114,17 @@ $session->open();
             <?php case 1: ?> дом <? break; ?>
             <?php case 2: ?> комната <? break; ?>
          <?php endswitch ?> 
+            <span style="font-weight: bold"> <?=$model->area;?> м<sup>2</sup></span>
          </div>
-        <div class="row" style="margin-bottom: 30px">
-            <div class="col-sm-1">
-               <span style="font-weight: bold"> <?=$model->area;?> м<sup>2</sup></span>
-            </div>
+        <div class="row kom" style="margin-bottom: 30px">
+            
             <?php if ($model->realty_type != 2): ?>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <?=$model->rooms;?>-комн.
                 </div>
             <? endif;?>
             <?php if ($model->realty_type != 1): ?>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <?=$model->floor;?> этаж
                 </div>
             <? endif;?>
@@ -149,7 +150,7 @@ $session->open();
 </div>
     <div  class="info-view" style="width: 100%">
         <div style="float: right; font-size: 16px; border-bottom: 1px solid rgb(225, 225, 225);">
-          <div style="width:300px; display: inline-block; padding: 10px;">
+          <div style="width:270px; display: inline-block; padding: 10px;">
               <div class="col-md-12" style="margin-bottom: 10px"><span style="font-size: 20px;font-weight: 700;">
                        <?php
 	                    $number = $model->price;
@@ -194,12 +195,19 @@ $session->open();
         <div class="col-md-3" style="font-size: 16px"><b>Описание</b></div>
 
     </div>
-    <div class="col-md-9 col-sm-12" style=" background: rgb(250, 250, 250); margin-top: 10px; padding: 7px">
+    <div class="col-lg-9 col-md-8 col-sm-10" style=" background: rgb(250, 250, 250); margin-top: 10px; padding: 7px">
 
         <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
 
     </div>
-    
+    <style>
+   @media(max-width:768px) {
+        .kom{
+            clear: both;
+        }
+    }
+
+    </style>
 
     <script>
         function GoogleMap_init () {

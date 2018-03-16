@@ -12,13 +12,35 @@ $js = <<<JS
      $('#apartamentsearch-rooms').multiselect({
          nonSelectedText: 'Комнат'   
      });
-         
+        
+     var realty = $('#apartamentsearch-realty_type option:selected').val();
+        
+        if( realty == 2){
+              $(".room").hide();
+              $(".tip").hide();
+              $("#apartamentsearch-type_appart").val('');
+              $('#apartamentsearch-otdelka').val('');
+              $("#apartamentsearch-rooms").val('');    
+         }
+        
+        if( realty == 0){
+            $(".tip").show();
+        }
+        
+        if( realty == 1){
+            $(".tip").hide();
+        }
+        
+        
+        
     var kv = $('#apartamentsearch-type_appart option:selected').val();
         if (kv == 0){
             $(".otd").hide();
         }else{
             $(".otd").show();
         }
+        
+        
         
      $('#apartamentsearch-type_appart').change(function () {
      var kv = $('#apartamentsearch-type_appart option:selected').val();   
@@ -29,15 +51,63 @@ $js = <<<JS
             $('#apartamentsearch-otdelka').val('');
         }
          
-     });   
+     }); 
+        
+        
+        var type = $('#apartamentsearch-type option:selected').val();   
+        if (type == 0){
+            $(".tip").show();
+        }else{
+            $(".tip").hide();            
+        }
+        
+        if(type == 1){
+           $(".otd").hide(); 
+           $('#apartamentsearch-type_appart').val('');
+           $('#apartamentsearch-otdelka').val('');
+        }
+        
+        if(type == 2){
+           $(".otd").hide();
+           $('#apartamentsearch-type_appart').val('');
+           $('#apartamentsearch-otdelka').val('');
+        }
+        
+        
+    $('#apartamentsearch-type').change(function () {
+     var type = $('#apartamentsearch-type option:selected').val();   
+        if (type == 0){
+            $(".tip").show();
+        }else{
+            $(".tip").hide();            
+        }
+        
+        if(type == 1){
+           $('#apartamentsearch-type_appart').val('');
+           $('#apartamentsearch-otdelka').val('');
+           $(".otd").hide();    
+        }
+        
+        if(type == 2){
+           $('#apartamentsearch-type_appart').val('');
+           $('#apartamentsearch-otdelka').val('');
+           $(".otd").hide();    
+        }
+         
+     });      
         
         
     var realty;
     $('#apartamentsearch-realty_type').change(function () {
         realty = $('#apartamentsearch-realty_type option:selected').val();
         
+        if( realty == 0){
+            $(".tip").show();
+        }
+        
         if( realty == 2){
               $(".room").hide();
+              $(".tip").hide();
               $("#apartamentsearch-type_appart").val('');
               $('#apartamentsearch-otdelka').val('');
               $("#apartamentsearch-rooms").val('');
@@ -47,6 +117,8 @@ $js = <<<JS
           }
         
         if( realty == 1){
+              $(".tip").hide();
+              $(".otd").hide();
               $(".fl").hide();
               $("#apartamentsearch-type_appart").val('');
               $('#apartamentsearch-otdelka').val('');
@@ -105,7 +177,7 @@ $this->registerJs($js);
         ]); ?>
     </div>
     
-    <div class="col-lg-2 col-md-2 col-sm-4">
+    <div class="col-lg-2 col-md-2 col-sm-4 tip">
          <?= $form->field($model, 'type_appart')->label(false)->dropDownList([
             '0' => 'Вторичка',
             '1' => 'Новостройка'
