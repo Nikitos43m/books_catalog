@@ -472,6 +472,27 @@ footer li {
    margin-top: 10px;
 }
 
+.appartament_view {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+/*  Список объявлений   */
+.left_item{
+    width: 20%;
+}
+
+.center-item{
+    width: 60%;
+    padding: 6px 20px 0;
+    min-width: 0;
+    -ms-flex: 2;
+    flex: 2;
+    box-sizing: border-box;
+}
+
+
 @media (max-width: 600px){
    #place, #save{
       margin-left: 0;

@@ -5,6 +5,7 @@ use yii\bootstrap\Carousel;
 use yii\helpers\Html;
 
 use yii\grid\GridView;
+use yii\widgets\ListView;
 
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\DirectionsWayPoint;
@@ -50,9 +51,6 @@ $session->open();
 ?>
 
 <style>
-    tbody{
-        display: none;
-    }
 
     .site-index{
         background-image: url("images/k.jpg");
@@ -355,6 +353,111 @@ $session->open();
 
     </div>
 </div>
+
+
+<div class="container">
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+       // 'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-hover'
+        ],
+        'columns' => [
+            //['class' => 'yii\grid\SerialColumn'],
+
+            // 'id',
+           // 'user_id',
+
+            [
+                'attribute'=>'type',
+                'contentOptions'=>['class'=>'table_class','style'=>'width: 10%'],
+                'content'=>function($model){
+
+                    switch ($model->type){
+                        case 0: $text = 'Продается'; break;
+                        case 1: $text = 'Сдается'; break;
+                        case 2: $text = 'Сдается посуточно'; break;
+                    }
+
+                    switch ($model->type_appart){
+                        case 0: $appart = 'квартира'; break;
+                        case 1: $appart = 'дом'; break;
+                        case 2: $appart = 'комната'; break;
+                    }
+
+                    return $text." ".$appart;
+                }
+            ],
+
+            [
+                'attribute'=>'rooms',
+                'label' => 'Комнат',
+                // 'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
+                'content'=>function($model){
+
+                    return $model->rooms;
+                }
+            ],
+
+            [
+                'attribute'=>'area',
+                // 'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
+                'content'=>function($model){
+                    return $model->area." м<sup>2</sup>";
+                }
+            ],
+
+            [
+                'attribute'=>'street',
+                'label' => false,
+                //'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
+                'content'=>function($model){
+                    return $model->street." ".$model->house;
+                }
+            ],
+
+            //'street',
+            //'house',
+            //'rooms',
+            //'floor',
+
+            [
+                'attribute'=>'floor',
+                //'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
+                'content'=>function($model){
+                    return $model->floor." этаж";
+                }
+            ],
+            //'area',
+
+
+
+            //'price',
+
+            [   'attribute' => 'price',
+                'label' => 'Цена',
+                'content' => function($model){
+                    $number = $model->price;
+                    $prise = number_format($number, 0, "", " ");
+                    return $prise." руб.";
+                }
+            ],
+
+            'telephone',
+             //'created_at',
+            [
+                'attribute' => 'created_at',
+                'label'=>'Опубликовано',
+                'format' =>  ['date', 'd.MM.Y'],
+
+            ],
+
+
+            //['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+</div>
+
 
 <div class="container" style="width: 100%">
     <div class="row ad" >
