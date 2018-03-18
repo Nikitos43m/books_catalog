@@ -4,7 +4,8 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Carousel;
 use yii\helpers\Html;
 
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\ListView;
 
 use dosamigos\google\maps\LatLng;
@@ -327,6 +328,7 @@ $session->open();
     
 
     // Display the map -finally :)
+
     echo $map->display();
 
     ?>
@@ -362,11 +364,46 @@ $session->open();
         'tableOptions' => [
             'class' => 'table table-hover'
         ],
+
+
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
-
             // 'id',
            // 'user_id',
+
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'expandAllTitle' => 'Expand all',
+                'collapseTitle' => 'Collapse all',
+                'expandIcon'=>'<i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>',
+                'detailRowCssClass' => GridView::ICON_ACTIVE,
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail'=>function ($model, $key, $index, $column) {
+                    //$val = "<div class='col-md-4'> <b>Телефон: </b>".$model->telephone."</div>";
+                    return Yii::$app->controller->renderPartial('_view.php', ['model'=>$model]);
+
+                   /* foreach ($model as $value){
+                        echo "{$value} ";
+                    }*/
+                    
+                   /* $fimg="";
+                    $path = $model->image_path;
+
+                    $images = scandir($path); // сканируем папку
+                    $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
+
+                    foreach($images as $image) {
+                        $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' ><img class='photo-view' src='".$path.htmlspecialchars(urlencode($image))."' height='100px' alt='".$image."'></a>";
+                       // $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."'  onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img class='photo-view' height='130px' src='".$path.htmlspecialchars(urlencode($image))."' height='40px' alt='".$image."'></a>";
+                    }
+
+
+                    return $fimg;*/
+                },
+
+            ],
 
             [
                 'attribute'=>'type',
@@ -455,7 +492,25 @@ $session->open();
 
             //['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+
+        'pjax' => true,
+        'bordered' => false,
+        'striped' => false,
+        'responsive' => true,
+        'panel' => [
+            'type' => GridView::TYPE_ACTIVE,
+        ],
+
+        'toggleDataOptions' => [
+            'all' => [
+               // 'icon' => 'resize-full' ,
+                //'label' => Yii::t('kvgrid', 'All' ),
+                'class' => 'btn btn-default' ,
+                'title' => 'Показать все данные'
+            ],
+        ]
+
+    ]);?>
 </div>
 
 
