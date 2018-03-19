@@ -132,6 +132,14 @@ a.desc:after {
     min-width: 50px;
 }
 
+.cost{
+    font-weight: bold;
+        
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
 .hint-block {
     display: block;
     margin-top: 5px;

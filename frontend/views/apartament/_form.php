@@ -15,6 +15,34 @@ use yii\helpers\ArrayHelper;
 $script = <<< JS
     
     $(document).ready(function() {
+        
+        tip = $('#apartament-type option:selected').val();
+        if( tip == 0){
+                $(".tip").show();
+        
+                $(".cost").css('display','inline-block');
+                $(".sale").show();
+                $(".arenda").hide(); 
+                $(".sutki").hide(); 
+             }
+        
+             if( tip == 1){
+                $(".tip").hide();
+             
+                $("cost").css('display','inline-block');
+                $(".arenda").show();
+                $(".sale").hide(); 
+                $(".sutki").hide(); 
+             }
+        
+             if( tip == 2){
+                $(".tip").hide();
+        
+                $(".cost").css('display','inline-block');
+                $(".sutki").show();
+                $(".sale").hide(); 
+                $(".arenda").hide(); 
+             }
 
        
         var realty;
@@ -93,99 +121,10 @@ JS;
 $this->registerJs($script, yii\web\View::POS_READY);
 ?>
 
-<div class="apartament-form">
- <div class="row">
-
-    <?php $form = ActiveForm::begin(); ?>
-    <div class="col-md-4">
-       
-        <?= $form->field($model, 'type')->label('Тип объявления')->dropDownList([
-            '0' => 'Продать',
-            '1' => 'Сдать',
-            '2' => 'Посуточно'
-        ]); ?>
-        
-        <?= $form->field($model, 'realty_type')->label('Тип недвижимости')->dropDownList([
-            '0' => 'Квартира',
-            '1' => 'Дом',
-            '2' => 'Комната'
-        ],['disabled' => true]); ?>
-        
-        <?= $form->field($model, 'type_appart')->label('Тип квартиры')->dropDownList([
-            '0' => 'Вторичка',
-            '1' => 'Новостройка'
-        ]); ?>
-        
-        <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
-            '0' => 'Строй вариант',
-            '1' => 'Чистовая',
-            '2' => 'Под ключ'
-        ]); ?>
-        
-      
-      
-       <?= $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
-       <?= $form->field($model, 'price')->textInput()->label('Цена (руб.)') ?>
-       <?= $form->field($model, 'telephone')->textInput(['maxlength' => true])->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
-           'mask' => '8(999)-999-9999',
-       ]) ?>
-        
-      
-    </div>
-     
-     
-    <div class="col-md-2">
-        <?= $form->field($model, 'rooms')->dropDownList([
-                '1' => '1',
-                '2' => '2',
-                '3' => '3',
-                '4' => '4',
-                '5' => '5',
-                '11' => 'Студия'
-            ]); ?>
-        
-       <?= $form->field($model, 'area')->textInput() ?>
-        
-
-       
-    </div>
-     
-    <div class="col-md-3">
-       <?//= $form->field($model, 'rooms')->textInput() ?>
-       <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
-       <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'floor')->textInput() ?> 
-        
-    </div> 
-
-     
-    <div class="col-md-2">
-       <?= $form->field($model, 'lat')->label(false)->hiddenInput(); ?>
-       <?= $form->field($model, 'lng')->label(false)->hiddenInput(); ?>
-       <?= $form->field($model, 'user_id')->label(false)->hiddenInput(); ?>
-    </div>
-     
-   </div>
     
-    
-        <h3 class="open-filter" id="place"  style="cursor: pointer;">Местопложение <i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></h3>
-        <div class="filter">
-            <div class="col-md-10">
-                <div id="map-canvas" style="height: 512px;"></div> 
-            </div>
-        </div>
-   
-     
-    <div class="row" id="save" >
-        <div class="col-md-10" style="margin-top:40px">
-            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'in_but']) ?>
-        </div>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-    <div class="row">
+       <div class="row">
         <h3>Фотографии</h3>
-    <div class="container">
+ 
         <?php
         //$path = "uploads/p.".Html::encode("{$model->user_id}")."/";
         $path = $model->image_path;
@@ -212,7 +151,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
         ?>
     </div>
-    </div>
+
     
     <div class="row">
         
@@ -252,6 +191,108 @@ $this->registerJs($script, yii\web\View::POS_READY);
              <?php ActiveForm::end(); ?>
         </div>
     </div>
+
+
+<div class="apartament-form">
+ <div class="row">
+    <h3>Информация</h3>
+    <?php $form = ActiveForm::begin(); ?>
+    <div class="col-md-4">
+       
+        <?= $form->field($model, 'type')->label('Тип объявления')->dropDownList([
+            '0' => 'Продать',
+            '1' => 'Сдать',
+            '2' => 'Посуточно'
+        ],['disabled' => true]); ?>
+        
+        <?= $form->field($model, 'realty_type')->label('Тип недвижимости')->dropDownList([
+            '0' => 'Квартиру',
+            '1' => 'Дом',
+            '2' => 'Комнату'
+        ],['disabled' => true]); ?>
+        
+        <?= $form->field($model, 'type_appart')->label('Тип квартиры')->dropDownList([
+            '0' => 'Вторичка',
+            '1' => 'Новостройка'
+        ]); ?>
+        
+        <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
+            '0' => 'Строй вариант',
+            '1' => 'Чистовая',
+            '2' => 'Под ключ'
+        ]); ?>
+    </div>
+    
+         
+    <div class="col-md-2">
+        <?= $form->field($model, 'rooms')->dropDownList([
+                '1' => '1',
+                '2' => '2',
+                '3' => '3',
+                '4' => '4',
+                '5' => '5',
+                '11' => 'Студия'
+            ]); ?>
+        
+       <?= $form->field($model, 'area')->textInput() ?>
+       <?= $form->field($model, 'floor')->textInput() ?> 
+
+       
+    </div>
+    
+    <div class="col-md-2">
+       <?//= $form->field($model, 'rooms')->textInput() ?>
+       <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
+       <?= $form->field($model, 'house')->textInput(['maxlength' => true]) ?>
+       <?= $form->field($model, 'telephone')->textInput(['maxlength' => true])->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
+                'mask' => '8(999)-999-9999',
+        ]) ?>
+        
+    </div> 
+  </div>
+   <div class="row">   
+       <div class="col-sm-3">
+           <span class="cost sale">Цена (руб.)</span>
+           <span class="cost arenda">Цена в месяц (руб.)</span>
+           <span class="cost sutki">Цена в сутки (руб.)</span>
+            <?= $form->field($model, 'price')->label(false)->textInput(['placeholder' => "руб."]) ?>
+            
+       </div>
+   </div>
+    
+   <div class="row">   
+       <div class="col-sm-9">
+            <?= $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
+       </div>
+   </div>
+    
+
+    
+    <div class="col-md-2">
+       <?= $form->field($model, 'lat')->label(false)->hiddenInput(); ?>
+       <?= $form->field($model, 'lng')->label(false)->hiddenInput(); ?>
+       <?= $form->field($model, 'user_id')->label(false)->hiddenInput(); ?>
+    </div>
+     
+
+    
+    
+        <h3 class="open-filter" id="place"  style="cursor: pointer;">Местопложение <i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></h3>
+        <div class="filter">
+            <div class="col-md-10">
+                <div id="map-canvas" style="height: 512px;"></div> 
+            </div>
+        </div>
+   
+     
+    <div class="row" id="save" >
+        <div class="col-md-10" style="margin-top:40px">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'in_but']) ?>
+        </div>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
     
 </div>
 <style>

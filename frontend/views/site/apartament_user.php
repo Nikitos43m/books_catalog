@@ -216,13 +216,15 @@ $this->registerJs($script, yii\web\View::POS_READY);
         </div>
     </div>
     <br>
+    <!--
     <div class="step">
         <h2 class="title-step">Шаг 2</h2>
     </div>
     <div class="row">
         
         <div class="col-md-8"><h4>Загрузите фотографии</h4>
-         <?= $form->field($model, 'image[]')->label(false)->widget(FileInput::classname(), [
+          -->  
+         <?/*= $form->field($model, 'image[]')->label(false)->widget(FileInput::classname(), [
              
                 'language' => 'ru',
                 'options' => [
@@ -246,13 +248,13 @@ $this->registerJs($script, yii\web\View::POS_READY);
                         'showDelete' => true
                      ],
                 ],
-            ]);?>
-        </div>
+            ]);*/?>
+   <!--     </div>
     </div>
 
-    <br>
+    <br>  -->
     <div class="step">
-        <h2 class="title-step">Шаг 3</h2>
+        <h2 class="title-step">Шаг 2</h2>
     </div>
 <div class="row">
     
@@ -319,13 +321,7 @@ document.body.appendChild(script);
         display: none;
     }
     
-    .cost{
-        font-weight: bold;
-        
-        max-width: 100%;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
+
     
     .wrap > .container{
         background-image: url(images/k.jpg);

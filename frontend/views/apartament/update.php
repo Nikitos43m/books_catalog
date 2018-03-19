@@ -17,8 +17,7 @@ if((Yii::$app->user->getId() != $model->user_id) && (Yii::$app->user->identity->
 ?>
 <div class="apartament_user">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <h2>Объявление <?= Html::encode($model->id)?></h2>
     <?= $this->render('_form', [
         'model' => $model,
         'model2' => $model2

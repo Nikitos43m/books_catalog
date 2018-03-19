@@ -405,20 +405,26 @@ class SiteController extends Controller
                 $model->save();
 
                 /*Загрузка фотографий */
-                $model->image = UploadedFile::getInstances($model, 'image');
+                //$model->image = UploadedFile::getInstances($model, 'image');
                 //var_dump($model->image); die();
                 if (!file_exists($path)) {
                     mkdir($path, 0775, true);
                 }
                 //$model->image->saveAs("{$path}/{$model->image->baseName}.{$model->image->extension}");
                 
-                    foreach ($model->image as $file) {
+                /*    foreach ($model->image as $file) {
                         $file->saveAs("{$path}/{$file->baseName}.{$file->extension}");
                     }
+                */
                 
                // $model->upload();
                 Yii::$app->session->setFlash('success', "Объявление принято!");
-                return $this->goHome();
+                //return $this->goHome();
+                
+                //$query = Apartament::find()->where(['in','id', $arr_int]);
+                
+                return $this->redirect(['apartament/update', 'id' => Yii::$app->db->lastInsertID]);
+               
 
             }
         }
