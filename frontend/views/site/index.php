@@ -534,14 +534,15 @@ $session->open();
             <div class="howto-label"><div>2</div></div><h4> Заполните форму.</h4>
             <p>Продать/сдать, кол-во комнат, площадь и т.д.</p>
         </div>
+        
         <div class="col-md-6 col-xs-12" style="clear: both">
-            <div class="howto-label"><div>3</div></div><h4> Добавьте фотографии Вашего объекта.</h4>
-            <p>Максимальное количество фотографий:8.<br> Принимаются объявления и без фотографий.</p>
-        </div>
-
-        <div class="col-md-6 col-xs-12">
-            <div class="howto-label"><div>4</div></div> <h4> Укажите местоположение.</h4>
+            <div class="howto-label"><div>3</div></div> <h4> Укажите местоположение.</h4>
             <p>Перетащите маркер на Ваш объект недвижимости.</p>
+        </div>
+        
+        <div class="col-md-6 col-xs-12" >
+            <div class="howto-label"><div>4</div></div><h4> Добавьте фотографии Вашего объекта.</h4>
+            <p>Максимальное количество фотографий:8.<br> Принимаются объявления и без фотографий.</p>
         </div>
     </div>
 </div>

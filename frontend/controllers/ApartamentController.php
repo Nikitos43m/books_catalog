@@ -175,7 +175,7 @@ class ApartamentController extends Controller
               $model2->image = UploadedFile::getInstances($model2, 'image');
               $model2->upload($path);
             
-            
+             Yii::$app->session->setFlash('success', 'Данные успешно сохранены.');
             return $this->redirect(['update', 'id' => $model->id]);
         } else {            //var_dump($path);  die();
         
@@ -238,11 +238,29 @@ class ApartamentController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
+    {        
+       $model = $this->findModel($id);
+       $path_img = $model->image_path;
+       
+       $this->clear($path_img);
+       
+       /* Удаление папки с фотографиями */
+       rmdir($path_img);
+       $model->delete();
 
         return $this->redirect(['index']);
     }
+    
+    /*Удаление файлов в папке  */
+     public function clear($path) {
+        chmod($path, 755);
+        $files = glob($path.'/*'); // get all file names
+            foreach($files as $file){ // iterate files
+              if(is_file($file)){
+                 unlink($file);
+              } // delete file
+            }  
+     }
 
     /**
      * Finds the Apartament model based on its primary key value.

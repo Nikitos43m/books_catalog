@@ -159,6 +159,12 @@ a.desc:after {
     padding: 8px;
 }
 
+.title-update{
+    padding: 10px;
+    background-color: gainsboro;
+}
+
+
 @media(max-width:430px) {
     .buy_but{
         width: 90%;
@@ -179,7 +185,7 @@ a.desc:after {
 
 @media (min-width: 1000px) {
     .apartament_user{
-        margin-left: 20%;
+       
     }
 }
 
@@ -280,12 +286,7 @@ a.desc:after {
 }
 
 #place{
-    margin-left: 30%;
-}
-
-#save{
-     margin-left: 29%;
-     margin-right: 0px;
+    
 }
 
 .photo-view{
@@ -456,7 +457,10 @@ footer li {
     color: rgb(103, 103, 103);
 }
 
-
+.update-info{
+    padding: 10px;
+    border-bottom: 1px solid rgb(234, 234, 234);
+}
 
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus,
 .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus{

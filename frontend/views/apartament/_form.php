@@ -122,8 +122,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
 ?>
 
     
-       <div class="row">
-        <h3>Фотографии</h3>
+       <div class="row text-center">
+        <h3>Загрузите фотографии</h3>
  
         <?php
         //$path = "uploads/p.".Html::encode("{$model->user_id}")."/";
@@ -155,7 +155,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     
     <div class="row">
         
-        <div class="col-md-8">
+        <div class="col-md-12">
          <?php $form2 = ActiveForm::begin(); ?>
          <?= $form2->field($model2, 'image[]')->label(false)->widget(FileInput::classname(), [
              
@@ -194,8 +194,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
 
 <div class="apartament-form">
- <div class="row">
-    <h3>Информация</h3>
+ <div>
+     <h3 class="update-info">Информация</h3>
     <?php $form = ActiveForm::begin(); ?>
     <div class="col-md-4">
        
@@ -251,7 +251,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     </div> 
   </div>
    <div class="row">   
-       <div class="col-sm-3">
+       <div class="col-sm-2">
            <span class="cost sale">Цена (руб.)</span>
            <span class="cost arenda">Цена в месяц (руб.)</span>
            <span class="cost sutki">Цена в сутки (руб.)</span>
@@ -262,7 +262,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     
    <div class="row">   
        <div class="col-sm-9">
-            <?= $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 50])->label('Описание'); ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 10, 'cols' => 50])->label('Описание'); ?>
        </div>
    </div>
     
@@ -285,7 +285,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
         </div>
    
      
-    <div class="row" id="save" >
+    <div class="text-center" id="save" >
         <div class="col-md-10" style="margin-top:40px">
             <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'in_but']) ?>
         </div>
