@@ -160,4 +160,49 @@ class ApartamentSearch extends Apartament
 
         return $dataProvider;
     }
+    
+    public function searchTable($params)
+    {
+        $query = Apartament::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 3,
+            ],
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'rooms' => $this->rooms,
+            'floor' => $this->floor,
+            'area' => $this->area,
+            'price' => $this->price,
+            'lat' => $this->lat,
+            'lng' => $this->lng,
+            'user_id' => $this->user_id,
+        ]);
+
+        $query->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'street', $this->street])
+            ->andFilterWhere(['like', 'house', $this->house])
+            ->andFilterWhere(['like', 'telephone', $this->telephone]);
+
+        return $dataProvider;
+    }
+    
+    
+    
+    
 }

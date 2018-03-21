@@ -92,9 +92,12 @@ class SiteController extends Controller
 
         $searchModel = new ApartamentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProviderTable = $searchModel->searchTable(Yii::$app->request->queryParams);
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'dataProviderTable' => $dataProviderTable,
             'count' => $count
         ]);
 

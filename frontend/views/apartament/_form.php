@@ -175,7 +175,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
                     'browseClass' => 'btn btn-primary btn-block',
                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
                     'browseLabel' =>  'Выбрать фотографии',
-                    'allowedFileExtensions' => ['jpg','gif','png'],
+                    'allowedFileExtensions' => ['jpg','gif','png','jpeg'],
                     'overwriteInitial' => false,
                     
                      'initialPreviewAsData'=>true,

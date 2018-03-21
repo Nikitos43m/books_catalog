@@ -2,9 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\Carousel;
-?>
 
-<?php
 echo newerton\fancybox\FancyBox::widget([
     'target' => 'a[rel=fancybox'.$model->id.']',
     'helpers' => true,
@@ -50,17 +48,17 @@ foreach($images as $image) {
    // $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."'  onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img class='photo-view' height='130px' src='".$path.htmlspecialchars(urlencode($image))."' height='40px' alt='".$image."'></a>";
 
 }
-
 ?>
 
 
-<div class="appartament_view">
-    <div class="left-item">
-        <?php if (empty($images)): ?>
-            Без фото
-        <? endif;?>
+<div class="row">
+    
+  <?php if (empty($images)): ?>
+    <b> Без фото </b>
+  <? endif;?>
+  <div class="col-md-12">
     <?=$fimg ?>
-    </div>
+  </div>
 </div>
 
     <div class="center-item">
@@ -68,6 +66,10 @@ foreach($images as $image) {
         <span><?//= Html::encode($model->area) ?> </span>
     </div>
 
+<style>
+    .grid-view td {
+     white-space: normal; 
+}
+</style>
 
     
-</div>

@@ -68,8 +68,10 @@ class ApartamentController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id, $user_id)
+    public function actionView($id)
     {   
+        $user_id = Yii::$app->user->id;
+        
         $model2 = $this->findUserModel($user_id);
         $model = $this->findModel($id);
         

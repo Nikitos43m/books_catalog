@@ -213,11 +213,11 @@ $session->open();
         }
         
         if(Yii::$app->user->isGuest){
-            $button_info =  '<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/viewguest", "id"=>$apart->id],  
+            $button_info =  '<div class="col-md-12" style="margin-top:8px">'.Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/viewguest", "id"=>$apart->id],  
                                     ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
                                    . '</div>';
         }else{
-            $button_info = '<div class="col-md-12" style="margin-top:8px">'.Html::a("Подробно <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id, "user_id"=> Yii::$app->user->getId()],  
+            $button_info = '<div class="col-md-12" style="margin-top:8px">'.Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id],  
                                     ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
                                    . '</div>';
         }
@@ -359,7 +359,7 @@ $session->open();
 
 <div class="container">
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $dataProviderTable,
        // 'filterModel' => $searchModel,
         'tableOptions' => [
             'class' => 'table table-hover'
@@ -375,7 +375,7 @@ $session->open();
                 'class' => 'kartik\grid\ExpandRowColumn',
                 'expandAllTitle' => 'Expand all',
                 'collapseTitle' => 'Collapse all',
-                'expandIcon'=>'<i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>',
+                'expandIcon'=>'<i class="glyphicon glyphicon-camera" aria-hidden="true"></i>',
                 'detailRowCssClass' => GridView::ICON_ACTIVE,
                 'value' => function ($model, $key, $index, $column) {
                     return GridView::ROW_COLLAPSED;
@@ -491,6 +491,19 @@ $session->open();
 
 
             //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{open}',
+                'buttons' => [
+                    'open' => function ($url,$model) {
+                        if(Yii::$app->user->isGuest){
+                            return Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/viewguest", "id"=>$model->id]);
+                        }else{
+                            return Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$model->id]); 
+                        }
+                    },
+                ],
+            ],        
+                    
         ],
 
         'pjax' => true,

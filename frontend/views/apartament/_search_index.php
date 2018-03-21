@@ -181,10 +181,7 @@ $this->registerJs($js);
          <?= $form->field($model, 'type_appart')->label(false)->dropDownList([
             '0' => 'Вторичка',
             '1' => 'Новостройка'
-        ],
-            ['prompt'=> 'Все...'
-            ]     
-                 ); ?>
+         ]); ?>
     </div>
     
      <div class="col-lg-2 col-md-2 col-sm-4 otd">

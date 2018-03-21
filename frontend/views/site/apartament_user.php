@@ -154,6 +154,10 @@ $this->registerJs($script, yii\web\View::POS_READY);
         ]); ?>
         </div>
 
+        
+    </div>
+    
+    <div class="row">
         <div class="col-md-5">
             <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
             '0' => 'Строй вариант',
@@ -164,7 +168,6 @@ $this->registerJs($script, yii\web\View::POS_READY);
             ]); ?>
         </div>
     </div>
-            
             
     <div class="row">
         <div class="col-md-4">
@@ -321,7 +324,9 @@ document.body.appendChild(script);
         display: none;
     }
     
-
+    .apartament_user{
+        margin-left: 20%;
+    }
     
     .wrap > .container{
         background-image: url(images/k.jpg);
