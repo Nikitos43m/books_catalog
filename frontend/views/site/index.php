@@ -362,8 +362,21 @@ $session->open();
         'dataProvider' => $dataProviderTable,
        // 'filterModel' => $searchModel,
         'tableOptions' => [
-            'class' => 'table table-hover'
+            'class' => 'table table-hover',
         ],
+        
+        'exportConfig' => [
+            GridView::CSV => [],
+            GridView::EXCEL => [],
+            //GridView::TEXT => [],
+        ],
+        
+        'export' =>[
+            'label' => 'Экспорт',
+            'header' => '<li role="presentation" class="dropdown-header">Экспортировать данные:</li>.',
+            'showConfirmAlert' => false
+        ],
+        
 
 
         'columns' => [
@@ -486,7 +499,7 @@ $session->open();
              //'created_at',
             [
                 'attribute' => 'created_at',
-                'label'=>'Опубликовано',
+                'label'=>'Размещено',
                 'format' =>  ['date', 'd.MM.Y'],
 
             ],
@@ -508,6 +521,7 @@ $session->open();
                     
         ],
 
+        
         'pjax' => true,
         'bordered' => false,
         'striped' => false,
@@ -518,11 +532,19 @@ $session->open();
 
         'toggleDataOptions' => [
             'all' => [
-               // 'icon' => 'resize-full' ,
-                //'label' => Yii::t('kvgrid', 'All' ),
+                 'icon' => 'resize-full' ,
+                'label' => 'Показать все',
                 'class' => 'btn btn-default' ,
                 'title' => 'Показать все данные'
             ],
+            
+            'page' => [
+                'icon' => 'resize-small',
+                'label' => '1-ая страница',
+                'class' => 'btn btn-default',
+                'title' => 'Показать первую страницу'
+            ],
+            
         ]
 
     ]);?>
