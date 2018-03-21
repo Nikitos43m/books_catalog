@@ -188,17 +188,35 @@ class ApartamentSearch extends Apartament
             'rooms' => $this->rooms,
             'floor' => $this->floor,
             'area' => $this->area,
-            'price' => $this->price,
+            'realty_type' => $this->realty_type,
+            //'price' => $this->price,
             'lat' => $this->lat,
             'lng' => $this->lng,
             'user_id' => $this->user_id,
+            'type_appart' => $this->type_appart,
+            'otdelka' => $this->otdelka
         ]);
+
+       /* if($this->cost_from == null){
+            $this->cost_from = 0;
+        }*/
 
         $query->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'street', $this->street])
             ->andFilterWhere(['like', 'house', $this->house])
-            ->andFilterWhere(['like', 'telephone', $this->telephone]);
+            ->andFilterWhere(['like', 'telephone', $this->telephone])
+            ->andFilterWhere(['between', 'price', $this->cost_from, $this->cost_to])
+            ->andFilterWhere(['between', 'floor', $this->floor_from, $this->floor_to])
+            ->andFilterWhere(['between', 'area', $this->area_from, $this->area_to])
 
+            ->andFilterWhere(['<=', 'price', $this->cost_to])
+            ->andFilterWhere(['>=', 'price', $this->cost_from])
+
+            ->andFilterWhere(['<=', 'floor', $this->floor_to])
+            ->andFilterWhere(['>=', 'floor', $this->floor_from])
+
+            ->andFilterWhere(['<=', 'area', $this->area_to])
+            ->andFilterWhere(['>=', 'area', $this->area_from]);
         return $dataProvider;
     }
     

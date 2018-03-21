@@ -416,7 +416,7 @@ $session->open();
                         case 2: $text = 'Сдается посуточно'; break;
                     }
 
-                    switch ($model->type_appart){
+                    switch ($model->realty_type){
                         case 0: $appart = 'квартира'; break;
                         case 1: $appart = 'дом'; break;
                         case 2: $appart = 'комната'; break;
@@ -462,7 +462,9 @@ $session->open();
                 'attribute'=>'floor',
                 //'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
                 'content'=>function($model){
-                    return $model->floor." этаж";
+                    if($model->realty_type != 1){
+                        return $model->floor." этаж";
+                    }else{ return '-';}
                 }
             ],
             //'area',
