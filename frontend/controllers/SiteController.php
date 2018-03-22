@@ -19,6 +19,8 @@ use yii\web\UploadedFile;
 use app\models\ApartamentSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Response;
+use himiklab\ipgeobase\IpGeoBase;
+
 /**
  * Site controller
  */
@@ -77,7 +79,11 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
+    {    // Заполнение/обновление базы
+        //Yii::$app->ipgeobase->updateDB();
+        //var_dump(Yii::$app->request->userIP);
+        //var_dump(Yii::$app->ipgeobase->getLocation('83.221.207.185'));
+        
         $count = null;
         if(!Yii::$app->user->isGuest) {
             /* Количество объявлений пользователя */
