@@ -81,8 +81,14 @@ class SiteController extends Controller
     public function actionIndex()
     {    // Заполнение/обновление базы
         //Yii::$app->ipgeobase->updateDB();
-        //var_dump(Yii::$app->request->userIP);
-        //var_dump(Yii::$app->ipgeobase->getLocation('83.221.207.185'));
+        $ip = Yii::$app->request->userIP;
+        $ip = '83.221.207.185';
+        $location_arr = Yii::$app->ipgeobase->getLocation($ip);
+        //var_dump($location_arr); die();
+         
+        /*Получим города*/
+        $cities = \app\models\GeobaseCity::find()->all();
+        var_dump($cities); die();
         
         $count = null;
         if(!Yii::$app->user->isGuest) {
@@ -104,7 +110,10 @@ class SiteController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'dataProviderTable' => $dataProviderTable,
-            'count' => $count
+            'count' => $count,
+            //'region' => $region,
+            //'city' => $city
+            'location_arr' => $location_arr
         ]);
 
     }

@@ -27,6 +27,10 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $searchModel app\models\ApartamentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $count integer*/
+/* @var $location_arr array*/
+
+
+
 $this->title = 'Поиск недвижимости';
 $this->registerMetaTag([
   'name' => 'description',
@@ -40,7 +44,9 @@ $script = <<< JS
     
     $(document).ready(function() {
     //alert( "ready!" );
-    // $('a').fancybox();    
+    // $('a').fancybox();  
+        
+       $('#myModal').modal('show');
 });
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
@@ -60,6 +66,10 @@ $session->open();
     
     #apartamentsearch-rooms label{
         margin-left: 15px;
+    }
+    
+    .wrap {
+      min-height: unset;
     }
 
 </style>
@@ -98,7 +108,8 @@ $session->open();
     </div>
 
     <?php
-    $coord = new LatLng(['lat' => 47.231620, 'lng' => 39.695463]);
+    //$coord = new LatLng(['lat' => 47.231620, 'lng' => 39.695463]);
+    $coord = new LatLng(['lat' => $location_arr['lat'], 'lng' => $location_arr['lng']]);
     $map = new Map([
         'center' => $coord,
         'zoom' => 12,
@@ -623,7 +634,7 @@ $session->open();
 </section>
 
 
-<a href="#myModal" class="btn btn-primary" data-toggle="modal">Открыть модальное окно</a>  
+<!--<a href="#myModal" class="btn btn-primary" data-toggle="modal">Открыть модальное окно</a>  -->
 <!-- HTML-код модального окна -->
 <div id="myModal" class="modal fade">
   <div class="modal-dialog">

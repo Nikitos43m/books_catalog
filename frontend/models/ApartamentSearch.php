@@ -170,7 +170,7 @@ class ApartamentSearch extends Apartament
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 3,
+                'pageSize' => 6,
             ],
         ]);
 
