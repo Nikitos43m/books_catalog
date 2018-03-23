@@ -85,10 +85,14 @@ class SiteController extends Controller
         $ip = '83.221.207.185';
         $location_arr = Yii::$app->ipgeobase->getLocation($ip);
         //var_dump($location_arr); die();
-         
-        /*Получим города*/
-        $cities = \app\models\GeobaseCity::find()->all();
-        var_dump($cities); die();
+        
+        $geoModel = new \frontend\models\CityForm();
+        
+        $regions_list = (new \yii\db\Query())
+            ->select(['id', 'name'])
+            ->from('geobase_region')
+           ->all();
+    //print_r($regions_list); die();
         
         $count = null;
         if(!Yii::$app->user->isGuest) {
@@ -113,7 +117,9 @@ class SiteController extends Controller
             'count' => $count,
             //'region' => $region,
             //'city' => $city
-            'location_arr' => $location_arr
+            'location_arr' => $location_arr,
+            'model' => $geoModel,
+            'regions_list' => $regions_list
         ]);
 
     }

@@ -20,7 +20,7 @@ use dosamigos\google\maps\Map;
 use dosamigos\google\maps\services\DirectionsRequest;
 use dosamigos\google\maps\overlays\Polygon;
 use dosamigos\google\maps\layers\BicyclingLayer;
-
+/* @var $form yii\bootstrap\ActiveForm */
 /* @var $this yii\web\View */
 /* @var $apartament array*/
 
@@ -28,8 +28,8 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $count integer*/
 /* @var $location_arr array*/
-
-
+/* @var $model \frontend\models\CityForm */
+/* @var $regions_list array*/
 
 $this->title = 'Поиск недвижимости';
 $this->registerMetaTag([
@@ -646,7 +646,35 @@ $session->open();
       </div>
       <!-- Основное содержимое модального окна -->
       <div class="modal-body">
-        Содержимое модального окна...
+          <div class="form">
+         <?php \frontend\assets\DepDropAsset::register($this); ?>     
+        <?php $form = ActiveForm::begin(['id' => 'geo']); ?>   
+        <?/*= $form->field($model, 'region')->dropDownList($model->country, [
+            'prompt' => Yii::t('app', 'Укажите Вашу страну'),
+            'data-trigger' => 'dep-drop',
+            'data-target' => '#select-region',
+            'data-url' => \yii\helpers\Url::to(['/data/regions']),
+            'data-name' => 'cid',
+            'id' => 'select-country',
+        ]) */?>
+ 
+        <?= $form->field($model, 'region')->dropDownList($regions_list, [
+            'prompt' => Yii::t('app', 'Укажите Ваш регион'),
+            'disabled' => false,
+            'id' => 'select-region',
+            'data-trigger' => 'dep-drop',
+            'data-target' => '#select-city',
+            'data-url' => \yii\helpers\Url::to(['/data/cities']),
+            'data-name' => 'rid',
+        ]) ?>
+ 
+        <?= $form->field($model, 'city')->dropDownList([], [
+            'prompt' => Yii::t('app', 'Укажите Ваш город'),
+            'disabled' => true,
+            'id' => 'select-city',
+        ]) ?>
+        <?php ActiveForm::end(); ?>
+</div>
       </div>
       <!-- Футер модального окна -->
       <div class="modal-footer">
