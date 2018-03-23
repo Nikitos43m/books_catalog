@@ -3,7 +3,7 @@ use dosamigos\google\maps\overlays\Polyline;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Carousel;
 use yii\helpers\Html;
-
+use yii\helpers\ArrayHelper;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
 use yii\widgets\ListView;
@@ -657,8 +657,8 @@ $session->open();
             'data-name' => 'cid',
             'id' => 'select-country',
         ]) */?>
- 
-        <?= $form->field($model, 'region')->dropDownList($regions_list, [
+ <!--   https://site-creator.pro/2016/11/07/%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D1%8B%D0%B5-%D0%B2%D1%8B%D0%BF%D0%B0%D0%B4%D0%B0%D1%8E%D1%89%D0%B8%D0%B5-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B8-%D0%B2-yii2/                    -->
+        <?= $form->field($model, 'region')->dropDownList(/*$regions_list*/ ArrayHelper::map($regions_list,'id','name'), [
             'prompt' => Yii::t('app', 'Укажите Ваш регион'),
             'disabled' => false,
             'id' => 'select-region',
