@@ -30,6 +30,8 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $location_arr array*/
 /* @var $model \frontend\models\CityForm */
 /* @var $regions_list array*/
+/* @var $lat double*/
+/* @var $lng double*/
 
 $this->title = 'Поиск недвижимости';
 $this->registerMetaTag([
@@ -46,7 +48,7 @@ $script = <<< JS
     //alert( "ready!" );
     // $('a').fancybox();  
         
-       $('#myModal').modal('show');
+      // $('#myModal').modal('show');
 });
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
@@ -75,7 +77,7 @@ $session->open();
 </style>
 
 <div class="site-index">
-
+<a href="#myModal" class="btn btn-primary" data-toggle="modal">Выбрать город</a>
     <? //if (!Yii::$app->user->isGuest): ?>
     <? //echo Html::a('Добавить на карту', ['apartament'], ['class' => 'btn btn-success']); ?><p></p>
     <? //endif; ?>
@@ -109,7 +111,9 @@ $session->open();
 
     <?php
     //$coord = new LatLng(['lat' => 47.231620, 'lng' => 39.695463]);
-    $coord = new LatLng(['lat' => $location_arr['lat'], 'lng' => $location_arr['lng']]);
+    //$coord = new LatLng(['lat' => $location_arr['lat'], 'lng' => $location_arr['lng']]);
+    $coord = new LatLng(['lat' => $lat, 'lng' => $lng]);
+    
     $map = new Map([
         'center' => $coord,
         'zoom' => 12,
@@ -673,13 +677,15 @@ $session->open();
             'disabled' => true,
             'id' => 'select-city',
         ]) ?>
-        <?php ActiveForm::end(); ?>
+
 </div>
       </div>
       <!-- Футер модального окна -->
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-        <button type="button" class="btn btn-primary">Сохранить изменения</button>
+        <!-- <button type="button" class="btn btn-primary">Сохранить изменения</button> -->
+          <?= Html::submitButton('Сохранить', ['class' => 'in_but']) ?>
+          <?php ActiveForm::end(); ?>
       </div>
     </div>
   </div>

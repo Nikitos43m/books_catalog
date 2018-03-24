@@ -20,6 +20,9 @@ class CityForm extends Model
            // [ ['city',  'region', 'country'], 'number'],
         ];
     }
-    
-    
+
+    public function city()
+    {
+        return $this->city;
+    }
 }

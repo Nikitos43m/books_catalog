@@ -50,4 +50,21 @@ class GeobaseCity extends \yii\db\ActiveRecord
             'longitude' => 'Longitude',
         ];
     }
+
+
+    public static function findById($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
+
+    public function getLat()
+    {
+        return $this->latitude;
+    }
+
+    public function getLng()
+    {
+        return $this->longitude;
+    }
+
 }

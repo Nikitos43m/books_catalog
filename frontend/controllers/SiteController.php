@@ -13,6 +13,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use app\models\GeobaseCity;
 use frontend\models\ApartamentForm;
 use common\models\EntryForm;
 use yii\web\UploadedFile;
@@ -20,7 +21,7 @@ use app\models\ApartamentSearch;
 use yii\data\ActiveDataProvider;
 use yii\web\Response;
 use himiklab\ipgeobase\IpGeoBase;
-
+use frontend\models\CityForm;
 /**
  * Site controller
  */
@@ -79,37 +80,63 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {    // Заполнение/обновление базы
-        //Yii::$app->ipgeobase->updateDB();
-        $ip = Yii::$app->request->userIP;
-        $ip = '83.221.207.185';
-        $location_arr = Yii::$app->ipgeobase->getLocation($ip);
-        //var_dump($location_arr); die();
-        
-        $geoModel = new \frontend\models\CityForm();
-        
-        $regions_list = (new \yii\db\Query())
-            ->select(['id', 'name'])
-            ->from('geobase_region')
-           ->all();
-    //print_r($regions_list); die();
-        
-        $count = null;
-        if(!Yii::$app->user->isGuest) {
-            /* Количество объявлений пользователя */
-            $user_id = Yii::$app->user->getId();
-            $model = \common\models\User::findById($user_id);
-            $counts = $model->getApartament()->count();
-            $count = (int)$counts;
-            //var_dump($count); die();
+    {
+        $session = Yii::$app->session;
+        $session->open();
+
+
+        $city_form = new CityForm();
+        $my_city = 131;
+        if ($city_form->load(Yii::$app->request->post())){
+
+            $data = Yii::$app->request->post('CityForm');
+           // print_r($data['city']); die();
+            $my_city = (int)$data['city'];
 
         }
 
 
-        $searchModel = new ApartamentSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProviderTable = $searchModel->searchTable(Yii::$app->request->queryParams);
-        
+       // var_dump($my_city); die();
+
+
+            $session['my_city'] = $my_city;
+
+            //GeobaseCity::find()->where(['id' => $my_city])->one();
+            $geo_city = GeobaseCity::findById($my_city);
+            $lat = $geo_city->getLat();
+            $lng = $geo_city->getLng();
+
+            // Заполнение/обновление базы
+            //Yii::$app->ipgeobase->updateDB();
+            $ip = Yii::$app->request->userIP;
+            $ip = '83.221.207.185';
+            $location_arr = Yii::$app->ipgeobase->getLocation($ip);
+            //var_dump($location_arr); die();
+
+           // $geoModel = new \frontend\models\CityForm();
+
+            $regions_list = (new \yii\db\Query())
+                ->select(['id', 'name'])
+                ->from('geobase_region')
+                ->all();
+            //print_r($regions_list); die();
+
+            $count = null;
+            if (!Yii::$app->user->isGuest) {
+                /* Количество объявлений пользователя */
+                $user_id = Yii::$app->user->getId();
+                $model = \common\models\User::findById($user_id);
+                $counts = $model->getApartament()->count();
+                $count = (int)$counts;
+                //var_dump($count); die();
+
+            }
+
+
+            $searchModel = new ApartamentSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $dataProviderTable = $searchModel->searchTable(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -118,8 +145,10 @@ class SiteController extends Controller
             //'region' => $region,
             //'city' => $city
             'location_arr' => $location_arr,
-            'model' => $geoModel,
-            'regions_list' => $regions_list
+            'model' => $city_form,
+            'regions_list' => $regions_list,
+            'lat' => $lat,
+            'lng' => $lng
         ]);
 
     }

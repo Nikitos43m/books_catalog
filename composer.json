@@ -22,7 +22,8 @@
 		"2amigos/yii2-google-maps-library" : "*",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "newerton/yii2-fancybox": "dev-master",
-        "kartik-v/yii2-grid": "@dev"
+        "kartik-v/yii2-grid": "@dev",
+        "himiklab/yii2-ipgeobase-component" : "*"
 
     },
     "require-dev": {
