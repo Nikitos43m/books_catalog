@@ -662,6 +662,9 @@ $session->open();
             'id' => 'select-country',
         ]) */?>
  <!--   https://site-creator.pro/2016/11/07/%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D1%8B%D0%B5-%D0%B2%D1%8B%D0%BF%D0%B0%D0%B4%D0%B0%D1%8E%D1%89%D0%B8%D0%B5-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%B8-%D0%B2-yii2/                    -->
+        <?php  $city_id = $location_arr['id'];
+            $arr = ArrayHelper::map($regions_list,'id','name');
+        ArrayHelper::multisort($arr, ['name'], [SORT_ASC]); ?>
         <?= $form->field($model, 'region')->dropDownList(/*$regions_list*/ ArrayHelper::map($regions_list,'id','name'), [
             'prompt' => Yii::t('app', 'Укажите Ваш регион'),
             'disabled' => false,
@@ -670,11 +673,13 @@ $session->open();
             'data-target' => '#select-city',
             'data-url' => \yii\helpers\Url::to(['/data/cities']),
             'data-name' => 'rid',
+            'city_id' => $location_arr['id'],
+            'options' =>[ (int)$location_arr['region_id'] => ['Selected' => true]]
         ]) ?>
  
         <?= $form->field($model, 'city')->dropDownList([], [
             'prompt' => Yii::t('app', 'Укажите Ваш город'),
-            'disabled' => true,
+            //'disabled' => true,
             'id' => 'select-city',
         ]) ?>
 

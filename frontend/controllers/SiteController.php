@@ -84,40 +84,37 @@ class SiteController extends Controller
         $session = Yii::$app->session;
         $session->open();
 
-
         $city_form = new CityForm();
-        $my_city = 131;
+
+        // Заполнение/обновление базы
+        //Yii::$app->ipgeobase->updateDB();
+        $ip = Yii::$app->request->userIP;
+        $ip = '83.221.207.185';
+        $location_arr = Yii::$app->ipgeobase->getLocation($ip);
+        //var_dump($location_arr); die();
+
+        $my_city = $location_arr['id'];
+
         if ($city_form->load(Yii::$app->request->post())){
-
             $data = Yii::$app->request->post('CityForm');
-           // print_r($data['city']); die();
             $my_city = (int)$data['city'];
-
         }
 
-
-       // var_dump($my_city); die();
-
-
             $session['my_city'] = $my_city;
+        //var_dump($session['my_city']); die();
 
             //GeobaseCity::find()->where(['id' => $my_city])->one();
             $geo_city = GeobaseCity::findById($my_city);
             $lat = $geo_city->getLat();
             $lng = $geo_city->getLng();
 
-            // Заполнение/обновление базы
-            //Yii::$app->ipgeobase->updateDB();
-            $ip = Yii::$app->request->userIP;
-            $ip = '83.221.207.185';
-            $location_arr = Yii::$app->ipgeobase->getLocation($ip);
-            //var_dump($location_arr); die();
-
-           // $geoModel = new \frontend\models\CityForm();
 
             $regions_list = (new \yii\db\Query())
                 ->select(['id', 'name'])
                 ->from('geobase_region')
+                ->orderBy([
+                    'name' => SORT_ASC
+                ])
                 ->all();
             //print_r($regions_list); die();
 
