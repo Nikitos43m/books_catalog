@@ -66,5 +66,10 @@ class GeobaseCity extends \yii\db\ActiveRecord
     {
         return $this->longitude;
     }
+    
+    public function getName()
+    {
+        return $this->name;
+    }
 
 }

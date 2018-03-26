@@ -45,10 +45,18 @@ $var = 123;
 $script = <<< JS
     
     $(document).ready(function() {
-    //alert( "ready!" );
-    // $('a').fancybox();  
+    // $('a').fancybox();     
+    // $('#myModal').modal('show');
+
+            if ($.cookie("modal_shown") == null) {
+              
+                $('#myModal').modal('show');
+              
+              $.cookie('modal_shown', 'true', { expires: 365, path: '/' });
+            }
+               // else {alert($.cookie("modal_shown"));}
+
         
-      // $('#myModal').modal('show');
 });
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
@@ -77,7 +85,7 @@ $session->open();
 </style>
 
 <div class="site-index">
-<a href="#myModal" class="btn btn-primary" data-toggle="modal">Выбрать город</a>
+<!-- <a href="#myModal" class="btn btn-primary" data-toggle="modal">Выбрать город</a> -->
     <? //if (!Yii::$app->user->isGuest): ?>
     <? //echo Html::a('Добавить на карту', ['apartament'], ['class' => 'btn btn-success']); ?><p></p>
     <? //endif; ?>

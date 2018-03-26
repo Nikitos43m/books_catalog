@@ -12,6 +12,7 @@ class DepDropAsset extends AssetBundle
     ];
     public $js = [
         'js/dep_drop.js',
+        'js/jquery.cookie.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

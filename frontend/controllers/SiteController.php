@@ -27,6 +27,9 @@ use frontend\models\CityForm;
  */
 class SiteController extends Controller
 {
+    
+                
+    //public $city_layout;
     /**
      * @inheritdoc
      */
@@ -88,23 +91,31 @@ class SiteController extends Controller
 
         // Заполнение/обновление базы
         //Yii::$app->ipgeobase->updateDB();
+        
+      if($session['my_city'] == NULL){
         $ip = Yii::$app->request->userIP;
         $ip = '83.221.207.185';
         $location_arr = Yii::$app->ipgeobase->getLocation($ip);
-        //var_dump($location_arr); die();
-
         $my_city = $location_arr['id'];
-
+        $session['my_city'] = $my_city;
+      }else{
+          $my_city = $session['my_city']; 
+      }
         if ($city_form->load(Yii::$app->request->post())){
             $data = Yii::$app->request->post('CityForm');
             $my_city = (int)$data['city'];
+            $session['my_city'] = $my_city;
         }
 
-            $session['my_city'] = $my_city;
-        //var_dump($session['my_city']); die();
 
             //GeobaseCity::find()->where(['id' => $my_city])->one();
             $geo_city = GeobaseCity::findById($my_city);
+            //var_dump($geo_city['id']); die();
+            
+            /* Название города в шапку */
+            $this->view->params['my_city'] = $geo_city->getName();
+            Yii::$app->params['my_city'] = $geo_city->getName();
+            
             $lat = $geo_city->getLat();
             $lng = $geo_city->getLng();
 
@@ -141,7 +152,7 @@ class SiteController extends Controller
             'count' => $count,
             //'region' => $region,
             //'city' => $city
-            'location_arr' => $location_arr,
+            'location_arr' => $geo_city,
             'model' => $city_form,
             'regions_list' => $regions_list,
             'lat' => $lat,
@@ -436,6 +447,10 @@ class SiteController extends Controller
 
     public function actionApartament_user()
     {
+        $session = Yii::$app->session;
+        $session->open();
+        //var_dump($session['my_city']); die();
+        
         $model = new ApartamentForm();
 
         if (Yii::$app->user->isGuest) {

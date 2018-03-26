@@ -26,7 +26,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
+    <?php 
     NavBar::begin([
         'brandLabel' => 'GNS',
         'brandUrl' => Yii::$app->homeUrl,
@@ -34,13 +34,20 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
+    $menuItems = [ //['label' => $this->params['my_city'] ]
        // ['label' => 'Главная', 'url' => ['/site/index']],
       //  ['label' => 'О нас', 'url' => ['/site/about']],
        // ['label' => 'Контакты', 'url' => ['/site/contact']],
        // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
+    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a(Yii::$app->params['my_city'], ['', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link',  'data-toggle'=>'modal']).'</li>
+         <li>';
+    
     if (Yii::$app->user->isGuest) {
+        
+        //$menuItems[]='<a href="#myModal" class="btn btn-primary" data-toggle="modal">'.$this->params['my_city'].'</a>';
+        
+        
        // $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
         $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-user" aria-hidden="true"></i> Регистрация', ['/site/signup'], ['class' => 'btn btn-link']).'</li>
                <li>';
@@ -60,6 +67,11 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $menuItemsLeft,
+    ]);
+    
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
