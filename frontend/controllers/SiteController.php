@@ -113,8 +113,9 @@ class SiteController extends Controller
             //var_dump($geo_city['id']); die();
             
             /* Название города в шапку */
-            $this->view->params['my_city'] = $geo_city->getName();
+            //$this->view->params['my_city'] = $geo_city->getName();
             Yii::$app->params['my_city'] = $geo_city->getName();
+             $session['my_city_name'] = $geo_city->getName();
             
             $lat = $geo_city->getLat();
             $lng = $geo_city->getLng();
@@ -196,7 +197,7 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionLogin()
-    {
+    {   
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }

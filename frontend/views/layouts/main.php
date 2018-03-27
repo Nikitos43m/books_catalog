@@ -24,7 +24,9 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+<?php $session = Yii::$app->session;
+        $session->open();     
+        //var_dump($session['my_city_name']); die();  ?>
 <div class="wrap">
     <?php 
     NavBar::begin([
@@ -40,7 +42,7 @@ AppAsset::register($this);
        // ['label' => 'Контакты', 'url' => ['/site/contact']],
        // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
-    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a(Yii::$app->params['my_city'], ['', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link',  'data-toggle'=>'modal']).'</li>
+    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'], ['', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link',  'data-toggle'=>'modal']).'</li>
          <li>';
     
     if (Yii::$app->user->isGuest) {
