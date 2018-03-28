@@ -110,7 +110,7 @@ class SiteController extends Controller
 
             //GeobaseCity::find()->where(['id' => $my_city])->one();
             $geo_city = GeobaseCity::findById($my_city);
-            //var_dump($geo_city['id']); die();
+            //$session['geo_city'] = $geo_city;
             
             /* Название города в шапку */
             //$this->view->params['my_city'] = $geo_city->getName();
@@ -128,6 +128,8 @@ class SiteController extends Controller
                     'name' => SORT_ASC
                 ])
                 ->all();
+            
+            //$session['regions_list'] = $regions_list;
             //print_r($regions_list); die();
 
             $count = null;

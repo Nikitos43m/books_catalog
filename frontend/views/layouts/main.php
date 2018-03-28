@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use common\widgets\CityWidget;
 
 AppAsset::register($this);
 ?>
@@ -42,7 +43,7 @@ AppAsset::register($this);
        // ['label' => 'Контакты', 'url' => ['/site/contact']],
        // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
-    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'], ['', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link',  'data-toggle'=>'modal']).'</li>
+    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'], ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link',  'data-toggle'=>'modal']).'</li>
          <li>';
     
     if (Yii::$app->user->isGuest) {
@@ -99,7 +100,7 @@ AppAsset::register($this);
                 <ul>
                     <h3>Контакты</h3>
                     <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> г. Ростов-на-Дону, ул. Заводская, 11</li>
-                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@credit-history24.ru"> info@credit-history24.ru</a></li>
+                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@credit-history24.ru"> info@gns.ru</a></li>
                     <li>
                         <a target="_blank" href="https://vk.com"><div class="icon-button vk"></div></a>
                         <a target="_blank" href="https://instagramm.com"><div class="icon-button inst"></div></a>
@@ -113,7 +114,8 @@ AppAsset::register($this);
         
     </div>
 </footer>
-
+<?= CityWidget::widget([]) ?>
+    
 <?php $this->endBody() ?>
 </body>
 </html>
