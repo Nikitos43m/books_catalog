@@ -30,6 +30,7 @@ class CityWidget extends \yii\base\Widget{
             $my_city = $session['my_city']; 
          }
         if ($city_form->load(Yii::$app->request->post())){
+            echo "<meta http-equiv='refresh' content='0'>";
             $data = Yii::$app->request->post('CityForm');
             $my_city = (int)$data['city'];
             $session['my_city'] = $my_city;
