@@ -68,8 +68,13 @@ foreach($images as $image) {
 
 <style>
     .grid-view td {
-     white-space: normal; 
-}
+        white-space: normal; 
+     }
+     
+     .row {
+        margin-right: 0px;
+        margin-left: 0px;
+      }
 </style>
 
     

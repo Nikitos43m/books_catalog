@@ -120,6 +120,8 @@ class SiteController extends Controller
             $lat = $geo_city->getLat();
             $lng = $geo_city->getLng();
 
+            $session['lat'] = $lat;
+            $session['lng'] = $lng;
 
             $regions_list = (new \yii\db\Query())
                 ->select(['id', 'name'])

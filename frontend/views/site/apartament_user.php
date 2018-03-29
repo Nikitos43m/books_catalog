@@ -24,7 +24,6 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 $session = Yii::$app->session;
 $session->open();
 
-
 $script = <<< JS
     
     $(document).ready(function() {
@@ -281,11 +280,13 @@ function GoogleMap_init () {
     window.Map = new google.maps.Map(mapCanvas, {
         zoom: 12,
         scrollwheel: true,
-        center: new google.maps.LatLng(47.231620, 39.695463)
+        //center: new google.maps.LatLng(47.231620, 39.695463)
+        center: new google.maps.LatLng(<?=$session['lat'] ?>,<?=$session['lng'] ?>)
     });
 
     var baseMarker = new google.maps.Marker({
-      position: new google.maps.LatLng(47.228492, 39.715496),
+      //position: new google.maps.LatLng(47.228492, 39.715496),
+      position: new google.maps.LatLng(<?=$session['lat'] ?>,<?=$session['lng'] ?>),
       animation: google.maps.Animation.DROP,
       map: window.Map,
       draggable: true,
