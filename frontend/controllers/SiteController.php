@@ -145,8 +145,8 @@ class SiteController extends Controller
 
 
             $searchModel = new ApartamentSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-            $dataProviderTable = $searchModel->searchTable(Yii::$app->request->queryParams);
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $session['my_city']);
+            $dataProviderTable = $searchModel->searchTable(Yii::$app->request->queryParams, $session['my_city']);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -470,6 +470,7 @@ class SiteController extends Controller
                 $path = "uploads/p.{$model->user_id}/{$model->area}{$model->floor}{$model->rooms}/";
                 $model->image_path = $path;
                 $model->count_views = 0;
+               
                 $model->save();
 
                 /*Загрузка фотографий */
@@ -498,7 +499,7 @@ class SiteController extends Controller
         }
 
         return $this->render('apartament_user', [
-            'model' => $model,
+            'model' => $model
         ]);
     }
 

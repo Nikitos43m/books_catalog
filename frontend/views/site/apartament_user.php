@@ -20,6 +20,9 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\ApartamentForm */
 /* @var $form ActiveForm */
+/* @var $city_id integer*/
+$session = Yii::$app->session;
+$session->open();
 
 
 $script = <<< JS
@@ -265,6 +268,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <h4 >Переместите маркер на ваш объект недвижимости</h4>
         <?= $form->field($model, 'lat')->label(false)->hiddenInput(['value'=>NULL]); ?>
         <?= $form->field($model, 'lng')->label(false)->hiddenInput(['value'=>NULL]); ?>
+        <?= $form->field($model, 'city_id')->label(false)->hiddenInput(['value'=>$session['my_city']]); ?>
     <div id="map-canvas" style="height: 512px;"></div> 
     </div>
 </div>

@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+$session = Yii::$app->session;
+$session->open();
+
 /* @var $this yii\web\View */
 /* @var $model app\models\ApartamentSearch */
 /* @var $form yii\widgets\ActiveForm */
@@ -248,7 +251,8 @@ $this->registerJs($js);
         <span class='m2'> руб. </span>
     </div>
 
-
+    <?=$form->field($model, 'city_id')->label(false)->hiddenInput(['value'=>$session['my_city']]); ?>
+    
     <?php // echo $form->field($model, 'telephone') ?>
 
     <?php // echo $form->field($model, 'lat') ?>

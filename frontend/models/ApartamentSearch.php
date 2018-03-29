@@ -7,6 +7,10 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Apartament;
 
+
+$session = Yii::$app->session;
+$session->open();
+
 /**
  * ApartamentSearch represents the model behind the search form about `app\models\Apartament`.
  *
@@ -34,7 +38,8 @@ class ApartamentSearch extends Apartament
     public function rules()
     {
         return [
-            [['id', 'floor', 'area', 'price', 'user_id', 'cost_from', 'cost_to', 'floor_from','floor_to','area_from','area_to', 'realty_type', 'type_appart', 'otdelka'], 'integer'],
+            [['id', 'floor', 'area', 'price', 'user_id', 'cost_from', 'cost_to', 'floor_from','floor_to'
+                ,'area_from','area_to', 'realty_type', 'type_appart', 'otdelka', 'city_id'], 'integer'],
             [['type', 'street', 'house', 'telephone'], 'safe'],
             [['lat', 'lng'], 'number'],
             ['rooms', 'in', 'range' => [1,2,3,4,5,11], 'allowArray' => true]
@@ -57,9 +62,9 @@ class ApartamentSearch extends Apartament
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $city_id)
     {
-        $query = Apartament::find();
+        $query = Apartament::find()->where(['city_id' => $city_id]);
 
         // add conditions that should always apply here
 
@@ -90,7 +95,8 @@ class ApartamentSearch extends Apartament
             'lng' => $this->lng,
             'user_id' => $this->user_id,
             'type_appart' => $this->type_appart,
-            'otdelka' => $this->otdelka
+            'otdelka' => $this->otdelka,
+            'city_id' => $this->city_id
         ]);
 
        /* if($this->cost_from == null){
@@ -125,7 +131,7 @@ class ApartamentSearch extends Apartament
      */
     public function searchUser($params, $user)
     {
-        $query = Apartament::find()->where(['user_id' => $user]);;
+        $query = Apartament::find()->where(['user_id' => $user]);
 
         // add conditions that should always apply here
 
@@ -151,6 +157,7 @@ class ApartamentSearch extends Apartament
             'lat' => $this->lat,
             'lng' => $this->lng,
             'user_id' => $this->user_id,
+            //'city_id' =>  $this->city_id
         ]);
 
         $query->andFilterWhere(['like', 'type', $this->type])
@@ -161,9 +168,9 @@ class ApartamentSearch extends Apartament
         return $dataProvider;
     }
     
-    public function searchTable($params)
+    public function searchTable($params, $city_id)
     {
-        $query = Apartament::find();
+        $query = Apartament::find()->where(['city_id' => $city_id]);
 
         // add conditions that should always apply here
 
@@ -194,7 +201,8 @@ class ApartamentSearch extends Apartament
             'lng' => $this->lng,
             'user_id' => $this->user_id,
             'type_appart' => $this->type_appart,
-            'otdelka' => $this->otdelka
+            'otdelka' => $this->otdelka,
+          //  'city_id' => $this->city_id
         ]);
 
        /* if($this->cost_from == null){
