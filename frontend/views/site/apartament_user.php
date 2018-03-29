@@ -30,6 +30,7 @@ $script = <<< JS
         $('#field-apartamentform-otdelka').hide();
         $(".field-apartamentform-type_appart").hide();
         $(".field-apartamentform-otdelka").hide();
+        $(".field-apartamentform-term").hide();
         
         var tip;
         
@@ -106,8 +107,10 @@ $script = <<< JS
          vtor = $('#apartamentform-type_appart option:selected').val();
          if( vtor == 1){
               $(".field-apartamentform-otdelka").show();
+              $(".field-apartamentform-term").show();
          }else{
              $(".field-apartamentform-otdelka").hide();
+             $(".field-apartamentform-term").hide();
          }
    });     
         
@@ -167,6 +170,20 @@ $this->registerJs($script, yii\web\View::POS_READY);
             '2' => 'Под ключ'
              ], 
             ['prompt'=> 'Выберите отделку'
+            ]); ?>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-5">
+            <?= $form->field($model, 'term')->label('Срок сдачи')->dropDownList([
+            '0' => 'Сдан',
+            '1' => '2018',
+            '2' => '2019',
+            '3' => '2020',
+            '4' => 'Позднее'   
+             ], 
+            ['prompt'=> 'Выберите срок сдачи'
             ]); ?>
         </div>
     </div>

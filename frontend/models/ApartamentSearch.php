@@ -42,7 +42,8 @@ class ApartamentSearch extends Apartament
                 ,'area_from','area_to', 'realty_type', 'type_appart', 'otdelka', 'city_id'], 'integer'],
             [['type', 'street', 'house', 'telephone'], 'safe'],
             [['lat', 'lng'], 'number'],
-            ['rooms', 'in', 'range' => [1,2,3,4,5,11], 'allowArray' => true]
+            ['rooms', 'in', 'range' => [1,2,3,4,5,11], 'allowArray' => true],
+            ['term', 'in', 'range' => [0,1,2,3,4], 'allowArray' => true]
         ];
     }
 
@@ -96,6 +97,7 @@ class ApartamentSearch extends Apartament
             'user_id' => $this->user_id,
             'type_appart' => $this->type_appart,
             'otdelka' => $this->otdelka,
+            'term' => $this->term,
             'city_id' => $this->city_id
         ]);
 
@@ -201,6 +203,7 @@ class ApartamentSearch extends Apartament
             'lng' => $this->lng,
             'user_id' => $this->user_id,
             'type_appart' => $this->type_appart,
+            'term' => $this->term,
             'otdelka' => $this->otdelka,
           //  'city_id' => $this->city_id
         ]);

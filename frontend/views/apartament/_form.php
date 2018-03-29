@@ -68,8 +68,10 @@ $script = <<< JS
           vtor = $('#apartament-type_appart option:selected').val();        
             if( vtor == 0){
                   $(".field-apartament-otdelka").hide();
+                  $(".field-apartament-term").hide();
              }else{
                  $(".field-apartament-otdelka").show();
+                 $(".field-apartament-term").show();
              }
 
         
@@ -80,6 +82,7 @@ $script = <<< JS
               $(".field-apartament-rooms").hide();
               $(".field-apartament-type_appart").show();
               $(".field-apartament-otdelka").hide();
+              $(".field-apartament-term").hide();
 
           }else{
               $(".field-apartament-rooms").show();
@@ -87,6 +90,7 @@ $script = <<< JS
         
          if( real == 1){
             $(".field-apartament-otdelka").hide();
+            $(".field-apartament-term").hide();
             $(".field-apartament-floor").hide();
             $(".field-apartament-type_appart").hide();
             
@@ -108,8 +112,10 @@ $script = <<< JS
          vtor = $('#apartament-type_appart option:selected').val();        
         if( vtor == 0){
               $(".field-apartament-otdelka").hide();
+              $(".field-apartament-term").hide();
          }else{
              $(".field-apartament-otdelka").show();
+             $(".field-apartament-term").show();
          }
    });     
         
@@ -214,13 +220,23 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <?= $form->field($model, 'type_appart')->label('Тип квартиры')->dropDownList([
             '0' => 'Вторичка',
             '1' => 'Новостройка'
-        ]); ?>
+        ], ['disabled' => true]); ?>
         
         <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
             '0' => 'Строй вариант',
             '1' => 'Чистовая',
             '2' => 'Под ключ'
         ]); ?>
+        
+        <?= $form->field($model, 'term')->label('Срок сдачи')->dropDownList([
+            '0' => 'Сдан',
+            '1' => '2018',
+            '2' => '2019',
+            '3' => '2020',
+            '4' => 'Позднее'   
+             ], 
+            ['prompt'=> 'Выберите срок сдачи'
+            ]); ?>
     </div>
     
          

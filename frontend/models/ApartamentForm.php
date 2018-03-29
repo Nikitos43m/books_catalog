@@ -30,6 +30,7 @@ class ApartamentForm extends Model
     public $type_appart;
     public $otdelka;
     public $city_id;
+    public $term;
 
     /**
      * @inheritdoc
@@ -39,7 +40,7 @@ class ApartamentForm extends Model
         return [
             [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type'], 'required'],
             [ ['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
-            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id'], 'number'],
+            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'term'], 'number'],
             [ ['lat', 'lng'], 'double'],
             [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],
@@ -91,7 +92,8 @@ class ApartamentForm extends Model
         $apartament->type_appart = $this->type_appart;
         $apartament->otdelka = $this->otdelka;
         $apartament->city_id = $this->city_id;
-
+        $apartament->term = $this->term;
+        
         return $apartament->save() ? $apartament : null;
 
     }

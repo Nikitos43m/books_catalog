@@ -16,6 +16,10 @@ $js = <<<JS
          nonSelectedText: 'Комнат'   
      });
         
+     $('#apartamentsearch-term').multiselect({
+         nonSelectedText: 'Срок сдачи'   
+     });   
+        
      var realty = $('#apartamentsearch-realty_type option:selected').val();
         
         if( realty == 2){
@@ -23,6 +27,7 @@ $js = <<<JS
               $(".tip").hide();
               $("#apartamentsearch-type_appart").val('');
               $('#apartamentsearch-otdelka').val('');
+              $('#apartamentsearch-term').val('');
               $("#apartamentsearch-rooms").val('');    
          }
         
@@ -39,8 +44,10 @@ $js = <<<JS
     var kv = $('#apartamentsearch-type_appart option:selected').val();
         if (kv == 0){
             $(".otd").hide();
+            $(".term").hide();
         }else{
             $(".otd").show();
+            $(".term").show();
         }
         
         
@@ -49,9 +56,12 @@ $js = <<<JS
      var kv = $('#apartamentsearch-type_appart option:selected').val();   
         if (kv == 1){
             $(".otd").show();
+            $(".term").show();
         }else{
             $(".otd").hide();
+            $(".term").hide();
             $('#apartamentsearch-otdelka').val('');
+            $('#apartamentsearch-term').val('');
         }
          
      }); 
@@ -65,15 +75,19 @@ $js = <<<JS
         }
         
         if(type == 1){
-           $(".otd").hide(); 
+           $(".otd").hide();
+           $(".term").hide();
            $('#apartamentsearch-type_appart').val('');
            $('#apartamentsearch-otdelka').val('');
+           $('#apartamentsearch-term').val('');
         }
         
         if(type == 2){
            $(".otd").hide();
+           $(".term").hide();
            $('#apartamentsearch-type_appart').val('');
            $('#apartamentsearch-otdelka').val('');
+           $('#apartamentsearch-term').val('');
         }
         
         
@@ -88,13 +102,17 @@ $js = <<<JS
         if(type == 1){
            $('#apartamentsearch-type_appart').val('');
            $('#apartamentsearch-otdelka').val('');
-           $(".otd").hide();    
+           $('#apartamentsearch-term').val('');
+           $(".otd").hide();
+           $(".term").hide();
         }
         
         if(type == 2){
            $('#apartamentsearch-type_appart').val('');
            $('#apartamentsearch-otdelka').val('');
-           $(".otd").hide();    
+           $('#apartamentsearch-term').val('');
+           $(".otd").hide();
+           $(".term").hide();
         }
          
      });      
@@ -113,6 +131,7 @@ $js = <<<JS
               $(".tip").hide();
               $("#apartamentsearch-type_appart").val('');
               $('#apartamentsearch-otdelka').val('');
+              $('#apartamentsearch-term').val('');
               $("#apartamentsearch-rooms").val('');
 
           }else{
@@ -125,6 +144,7 @@ $js = <<<JS
               $(".fl").hide();
               $("#apartamentsearch-type_appart").val('');
               $('#apartamentsearch-otdelka').val('');
+          
 
           }else{
               $(".fl").show();
@@ -221,7 +241,20 @@ $this->registerJs($js);
             
             ); ?>
     </div>
-    
+    <div class="col-lg-2 col-md-2 col-sm-4 term">
+        <?= $form->field($model, 'term')->label(false)->dropDownList([
+             0 => 'Сдан',
+             1 => '2018',
+             2 => '2019',
+             3 => '2020',
+             4 => 'Позднее' 
+        ],
+            [
+               'multiple' => 'true'
+              ]
+            
+            ); ?>
+    </div>
     
     <div class="col-md-2 col-sm-6 col-xs-12 col-lg-3 sq flex">
         <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от", 'style'=>'']) ?>
