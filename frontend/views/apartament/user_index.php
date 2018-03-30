@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
+use common\widgets\CityWidget;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ApartamentSearch */
@@ -52,3 +53,4 @@ $this->params['breadcrumbs'][] = $this->title;
         'responsive' => true,
     ]); ?>
 </div>
+<?= CityWidget::widget([]) ?>

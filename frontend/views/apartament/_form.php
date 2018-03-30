@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 use yii\helpers\Url ;
 use yii\helpers\ArrayHelper;
+use common\widgets\CityWidget;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Apartament */
@@ -362,3 +363,5 @@ document.body.appendChild(script);
 
 
  </script>  
+ 
+ <?= CityWidget::widget([]) ?>

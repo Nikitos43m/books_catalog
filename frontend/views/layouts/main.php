@@ -114,7 +114,7 @@ AppAsset::register($this);
         
     </div>
 </footer>
-<?= CityWidget::widget([]) ?>
+<?//= CityWidget::widget([]) ?>
     
 <?php $this->endBody() ?>
 </body>

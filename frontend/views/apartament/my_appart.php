@@ -4,6 +4,9 @@ use yii\helpers\Html;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
+use common\widgets\CityWidget;
+
+
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -80,6 +83,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
         'responsive' => true,
+        'bordered' => false,
+        'striped' => false,
         'panel' => [
             'type' => GridView::TYPE_ACTIVE,
         ],
@@ -93,3 +98,6 @@ $this->params['breadcrumbs'][] = $this->title;
         display: none;
     }
 </style>
+
+
+ <?= CityWidget::widget([]) ?>

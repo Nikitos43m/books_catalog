@@ -3,6 +3,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
 use yii\helpers\Url ;
+use common\widgets\CityWidget;
+
 /* ДЛЯ КАРТЫ */
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\DirectionsWayPoint;
@@ -380,3 +382,5 @@ document.body.appendChild(script);
         background-image: url(images/k.jpg);
     }
 </style>
+
+ <?= CityWidget::widget([]) ?>

@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
+use common\widgets\CityWidget;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Apartament */
 /* @var $model2 app\models\User */
@@ -253,3 +255,4 @@ $session->open();
 
 </div>
 
+ <?= CityWidget::widget([]) ?>

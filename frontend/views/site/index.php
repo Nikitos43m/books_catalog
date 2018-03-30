@@ -467,7 +467,7 @@ $session->open();
                 // 'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
                 'content'=>function($model){
 
-                    return $model->rooms;
+                    return $model->rooms."-комн.";
                 }
             ],
 
