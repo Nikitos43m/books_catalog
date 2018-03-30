@@ -10,11 +10,13 @@ use yii\helpers\Html;
       <!-- Заголовок модального окна -->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Заголовок модального окна</h4>
+        <h4 class="modal-title text-center">Выберите Ваш город</h4>
       </div>
       <!-- Основное содержимое модального окна -->
       <div class="modal-body">
           <div class="form">
+              <div class="row">
+                  <div class="col-md-6">
          <?php \frontend\assets\DepDropAsset::register($this); ?>     
         <?php $form = ActiveForm::begin(['id' => 'geo']); ?>   
         <?/*= $form->field($model, 'region')->dropDownList($model->country, [
@@ -29,7 +31,7 @@ use yii\helpers\Html;
         <?php  $city_id = $location_arr['id'];
             $arr = ArrayHelper::map($regions_list,'id','name');
         ArrayHelper::multisort($arr, ['name'], [SORT_ASC]); ?>
-        <?= $form->field($model, 'region')->dropDownList(/*$regions_list*/ ArrayHelper::map($regions_list,'id','name'), [
+        <?= $form->field($model, 'region')->label("Регион")->dropDownList(/*$regions_list*/ ArrayHelper::map($regions_list,'id','name'), [
             'prompt' => Yii::t('app', 'Укажите Ваш регион'),
             'disabled' => false,
             'id' => 'select-region',
@@ -40,14 +42,16 @@ use yii\helpers\Html;
             'city_id' => $location_arr['id'],
             'options' =>[ (int)$location_arr['region_id'] => ['Selected' => true]]
         ]) ?>
- 
-        <?= $form->field($model, 'city')->dropDownList([], [
+                  </div>
+                  <div class="col-md-6">
+        <?= $form->field($model, 'city')->label("Город")->dropDownList([], [
             'prompt' => Yii::t('app', 'Укажите Ваш город'),
             //'disabled' => true,
             'id' => 'select-city',
         ]) ?>
-
-</div>
+                   </div>
+              </div>
+          </div>
       </div>
       <!-- Футер модального окна -->
       <div class="modal-footer">

@@ -83,7 +83,7 @@ a.buy_but{
     user-select: none;
     background-image: none;
     border: 1px solid ;
-    border-radius: 8px;
+    border-radius: 25px;
     transition: background 1s, color 1.7s;
 }
 
@@ -234,7 +234,7 @@ a.desc:after {
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 15px;
     width: 170px;
     letter-spacing: 0.6px;
 }
@@ -274,7 +274,7 @@ a.desc:after {
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px;
+    border-radius: 20px;
     width: 200px;
     letter-spacing: 0.6px;
 }
@@ -526,10 +526,33 @@ footer li {
     box-sizing: border-box;
 }
 
+.table > thead > tr > th {
+    background: rgba(232, 232, 232, 0.5215686274509804);
+}
+
+.btn-default{
+    border-radius: 20px;
+}
+
+#map-canvas{
+    clear: both;
+}
+
+
+
 
 @media (max-width: 600px){
    #place, #save{
       margin-left: 0;
+   }
+   
+   .modal-footer{
+       text-align: center;
+   }
+   
+   .close-modal{
+       width: 200px;
+       margin-bottom: 10px;
    }
 }
 
@@ -537,7 +560,9 @@ footer li {
     .info-view{
         display: inline-block;
     }
-
+    .grid-photo{
+        display: grid;
+    }
 
     .service{
         height: auto;

@@ -167,6 +167,12 @@ $this->registerJs($js);
     .form-group{
        margin-bottom: unset;
     }
+    
+    @media (max-width: 768px){
+       .col-md-1, .col-md-2{
+        padding-right: 20px;
+    } 
+    }
 </style>
 
 
@@ -218,15 +224,6 @@ $this->registerJs($js);
      </div>    
      
     <div class="col-lg-2 col-md-2 col-sm-4 room">
-       <?/*=  $form->field($model, 'rooms')
-    ->checkboxList([
-        1 => '1',
-        2 => '2',
-        3 => '3',
-        4 => '4',
-        5 => '5',
-        11 => 'Студия'
-    ]); */?>
     <?= $form->field($model, 'rooms')->label(false)->dropDownList([
             1 => '1',
             2 => '2',
@@ -257,43 +254,32 @@ $this->registerJs($js);
     </div>
     
     <div class="col-md-2 col-sm-6 col-xs-12 col-lg-3 sq flex">
-        <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от", 'style'=>'']) ?>
-        <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
+        <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
+        <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
         <span class='m2'> м<sup>2</sup> </span>  
     </div>
     
-    <div class="col-md-2 col-sm-6">
-        <?= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица"]) ?>
-    </div>
-    
-    <div class="col-md-1 col-sm-3">
-        <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом"]) ?>
+    <div class="col-md-3 col-sm-3 col-xs-12 flex">
+        <?= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
+        <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
     </div>
 
     <div class="col-md-2 col-sm-3 col-xs-12 fl flex">
-        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от"]) ?>
-        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
+        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
+        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
     </div>
 
 
 
     <div class="col-md-2 col-sm-6 col-xs-12 price flex">
         
-        <?php  echo $form->field($model, 'cost_from')->label(false)->textInput(['placeholder' => "Цена от", ]) ?>
-        <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'']) ?>
+        <?php  echo $form->field($model, 'cost_from')->label(false)->textInput(['placeholder' => "Цена от", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
+        <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
         <span class='m2'> руб. </span>
     </div>
 
     <?=$form->field($model, 'city_id')->label(false)->hiddenInput(['value'=>$session['my_city']]); ?>
     
-    <?php // echo $form->field($model, 'telephone') ?>
-
-    <?php // echo $form->field($model, 'lat') ?>
-
-    <?php // echo $form->field($model, 'lng') ?>
-
-    <?php // echo $form->field($model, 'user_id') ?>
-
 
     <div class="form-group" style="text-align: center; clear: both">
         <?= Html::submitButton('Показать', ['class' => 'main_but']) ?>

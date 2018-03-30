@@ -56,7 +56,7 @@ foreach($images as $image) {
   <?php if (empty($images)): ?>
     <b> Без фото </b>
   <? endif;?>
-  <div class="col-md-12">
+  <div class="col-md-12 grid-photo">
     <?=$fimg ?>
   </div>
 </div>

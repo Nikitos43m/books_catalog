@@ -43,7 +43,7 @@ AppAsset::register($this);
        // ['label' => 'Контакты', 'url' => ['/site/contact']],
        // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
-    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'], ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link',  'data-toggle'=>'modal']).'</li>
+    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'], ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
          <li>';
     
     if (Yii::$app->user->isGuest) {
