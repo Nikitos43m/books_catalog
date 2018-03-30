@@ -69,9 +69,11 @@ $script = <<< JS
             if( vtor == 0){
                   $(".field-apartament-otdelka").hide();
                   $(".field-apartament-term").hide();
+                  $(".field-apartament-year").show();
              }else{
                  $(".field-apartament-otdelka").show();
                  $(".field-apartament-term").show();
+                 $(".field-apartament-year").hide();
              }
 
         
@@ -222,6 +224,10 @@ $this->registerJs($script, yii\web\View::POS_READY);
             '1' => 'Новостройка'
         ], ['disabled' => true]); ?>
         
+        <?= $form->field($model, 'year')->label('Год постройки')->widget(\yii\widgets\MaskedInput::className(), [
+                'mask' => '9999',
+            ]) ?>
+        
         <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
             '0' => 'Строй вариант',
             '1' => 'Чистовая',
@@ -252,7 +258,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
         
        <?= $form->field($model, 'area')->textInput() ?>
        <?= $form->field($model, 'floor')->textInput() ?> 
-
+       <?= $form->field($model, 'floor_all')->textInput() ?>
        
     </div>
     

@@ -39,6 +39,8 @@ class ApartamentController extends Controller
      */
     public function actionIndex()
     {
+        $session = Yii::$app->session;
+        $session->open();
         $searchModel = new ApartamentSearch();
 
 
@@ -47,7 +49,7 @@ class ApartamentController extends Controller
         
        // if ($user == 9){
         if ($user == "admin"){
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $session['my_city']);
         }else {
             $dataProvider = $searchModel->searchUser(Yii::$app->request->queryParams, $user_id);
             return $this->render('user_index', [

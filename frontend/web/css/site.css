@@ -45,6 +45,15 @@ body {
     padding: 14px 24px;
 }
 
+.view-title{
+    font-size: 24px;
+}
+
+.term{
+    color: gray;
+    font-size: 16px;
+}
+
 a.buy_but{
     letter-spacing: 1px;
     text-decoration: none;
@@ -536,6 +545,11 @@ footer li {
 }
 
 @media (min-width: 991px) {
+    
+    .apartament_user{
+        margin-left: 20%;
+    }
+    
     .price{
         width: 270px;
     }

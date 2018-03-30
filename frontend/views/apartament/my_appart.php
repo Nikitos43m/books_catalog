@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -18,6 +19,18 @@ $this->params['breadcrumbs'][] = $this->title;
         //'options' => ['class' => 'table table-hover'],
         'tableOptions' => [
             'class' => 'table table-hover'
+        ],
+         
+         'exportConfig' => [
+            GridView::CSV => [],
+            GridView::EXCEL => [],
+            //GridView::TEXT => [],
+        ],
+        
+        'export' =>[
+            'label' => 'Экспорт',
+            'header' => '<li role="presentation" class="dropdown-header">Экспортировать данные:</li>.',
+            'showConfirmAlert' => false
         ],
 
         //'filterModel' => $searchModel,
@@ -66,6 +79,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ],
+        'responsive' => true,
+        'panel' => [
+            'type' => GridView::TYPE_ACTIVE,
+        ],
     ]); ?>
     <?php Pjax::end(); ?>
 </div>
+
+
+<style>
+    #w0-togdata-page{
+        display: none;
+    }
+</style>

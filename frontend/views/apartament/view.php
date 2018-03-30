@@ -89,13 +89,22 @@ $session->open();
         <?php if ($model->type_appart == 0): ?>
         <div class="row">
             <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
-                <h3>Вторичка</h3>
+                <span class="view-title">Вторичка</span> <span class="term"> <?php if (isset($model->year)): ?> (год постройки: <?=$model->year;?>)<? endif;?></span>
             </div>
         </div>
         <? elseif ($model->type_appart == 1): ?>
             <div class="row">
             <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
-                <h3>Новостройка</h3>
+                <span class="view-title">Новостройка </span> <span class="term"> (
+                                <?php switch($model->term): 
+                                case 0:?>дом сдан <? break; ?>
+                               <?php case 1: ?>срок сдачи:  2018<? break; ?>
+                               <?php case 2: ?>срок сдачи:  2019<? break; ?>
+                               <?php case 3: ?>срок сдачи:  2020<? break; ?>
+                               <?php case 4: ?>срок сдачи:  позднее 2020-го <? break; ?>
+                            <?php endswitch ?>
+                               )
+                             </span>
             </div>
         </div>
         <? endif;?>
@@ -114,7 +123,7 @@ $session->open();
             <?php case 1: ?> дом <? break; ?>
             <?php case 2: ?> комната <? break; ?>
          <?php endswitch ?> 
-            <span style="font-weight: bold"> <?=$model->area;?> м<sup>2</sup></span>
+            <span style="font-weight: bold"> <?=$model->area;?>м<sup>2</sup></span>
          </div>
         <div class="row kom" style="margin-bottom: 30px">
             
@@ -125,7 +134,7 @@ $session->open();
             <? endif;?>
             <?php if ($model->realty_type != 1): ?>
                 <div class="col-sm-2">
-                    <?=$model->floor;?> этаж
+                    <?=$model->floor;?> из <?=$model->floor_all;?> этаж
                 </div>
             <? endif;?>
             <div class="col-sm-2">

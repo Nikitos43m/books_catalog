@@ -30,6 +30,8 @@ use yii\behaviors\TimestampBehavior;
  * $property integer otdelka
  * $property integer city_id
  * $property integer term
+ * $property integer floor_all
+ * $property integer year
  */ 
 class Apartament extends \yii\db\ActiveRecord
 {
@@ -54,7 +56,7 @@ class Apartament extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id','rooms', 'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'term'], 'integer'],
+            [['user_id','rooms', 'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'term', 'floor_all', 'year'], 'integer'],
             [['lat', 'lng'], 'number'],
             [['type', 'street', 'house', 'telephone'], 'string', 'max' => 100],
             [['image_path'], 'string'],
@@ -75,9 +77,11 @@ class Apartament extends \yii\db\ActiveRecord
             'house' => 'Дом',
             'rooms' => 'Количество комнат',
             'floor' => 'Этаж',
+            'floor_all' => 'Этажей в доме',
+            'year' => 'Год постройки',
             'area' => 'Площадь',
             'price' => 'Цена',
-            'telephone' => 'Телефон',
+            'telephone' => 'Контактный телефон',
             'lat' => 'Lat',
             'lng' => 'Lng',
             'user_id' => 'Пользователь',
@@ -89,7 +93,8 @@ class Apartament extends \yii\db\ActiveRecord
             'type_appart' => 'Типо дома',
             'otdelka' => 'Отделка',
             'city_id' => 'Город',
-            'term' => 'Срок сдачи'
+            'term' => 'Срок сдачи',
+           
          
         ];
     }

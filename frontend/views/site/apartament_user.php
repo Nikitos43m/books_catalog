@@ -93,10 +93,14 @@ $script = <<< JS
          if( realty == 1){
         
             $(".field-apartamentform-floor").hide();
+            $(".field-apartamentform-floor_all").hide();
             $('#apartamentform-floor').val(0);
+            $('#apartamentform-floor_all').val(0);
          }else{
             $(".field-apartamentform-floor").show(); 
+            $(".field-apartamentform-floor_all").show();
             $('#apartamentform-floor').val('');
+            $('#apartamentform-floor_all').val('');
          }
         
     });  
@@ -106,9 +110,11 @@ $script = <<< JS
    $('#apartamentform-type_appart').change(function () {
          vtor = $('#apartamentform-type_appart option:selected').val();
          if( vtor == 1){
+              $(".year").hide();
               $(".field-apartamentform-otdelka").show();
               $(".field-apartamentform-term").show();
          }else{
+             $(".year").show();
              $(".field-apartamentform-otdelka").hide();
              $(".field-apartamentform-term").hide();
          }
@@ -163,6 +169,14 @@ $this->registerJs($script, yii\web\View::POS_READY);
     </div>
     
     <div class="row">
+        <div class="col-md-5 year">
+            <?= $form->field($model, 'year')->label('Год постройки')->widget(\yii\widgets\MaskedInput::className(), [
+                'mask' => '9999',
+            ]) ?>
+        </div>
+    </div>
+    
+    <div class="row">
         <div class="col-md-5">
             <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
             '0' => 'Строй вариант',
@@ -203,31 +217,45 @@ $this->registerJs($script, yii\web\View::POS_READY);
             'prompt' => 'Выберите количество комнат...'
     ]); ?>
 
-            <?= $form->field($model, 'area')->label('Площадь в кв.м.') ?>
+            <?= $form->field($model, 'street')->label('Улица') ?>
             <?= $form->field($model, 'floor')->label('Этаж') ?>
-
+           
 
             
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'street')->label('Улица') ?>
+            <?= $form->field($model, 'area')->label('Площадь в кв.м.') ?>
             <?= $form->field($model, 'house') ->label('Дом')?>
-            <?//= $form->field($model, 'description')->textInput()->label('Описание') ?>
+            <?= $form->field($model, 'floor_all')->label('Этажей в доме') ?>
 
 
-            <?= $form->field($model, 'telephone')->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
-                'mask' => '8(999)-999-9999',
-            ]) ?>
             <?= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->getId()])->label(false) ?>
             <?= $form->field($model, 'active')->hiddenInput(['value'=> 1])->label(false) ?>
             
            
         </div>
+        <div class="col-md-4">
+            
+            
+        </div>
+    </div>
+    
+    <div class="row">
         <div class="col-md-8">
             <?=  $form->field($model, 'description')->textarea(['rows' => 5, 'cols' => 30])->label('Описание'); ?>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-4">
+    
+            <?= $form->field($model, 'telephone')->label('Контактный телефон')->widget(\yii\widgets\MaskedInput::className(), [
+                'mask' => '8(999)-999-9999',
+            ]) ?>
+            
+        </div>
+    </div>
+    
     <div class="row">
         <div class="col-md-4">
             <span class="cost sale">Цена</span>
@@ -346,9 +374,7 @@ document.body.appendChild(script);
         display: none;
     }
     
-    .apartament_user{
-        margin-left: 20%;
-    }
+
     
     .wrap > .container{
         background-image: url(images/k.jpg);
