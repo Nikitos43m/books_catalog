@@ -570,7 +570,7 @@ footer li {
 }
 
 .contact-modal:hover{
-    color: rgb(215, 212, 212);
+    color: rgba(12, 151, 118, 0.57);
 }
 
 .contact-modal:focus{
