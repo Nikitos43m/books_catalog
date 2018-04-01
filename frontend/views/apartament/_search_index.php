@@ -160,6 +160,7 @@ $this->registerJs($js);
 ?>
 <style>
 
+
     .col-md-1, .col-md-2{
         padding-right: 0px;
     }
@@ -258,16 +259,17 @@ $this->registerJs($js);
         <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
         <span class='m2'> м<sup>2</sup> </span>  
     </div>
-    
-    <div class="col-md-3 col-sm-3 col-xs-12 flex">
-        <?= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
-        <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
-    </div>
-
     <div class="col-md-2 col-sm-3 col-xs-12 fl flex">
         <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
         <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
     </div>
+    
+    <div class="col-md-3 col-sm-4 col-xs-12 flex">
+        <?= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
+        <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
+    </div>
+
+
 
 
 
@@ -282,7 +284,7 @@ $this->registerJs($js);
     
 
     <div class="form-group" style="text-align: center; clear: both">
-        <?= Html::submitButton('Показать', ['class' => 'main_but']) ?>
+        <?= Html::submitButton('Показать', ['class' => 'main_but show-filter']) ?>
         <?//= Html::resetButton('Очистить', ['class' => 'btn btn-default']) ?>
     </div>
 

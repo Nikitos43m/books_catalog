@@ -50,6 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{update}{delete}',
             ],
         ],
+        'bordered' => false,
+        'striped' => false,
         'responsive' => true,
     ]); ?>
 </div>

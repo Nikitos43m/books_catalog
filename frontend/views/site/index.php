@@ -573,13 +573,13 @@ $session->open();
 </div>
 
 
-<div class="container" style="width: 100%">
+<div class="container steps" style="width: 100%">
     <div class="row ad" >
         <div class="text-center"><h2 class="main-title">Размещение объявления</h2></div>
     </div>
-    <div class="col-sm-12 steps">
-
-        <div class="col-md-6 col-xs-12">
+    <div class="steps-md">
+    
+        <div class="col-sm-6 col-md-5 col-xs-12">
 
             <?// echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
             <?// echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
@@ -589,20 +589,21 @@ $session->open();
             <p>Пройдите быструю регистрацию, чтобы размещать объявления и сохранять понравившееся при поиске.</p>
 
         </div>
-        <div class="col-md-6 col-xs-12">
+        <div class="col-sm-6 col-md-5 col-xs-12">
             <div class="howto-label"><div>2</div></div><h4> Заполните форму.</h4>
             <p>Продать/сдать, кол-во комнат, площадь и т.д.</p>
         </div>
         
-        <div class="col-md-6 col-xs-12" style="clear: both">
+        <div class="col-sm-6 col-md-5 col-xs-12" style="clear: both">
             <div class="howto-label"><div>3</div></div> <h4> Укажите местоположение.</h4>
             <p>Перетащите маркер на Ваш объект недвижимости.</p>
         </div>
         
-        <div class="col-md-6 col-xs-12" >
-            <div class="howto-label"><div>4</div></div><h4> Добавьте фотографии Вашего объекта.</h4>
-            <p>Максимальное количество фотографий:8.<br> Принимаются объявления и без фотографий.</p>
+        <div class="col-sm-6 col-md-5 col-xs-12" >
+            <div class="howto-label"><div>4</div></div><h4> Загрузка фотографий Вашего объекта.</h4>
+            <p>Добавьте фотографии Вашего объекта недвижимости для привлечения большего числа посетителей.</p>
         </div>
+
     </div>
 </div>
 <section class="service">
@@ -616,19 +617,19 @@ $session->open();
                     <div class="ico-xs col-md-4 col-sm-6 col-xs-12">
                         <div class="img-ico one"></div>
                         <h3>Поиск недвижимости</h3>
-                        <p>На нашем ресурсе реализован максимально удобный поиск недвижимости.</p>
+                        <p class="sales">На нашем ресурсе реализован максимально удобный поиск недвижимости.</p>
                     </div>
 
                     <div class="ico-xs col-md-4 col-sm-4 col-xs-12">
                         <div class="img-ico two"></div>
                         <h3>Размещение объявлений</h3>
-                        <p>Простой и удобный интерфейс для публикации объявлений.</p>
+                        <p class="sales">Простой и удобный интерфейс для публикации объявлений.</p>
                     </div>
 
                     <div class="ico-xs col-md-4 col-sm-4 col-xs-12">
                         <div class="img-ico three"></div>
                         <h3>Сотрудничетво с агентствами</h3>
-                        <p>Предоставление услуг для риэлторов.</p>
+                        <p class="sales">Предоставление услуг для агентов.</p>
                     </div>
 
 

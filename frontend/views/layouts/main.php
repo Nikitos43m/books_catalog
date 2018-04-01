@@ -10,6 +10,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use common\widgets\CityWidget;
+use common\widgets\ContactWidget;
 
 AppAsset::register($this);
 ?>
@@ -96,17 +97,25 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12 contacts">
-                
-                <ul>
-                    <h3>Контакты</h3>
-                    <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> г. Ростов-на-Дону, ул. Заводская, 11</li>
-                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@credit-history24.ru"> info@gns.ru</a></li>
-                    <li>
-                        <a target="_blank" href="https://vk.com"><div class="icon-button vk"></div></a>
-                        <a target="_blank" href="https://instagramm.com"><div class="icon-button inst"></div></a>
-                    </li>
-                </ul>
+                <div class="col-md-3">
+                    <ul>
+                        <h3>Контакты</h3>
+                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> г. Ростов-на-Дону, ул. Заводская, 11</li>
+                        <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@credit-history24.ru"> info@gns.ru</a></li>
+                        <li>
+                            <a target="_blank" href="https://vk.com"><div class="icon-button vk"></div></a>
+                            <a target="_blank" href="https://instagramm.com"><div class="icon-button inst"></div></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3 col-xs-12 text-center">
+                    <?=Html::a("<span class='contact-button'>Отправьте нам </span>сообщение", ['/site/index', 'src' => '', '#' => 'modalContact'], ['class' => 'btn contact-modal',  'data-toggle'=>'modal']) ?>
+                </div>
             </div>
+
+
+
           </div>
         <br>
         <p class="pull-left">&copy; GNS <?= date('Y') ?></p>
@@ -115,7 +124,8 @@ AppAsset::register($this);
     </div>
 </footer>
 <?//= CityWidget::widget([]) ?>
-    
+<?= ContactWidget::widget([]) ?>
+
 <?php $this->endBody() ?>
 </body>
 </html>

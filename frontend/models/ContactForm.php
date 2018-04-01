@@ -24,11 +24,11 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
+            [['name', 'email', 'subject', 'body'], 'required', 'message' => 'Заполните поле'],
             // email has to be a valid email address
             ['email', 'email'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+           // ['verifyCode', 'captcha'],
         ];
     }
 
@@ -52,9 +52,10 @@ class ContactForm extends Model
     {
         return Yii::$app->mailer->compose()
             ->setTo($email)
-            ->setFrom([$this->email => $this->name])
+           // ->setFrom([$this->email => $this->name])
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
             ->setSubject($this->subject)
-            ->setTextBody($this->body)
+            ->setTextBody('От '.$this->email.' Сообщение: '.$this->body)
             ->send();
     }
 }
