@@ -32,7 +32,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php 
     NavBar::begin([
-        'brandLabel' => 'GNS',
+        'brandLabel' => '<img src="images/logo2.png" width="140px">',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -44,7 +44,7 @@ AppAsset::register($this);
        // ['label' => 'Контакты', 'url' => ['/site/contact']],
        // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
-    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'], ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
+    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'].' <i class="glyphicon glyphicon-menu-down" aria-hidden="true" style="top: 4px;"></i>', ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
          <li>';
     
     if (Yii::$app->user->isGuest) {
@@ -61,7 +61,7 @@ AppAsset::register($this);
     } else {
         $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i> Избранное', ['/site/myappart'], ['class' => 'btn btn-link']).'</li>';
 
-        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-home" aria-hidden="true" style=" margin-right: 10px;"></i>Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link']).'</li>
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-list-alt" aria-hidden="true" style=" margin-right: 10px;"></i>Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link']).'</li>
                <li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

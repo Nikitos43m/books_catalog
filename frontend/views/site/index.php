@@ -170,7 +170,7 @@ $session->open();
             'position' => new LatLng(['lat' => $apart["lat"], 'lng' => $apart["lng"]]),
             //'title' => Html::encode("{$apart["telephone"]}"),
             'title' => $apart["telephone"],
-            'icon' =>'images/point.png'
+            'icon' =>'images/poi.png'
         ]);
 
         // Для вывода картинок объявления
