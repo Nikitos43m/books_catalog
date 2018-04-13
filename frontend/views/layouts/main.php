@@ -108,9 +108,17 @@ AppAsset::register($this);
                         </li>
                     </ul>
                 </div>
+                
+                <div class="col-md-5 text-center">
+                    <h3>Обращайтесь к нам по вопросам сотрудничества и рекламы</h3>
+
+                        <?=Html::a("<span class='contact-button'>Отправьте нам </span>сообщение", ['/site/index', 'src' => '', '#' => 'modalContact'], ['class' => 'btn contact-modal',  'data-toggle'=>'modal']) ?>
+                  
+                </div>
 
                 <div class="col-md-3 col-xs-12 text-center">
-                    <?=Html::a("<span class='contact-button'>Отправьте нам </span>сообщение", ['/site/index', 'src' => '', '#' => 'modalContact'], ['class' => 'btn contact-modal',  'data-toggle'=>'modal']) ?>
+                    
+                    
                 </div>
             </div>
 
