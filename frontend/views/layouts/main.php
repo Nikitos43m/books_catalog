@@ -44,7 +44,7 @@ AppAsset::register($this);
        // ['label' => 'Контакты', 'url' => ['/site/contact']],
        // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
-    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'].' <i class="glyphicon glyphicon-menu-down" aria-hidden="true" style="top: 4px;"></i>', ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
+    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'].' <i class="glyphicon glyphicon-globe" aria-hidden="true" style="top: 4px;"></i>', ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
          <li>';
     
     if (Yii::$app->user->isGuest) {
@@ -97,11 +97,11 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12 contacts">
-                <div class="col-md-3">
+                <div class="col-md-3 cn">
                     <ul>
                         <h3>Контакты</h3>
                         <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> г. Ростов-на-Дону, ул. Заводская, 11</li>
-                        <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@credit-history24.ru"> info@gns.ru</a></li>
+                        <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@credit-history24.ru"> info@yourooms.ru</a></li>
                         <li>
                             <a target="_blank" href="https://vk.com"><div class="icon-button vk"></div></a>
                             <a target="_blank" href="https://instagramm.com"><div class="icon-button inst"></div></a>
@@ -109,16 +109,17 @@ AppAsset::register($this);
                     </ul>
                 </div>
                 
-                <div class="col-md-5 text-center">
+                <div class="col-md-5 text-center our">
                     <h3>Обращайтесь к нам по вопросам сотрудничества и рекламы</h3>
 
                         <?=Html::a("<span class='contact-button'>Отправьте нам </span>сообщение", ['/site/index', 'src' => '', '#' => 'modalContact'], ['class' => 'btn contact-modal',  'data-toggle'=>'modal']) ?>
                   
                 </div>
 
-                <div class="col-md-3 col-xs-12 text-center">
-                    
-                    
+                <div class="col-md-4 col-xs-12 text-center">
+                    <h3> Ищите и продавайте жилье вместе нами!</h3><br> 
+                    <div class="about">На нашем сайте организован поиск при помощи карты и виде таблицы с возможностью выгрузки данных. </div>
+                    <div class="your_rooms">yourooms.ru</div>
                 </div>
             </div>
 
@@ -126,7 +127,7 @@ AppAsset::register($this);
 
           </div>
         <br>
-        <p class="pull-left">&copy; GNS <?= date('Y') ?></p>
+        <p class="pull-left">&copy; YouRooms <?= date('Y') ?></p>
 
         
     </div>

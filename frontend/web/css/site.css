@@ -134,6 +134,22 @@ a.desc:after {
 
 .grid-view td {
     white-space: nowrap;
+    vertical-align: middle;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+    vertical-align: middle;
+}
+
+.cn{
+    background: url("../images/rus.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.about{
+    font-size: 16px;
+    color: rgb(128, 127, 127);
 }
 
 .grid-view .filters input,
@@ -149,6 +165,11 @@ a.desc:after {
     font-weight: bold;
 }
 
+.your_rooms{
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(41, 154, 130);
+}
 .hint-block {
     display: block;
     margin-top: 5px;
@@ -217,6 +238,10 @@ a.desc:after {
 
 .navbar-brand{
     padding: 10px 15px;
+}
+
+.our{
+   color: rgb(128, 127, 127);
 }
 
 .main_but{
@@ -570,21 +595,51 @@ footer li {
 .contact-modal{
     margin-top: 20px;
     padding: 6px 60px;
-     background: white; 
+    background: rgb(49, 143, 136);
     font-size: 18px;
     border: 2px solid;
     border-radius: 25px;
-    color: rgba(12, 151, 118, 0.57);
+    color: white;
 }
 
 .contact-modal:hover{
-    color: rgba(12, 151, 118, 0.57);
+    color: white;
 }
 
 .contact-modal:focus{
     outline: none;
-    color: rgba(12, 151, 118, 0.57);
+    color: white;
 }
+
+.steps-md{
+    font-size: 15px;
+}
+
+.steps-md p{
+    color: rgb(89, 89, 89);
+}
+
+.main-table{
+    font-size: 15px;
+}
+
+.open_but{
+    background: #318f88ab;
+    font-weight: bold;
+    border: none;
+    padding: 6px 13px;
+    border-radius: 20px;
+    color: white;
+
+}
+
+.open_but:hover{
+    text-decoration: none;
+    background: #b3b5b5ab;
+    color: white;
+    border: none;
+}
+
 
 #w3{
     margin-top: 5px;
@@ -629,6 +684,13 @@ footer li {
     }
 }
 
+
+@media (max-width: 1500px){
+    .steps-md p{
+        clear: both;
+    }
+}
+
 @media (min-width: 991px) {
     
     .apartament_user{
@@ -651,6 +713,8 @@ footer li {
     .fl{
         width: 170px;
     }
+
+
 
 }
 

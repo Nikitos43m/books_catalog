@@ -108,8 +108,8 @@ $session->open();
         <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
-        <div  class="open-filter clear" style="margin: 0 auto;width: 210px; font-size: 16px; cursor: pointer">
-            <b> Поиск по фильтрам &nbsp </b> <i class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; color:rgba(60, 119, 142, 0.8);"></i>
+        <div  class="open-filter clear" style="margin: 0 auto;width: 220px; font-size: 18px; cursor: pointer">
+            <b> Поиск по фильтрам &nbsp </b> <i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 20px; color:rgba(60, 119, 142, 0.8);"></i>
         </div>
     </div>
     <div class="filter">
@@ -384,7 +384,7 @@ $session->open();
         'dataProvider' => $dataProviderTable,
        // 'filterModel' => $searchModel,
         'tableOptions' => [
-            'class' => 'table table-hover',
+            'class' => 'table table-hover main-table',
         ],
         
         'exportConfig' => [
@@ -533,9 +533,9 @@ $session->open();
                 'buttons' => [
                     'open' => function ($url,$model) {
                         if(Yii::$app->user->isGuest){
-                            return Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/viewguest", "id"=>$model->id]);
+                            return Html::a("открыть ", ["/apartament/viewguest", "id"=>$model->id], ['class' => 'main_but']);
                         }else{
-                            return Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$model->id]); 
+                            return Html::a("открыть ", ["/apartament/view", "id"=>$model->id], ['class' => 'open_but']);
                         }
                     },
                 ],
@@ -584,23 +584,23 @@ $session->open();
             <?// echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
             <?// echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
             <!-- <a href='uploads/ban1.jpg'  rel="fancybox"><img src='uploads/ban1.jpg' width='300px'></a> -->
-            <div class="howto-label"><div>1</div></div><h4> Регистрация</h4>
+            <div class="howto-label"><div>1</div></div><h3> Регистрация</h3>
 
             <p>Пройдите быструю регистрацию, чтобы размещать объявления и сохранять понравившееся при поиске.</p>
 
         </div>
         <div class="col-sm-6 col-md-5 col-xs-12">
-            <div class="howto-label"><div>2</div></div><h4> Заполните форму.</h4>
+            <div class="howto-label"><div>2</div></div><h3> Заполните форму.</h3>
             <p>Продать/сдать, кол-во комнат, площадь и т.д.</p>
         </div>
         
         <div class="col-sm-6 col-md-5 col-xs-12" style="clear: both">
-            <div class="howto-label"><div>3</div></div> <h4> Укажите местоположение.</h4>
+            <div class="howto-label"><div>3</div></div> <h3> Укажите местоположение.</h3>
             <p>Перетащите маркер на Ваш объект недвижимости.</p>
         </div>
         
         <div class="col-sm-6 col-md-5 col-xs-12" >
-            <div class="howto-label"><div>4</div></div><h4> Загрузка фотографий Вашего объекта.</h4>
+            <div class="howto-label"><div>4</div></div><h3> Загрузка фотографий Вашего объекта.</h3>
             <p>Добавьте фотографии Вашего объекта недвижимости для привлечения большего числа посетителей.</p>
         </div>
 
@@ -633,7 +633,7 @@ $session->open();
                     </div>
 
 
-
+        
 
                 </div>
             </div>
