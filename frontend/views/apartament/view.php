@@ -125,7 +125,7 @@ $session->open();
             <?php case 1: ?> дом <? break; ?>
             <?php case 2: ?> комната <? break; ?>
          <?php endswitch ?> 
-            <span style="font-weight: bold"> <?=$model->area;?>м<sup>2</sup></span>
+            <span class="area" style="font-size: 20px; font-weight: bold"> <?=$model->area;?>м<sup>2</sup></span>
          </div>
         <div class="row kom" style="margin-bottom: 30px">
             
@@ -162,23 +162,23 @@ $session->open();
     <div  class="info-view" style="width: 100%">
         <div style="float: right; font-size: 16px; border-bottom: 1px solid rgb(225, 225, 225);">
           <div style="width:270px; display: inline-block; padding: 10px;">
-              <div class="col-md-12" style="margin-bottom: 10px"><span style="font-size: 20px;font-weight: 700;">
+              <div class="col-md-12" style="margin-bottom: 10px"><span  class="price_view">
                        <?php
 	                    $number = $model->price;
 	                    $prise = number_format($number, 0, "", " ");
                              
                         ?>
-                      <?=$prise?></span><i class="glyphicon glyphicon-ruble" aria-hidden="true"></i>
+                      <?=$prise?><i class="glyphicon glyphicon-ruble" aria-hidden="true" style="font-size: 14px"></i></span>
                        <?php if ($model->type == 2): ?>
                       <b>в сутки</b>
                        <? endif;?>
                       
                       <?php if ($model->type == 0): ?>
                           <?php $month = $model->price/$model->area; $month = number_format($month, 0, "", " ") ?>
-                         <span style="font-size: 14px; color: gray; margin-left: 10px"> <?= $month ?> &#x584;/м² </span>
+                         <br><div style="font-size: 14px; color: gray; margin-left: 10px; margin-top: 20px"> <?= $month ?> &#x584;/м² </div>
                       <? endif;?>
               </div>
-              <div class="col-md-12"><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>  Телефон: <?=$model->telephone;?></div>
+              <div class="col-md-12" style="margin-top: 20px"><i class="glyphicon glyphicon-earphone t_ph" aria-hidden="true"></i>  Телефон: <?=$model->telephone;?></div>
 
               <div class="col-md-12 col-xs-12" style="margin-top: 10px">
               <?php if ($model->getAuthorId() == Yii::$app->user->id): ?>
@@ -206,7 +206,7 @@ $session->open();
         <div class="col-md-3" style="font-size: 16px"><b>Описание</b></div>
 
     </div>
-    <div class="col-lg-9 col-md-8 col-sm-10" style=" background: rgb(250, 250, 250); margin-top: 10px; padding: 7px">
+    <div class="col-lg-9 col-md-8 col-sm-10 description_view"  >
 
         <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
 

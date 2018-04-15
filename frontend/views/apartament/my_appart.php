@@ -61,10 +61,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     
                    'open' => function ($url,$model) {
-                        return Html::a('Открыть', ["/apartament/view", "id"=>$model->id, "user_id"=> Yii::$app->user->getId()],
+                        return Html::a('Открыть', ["/apartament/view", "id"=>$model->id, "user_id"=> Yii::$app->user->getId()] ,
                  [   
                  // 'data-method' => 'post',
                   'data-pjax' => '#model-grid',
+                     'class' => 'open_but'
                  ]);
                     },
                     

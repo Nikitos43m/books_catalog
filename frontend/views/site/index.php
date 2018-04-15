@@ -108,8 +108,8 @@ $session->open();
         <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
-        <div  class="open-filter clear" style="margin: 0 auto;width: 220px; font-size: 18px; cursor: pointer">
-            <b> Поиск по фильтрам &nbsp </b> <i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 20px; color:rgba(60, 119, 142, 0.8);"></i>
+        <div  class="open-filter clear" style="margin: 0 auto;width: 220px; font-size: 17px; cursor: pointer">
+            <b> Поиск по фильтрам &nbsp </b> <i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 18px; color:rgba(60, 119, 142, 0.8);"></i>
         </div>
     </div>
     <div class="filter">
@@ -398,7 +398,7 @@ $session->open();
             'header' => '<li role="presentation" class="dropdown-header">Экспортировать данные:</li>.',
             'showConfirmAlert' => false
         ],
-        
+
 
 
         'columns' => [
@@ -410,7 +410,8 @@ $session->open();
                 'class' => 'kartik\grid\ExpandRowColumn',
                 'expandAllTitle' => 'Expand all',
                 'collapseTitle' => 'Collapse all',
-                'expandIcon'=>'<i class="glyphicon glyphicon-camera" aria-hidden="true"></i>',
+                'expandIcon'=>'<i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color: rgb(116, 180, 175)"></i>',
+                'collapseIcon' =>'<i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color: rgb(116, 180, 175)"></i>',
                 'detailRowCssClass' => GridView::ICON_ACTIVE,
                 'value' => function ($model, $key, $index, $column) {
                     return GridView::ROW_COLLAPSED;
@@ -442,7 +443,7 @@ $session->open();
 
             [
                 'attribute'=>'type',
-                'contentOptions'=>['class'=>'table_class','style'=>'width: 10%'],
+                'contentOptions'=>['class'=>'table_first','style'=>'width: 10%'],
                 'content'=>function($model){
 
                     switch ($model->type){
@@ -473,9 +474,9 @@ $session->open();
 
             [
                 'attribute'=>'area',
-                // 'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
+                 'contentOptions'=>['class'=>'table_area'],
                 'content'=>function($model){
-                    return $model->area." м<sup>2</sup>";
+                    return "<div class='area'>".$model->area."м<sup>2</sup></div>";
                 }
             ],
 
@@ -510,10 +511,11 @@ $session->open();
 
             [   'attribute' => 'price',
                 'label' => 'Цена',
+                'contentOptions' =>['class' => 'table_price'],
                 'content' => function($model){
                     $number = $model->price;
                     $prise = number_format($number, 0, "", " ");
-                    return $prise." руб.";
+                    return "<div class='price_format'>".$prise."<i class=\"glyphicon glyphicon-ruble\" aria-hidden=\"true\"></i> </div>";
                 }
             ],
 

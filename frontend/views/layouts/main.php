@@ -23,6 +23,8 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -59,7 +61,7 @@ AppAsset::register($this);
         $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-log-in" aria-hidden="true"></i> Вход', ['/site/login'], ['class' => 'btn btn-link']).'</li>
                <li>';
     } else {
-        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i> Избранное', ['/site/myappart'], ['class' => 'btn btn-link']).'</li>';
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: rgb(10, 150, 140)"></i> Избранное', ['/site/myappart'], ['class' => 'btn btn-link']).'</li>';
 
         $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-list-alt" aria-hidden="true" style=" margin-right: 10px;"></i>Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link']).'</li>
                <li>'
