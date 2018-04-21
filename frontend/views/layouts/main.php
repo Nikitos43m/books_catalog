@@ -32,10 +32,12 @@ AppAsset::register($this);
         $session->open();     
         //var_dump($session['my_city_name']); die();  ?>
 <div class="wrap">
-    <?php 
+
+    <?php
     NavBar::begin([
         'brandLabel' => '<img src="images/logo2.png" width="140px">',
         'brandUrl' => Yii::$app->homeUrl,
+        'brandOptions' => ['class' => 'brand', 'style'=>''],//options of the brand
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
@@ -46,6 +48,8 @@ AppAsset::register($this);
        // ['label' => 'Контакты', 'url' => ['/site/contact']],
        // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
+
+   // $menuItemsLeft[] =Html::a('<img src="images/logo2.png" width="140px" style="float: left">', [Yii::$app->homeUrl]);
     $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'].' <i class="glyphicon glyphicon-globe" aria-hidden="true" style="top: 4px;"></i>', ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
          <li>';
     
@@ -74,9 +78,25 @@ AppAsset::register($this);
             . '</li>';
     }
     echo Nav::widget([
+        'items' => [
+        [
+            'label' => '<i class="glyphicon glyphicon-align-justify" aria-hidden="true"></i>',
+            'items' => [
+                ['label' => 'Наши услуги', 'url' => Yii::$app->homeUrl.'#service', 'linkOptions' => ['id'=>'m1']],
+                ['label' => 'Жилые комплексы', 'url' => '/#'],
+            ],
+        ],
+    ],
+
+        'encodeLabels' => false,
+        'options' => ['class' =>'navbar-nav navbar-left gamb'], // set this to nav-tab to get tab-styled navigation
+]);
+
+    echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => $menuItemsLeft,
     ]);
+    
     
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -118,7 +138,7 @@ AppAsset::register($this);
                   
                 </div>
 
-                <div class="col-md-4 col-xs-12 text-center">
+                <div class="col-md-4 col-xs-12 text-center sl">
                     <h3> Ищите и продавайте жилье вместе нами!</h3><br> 
                     <div class="about">На нашем сайте организован поиск при помощи карты и виде таблицы с возможностью выгрузки данных. </div>
                     <div class="your_rooms">yourooms.ru</div>

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 //use yii\grid\GridView;
 use kartik\grid\GridView;
-use yii\widgets\ListView;
+
 
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\services\DirectionsWayPoint;
@@ -46,6 +46,7 @@ $script = <<< JS
     $(document).ready(function() {
     // $('a').fancybox();     
     // $('#myModal').modal('show');
+    
 
             if ($.cookie("modal_shown") == null) {
               
@@ -55,8 +56,12 @@ $script = <<< JS
             }
                // else {alert($.cookie("modal_shown"));}
 
-        
+         $('#m1').click(function(){
+            $('html,body').animate({scrollTop:$('#service').offset().top}, 500);
+         });
 });
+
+
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
 $this->registerJs($script, yii\web\View::POS_READY);
@@ -108,8 +113,9 @@ $session->open();
         <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
-        <div  class="open-filter clear" style="margin: 0 auto;width: 220px; font-size: 17px; cursor: pointer">
-            <b> Поиск по фильтрам &nbsp </b> <i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 18px; color:rgba(60, 119, 142, 0.8);"></i>
+        <div  class="open-filter clear" style="margin: 0 auto;width: 220px; font-size: 15px; cursor: pointer">
+
+            <b> Поиск по фильтрам &nbsp </b> <i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 16px; color:rgba(60, 119, 142, 0.8);"></i>
         </div>
     </div>
     <div class="filter">
@@ -535,7 +541,7 @@ $session->open();
                 'buttons' => [
                     'open' => function ($url,$model) {
                         if(Yii::$app->user->isGuest){
-                            return Html::a("открыть ", ["/apartament/viewguest", "id"=>$model->id], ['class' => 'main_but']);
+                            return Html::a("открыть ", ["/apartament/viewguest", "id"=>$model->id], ['class' => 'open_but']);
                         }else{
                             return Html::a("открыть ", ["/apartament/view", "id"=>$model->id], ['class' => 'open_but']);
                         }
@@ -574,6 +580,19 @@ $session->open();
     ]);?>
 </div>
 
+<section class="complex">
+    <div class="container" >
+       <?php /*echo Carousel::widget([
+        'items' => [
+
+            ['content' => '<img src="../web/images/1.jpg"/>'],
+        ['content' => '<img src="../web/images/2.jpg"/>'],
+
+        ]
+        ]);
+       */?>
+    </div>
+</section>
 
 <div class="container steps" style="width: 100%">
     <div class="row ad" >
@@ -608,11 +627,11 @@ $session->open();
 
     </div>
 </div>
-<section class="service">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center" style="margin-bottom: 60px;">
-                <h1 class="title-service">Наши услуги</h1>
+<section class="service" id="service">
+    <div class="container" >
+        <div class="row" >
+            <div class="col-sm-12 text-center" style="margin-bottom: 60px; margin-top: 30px">
+                <h1 class="title-service" >Наши услуги</h1>
             </div>
             <div class="col-sm-12 text-center">
                 <div class="row" style="color: white">

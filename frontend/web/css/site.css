@@ -236,7 +236,7 @@ a.desc:after {
 
 .navbar-inverse .navbar-nav > li > a{
     font-weight: 500;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .navbar-brand{
@@ -245,6 +245,14 @@ a.desc:after {
 
 .our{
    color: rgb(128, 127, 127);
+}
+
+.our>h3{
+    font-size: 19px;
+}
+
+.sl>h3{
+    font-size: 19px;
 }
 
 .main_but{
@@ -285,6 +293,28 @@ a.desc:after {
     background-color: #747171;
 }
 
+.dropdown-toggle>.caret{
+    display: none;
+}
+
+#w6 > li > a{
+    font-size: 16px;
+    margin-top: 2px;
+}
+
+.brand.navbar-brand{
+    width: 150px;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #222222;
+}
+
+
+.navbar-nav > li > a{
+    padding-bottom: 0;
+}
 
 .in_but{
     background-color:  rgba(0, 0, 0, 0.69);
@@ -387,7 +417,7 @@ a{
 
 .font-menu{
     font-family: 'Noto Sans', sans-serif;
-    font-size: 15px;
+    font-size: 13px;
 
 }
 
@@ -425,6 +455,7 @@ footer li {
     background: rgba(128, 116, 116, 0.09019607843137255);
     margin-bottom: 20px;
     border-top: 2px solid #e6e6e6;
+    margin-top: 10px;
 }
 
 .icon-button{
@@ -469,6 +500,14 @@ footer li {
     height: 500px;
     margin-top: 20px;
 }
+
+.complex{
+    background: url(../images/zhk.jpg);
+    background-size: cover;
+    height: 500px;
+    margin-top: 20px;
+}
+
 
 .title-service{
     color: white;
@@ -543,7 +582,7 @@ footer li {
 }
 
 .price_format{
-    padding: 13px 5px;
+    padding: 14px 5px;
     background: rgb(241, 241, 241);
     border-radius: 50px;
     text-align: center;
@@ -568,7 +607,7 @@ footer li {
 }
 
 .area{
-    padding: 15px 12px;
+    padding: 14px 12px;
     background: rgba(241, 241, 241, 0.6196078431372549);
     border-radius: 50px;
     text-align: center;
@@ -657,12 +696,11 @@ footer li {
 }
 
 .main-table{
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .open_but{
     background: rgba(49, 143, 136, 0.6705882352941176);
-    font-weight: bold;
     border: none;
     padding: 6px 13px;
     border-radius: 20px;
@@ -707,8 +745,6 @@ footer li {
 
 #w3{
     margin-top: 5px;
-    color: white;
-    background: #74b4af;
 }
 
 @media (max-width: 600px){
