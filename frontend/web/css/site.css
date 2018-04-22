@@ -2,6 +2,7 @@ html,
 body {
     height: 100%;
     font-family: 'Noto Sans', sans-serif;
+    background-image: url(../images/k.jpg);
 }
 
 @import url(http://fonts.googleapis.com/css?family=Arimo&subset=latin,cyrillic);
@@ -302,6 +303,12 @@ a.desc:after {
     margin-top: 2px;
 }
 
+#w5 > li > a{
+    font-size: 16px;
+    margin-top: 2px;
+}
+
+
 .brand.navbar-brand{
     width: 150px;
 }
@@ -311,9 +318,19 @@ a.desc:after {
     background-color: #222222;
 }
 
+.main-complex{
+    margin-top: 100px;
+    font-size: 36px;
+    color: rgb(78, 124, 120);
+}
+
 
 .navbar-nav > li > a{
     padding-bottom: 0;
+}
+
+.panel{
+    box-shadow: -1px 1px 2px 6px rgba(31, 27, 27, 0.08);
 }
 
 .in_but{
@@ -504,10 +521,28 @@ footer li {
 .complex{
     background: url(../images/zhk.jpg);
     background-size: cover;
-    height: 500px;
+    height: 400px;
     margin-top: 20px;
 }
 
+.btn-toolbar.kv-grid-toolbar.toolbar-container.pull-right{
+    width: unset;
+}
+.btn-group, .btn-group > .btn:first-child{
+    width: unset;
+}
+
+.btn-group>#w3{
+    margin-top: unset;
+}
+
+.btn-group, .btn-group > .btn:first-child{
+    width: unset;
+}
+
+.panel-heading{
+    float: left;
+}
 
 .title-service{
     color: white;
@@ -542,8 +577,8 @@ footer li {
     font-weight: bold;
 }
 
-.btn-group, .btn-group > .btn:first-child{
-    width: 100%;
+.btn.btn-default.dropdown-toggle{
+    width: 130px;
 }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{

@@ -582,6 +582,9 @@ $session->open();
 
 <section class="complex">
     <div class="container" >
+        <div class="text-center">
+            <h2 class="main-complex">Жилые комплексы Вашего города</h2>
+        </div>
        <?php /*echo Carousel::widget([
         'items' => [
 
@@ -605,24 +608,24 @@ $session->open();
             <?// echo Html::a(Html::img('uploads/mas.jpg', ['width'=>'300px']), 'uploads/mas.jpg', ['rel' => 'fancybox']); ?>
             <?// echo Html::a(Html::img('uploads/sant.jpg',['width'=>'300px']), 'uploads/sant.jpg', ['rel' => 'fancybox']); ?>
             <!-- <a href='uploads/ban1.jpg'  rel="fancybox"><img src='uploads/ban1.jpg' width='300px'></a> -->
-            <div class="howto-label"><div>1</div></div><h3> Регистрация</h3>
+            <div class="howto-label"><div>1</div></div><h3>Зарегистрируйтесь</h3>
 
-            <p>Пройдите быструю регистрацию, чтобы размещать объявления и сохранять понравившееся при поиске.</p>
+            <p>Пройдите быструю регистрацию, чтобы размещать объявления и сохранять понравившееся при поиске</p>
 
         </div>
         <div class="col-sm-6 col-md-5 col-xs-12">
-            <div class="howto-label"><div>2</div></div><h3> Заполните форму.</h3>
+            <div class="howto-label"><div>2</div></div><h3> Заполните форму</h3>
             <p>Продать/сдать, кол-во комнат, площадь и т.д.</p>
         </div>
         
         <div class="col-sm-6 col-md-5 col-xs-12" style="clear: both">
-            <div class="howto-label"><div>3</div></div> <h3> Укажите местоположение.</h3>
+            <div class="howto-label"><div>3</div></div> <h3> Укажите местоположение</h3>
             <p>Перетащите маркер на Ваш объект недвижимости.</p>
         </div>
         
         <div class="col-sm-6 col-md-5 col-xs-12" >
-            <div class="howto-label"><div>4</div></div><h3> Загрузка фотографий Вашего объекта.</h3>
-            <p>Добавьте фотографии Вашего объекта недвижимости для привлечения большего числа посетителей.</p>
+            <div class="howto-label"><div>4</div></div><h3> Загрузка фотографий Вашего объекта</h3>
+            <p>Добавьте фотографии Вашего объекта недвижимости для привлечения большего числа посетителей</p>
         </div>
 
     </div>
