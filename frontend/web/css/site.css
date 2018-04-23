@@ -294,18 +294,17 @@ a.desc:after {
     background-color: #747171;
 }
 
-.dropdown-toggle>.caret{
+li>a>.caret{
     display: none;
 }
 
-#w6 > li > a{
-    font-size: 16px;
-    margin-top: 2px;
+li>a>i{
+  font-size: 16px;    
 }
 
-#w5 > li > a{
+.gm{
+    margin-top: 3px;
     font-size: 16px;
-    margin-top: 2px;
 }
 
 
@@ -319,11 +318,21 @@ a.desc:after {
 }
 
 .main-complex{
-    margin-top: 100px;
+    margin-top: 80px;
     font-size: 36px;
-    color: rgb(78, 124, 120);
+    color: rgb(109, 109, 109);
 }
 
+.main-complex.view{
+    margin-top: 20px;
+}
+
+.complex-page{
+    background: url(../images/zhk.jpg);
+    background-size: cover;
+    height: 800px;
+    margin-top: 20px;  
+}
 
 .navbar-nav > li > a{
     padding-bottom: 0;
@@ -453,7 +462,9 @@ h1, h2, h3,h4{
  margin-top: -12px;
 }
 
-
+a:hover{
+    text-decoration: none
+}
 
 
 footer li {
@@ -622,6 +633,7 @@ footer li {
     border-radius: 50px;
     text-align: center;
     color: #f58054;
+    font-size: 15px;
 }
 
 .price_view{
@@ -722,6 +734,20 @@ footer li {
     color: white;
 }
 
+.complex-but{
+    margin-top: 70px;
+    padding: 6px 140px;
+    background: rgb(49, 143, 136);
+    font-size: 22px;
+    border: none;
+    border-radius: 25px;
+    color: #ffffff;
+}
+
+
+
+
+
 .steps-md{
     font-size: 15px;
 }
@@ -773,13 +799,13 @@ footer li {
 
 .description_view{
     border-radius: 20px;
-    background: rgba(210, 210, 210, 0.08);
+    background: white;
     margin-top: 10px;
     padding: 17px;
 }
 
 #w3{
-    margin-top: 5px;
+   
 }
 
 @media (max-width: 600px){
@@ -874,5 +900,18 @@ footer li {
     .i-am-centered{
         margin-left: 40%;
     }
+    
+@media (min-width: 1400px){
+    .btn.btn-default.dropdown-toggle{
+        width: 220px;
+    }
+}   
+  
+@media (min-width: 1550px){
+    .btn.btn-default.dropdown-toggle{
+        width: 250px;
+    }
+}  
+
 
 }

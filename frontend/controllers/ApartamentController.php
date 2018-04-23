@@ -52,6 +52,21 @@ class ApartamentController extends Controller
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $session['my_city']);
         }else {
             $dataProvider = $searchModel->searchUser(Yii::$app->request->queryParams, $user_id);
+            
+            /*$i = 0;
+            foreach ($dataProvider->models as $apart){
+                
+                $apartaments[$i] = Apartament::find()
+                    ->where(['rooms' => $apart['rooms']])
+                    ->all();
+                $i++;    
+            }
+            
+            foreach ($apartaments as $ap){
+               var_dump($ap[0]['price']); die(); 
+            }
+            */
+            
             return $this->render('user_index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,

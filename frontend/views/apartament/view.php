@@ -215,6 +215,7 @@ $session->open();
    @media(max-width:768px) {
         .kom{
             clear: both;
+            background: white;
         }
     }
 

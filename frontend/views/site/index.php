@@ -584,6 +584,7 @@ $session->open();
     <div class="container" >
         <div class="text-center">
             <h2 class="main-complex">Жилые комплексы Вашего города</h2>
+            <?=Html::a("Ознакомиться", ['site/complex'], ['class' => 'btn contact-modal complex-but'])?>
         </div>
        <?php /*echo Carousel::widget([
         'items' => [

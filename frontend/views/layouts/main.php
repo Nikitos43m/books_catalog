@@ -80,7 +80,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'items' => [
         [
-            'label' => '<i class="glyphicon glyphicon-align-justify" aria-hidden="true"></i>',
+            'label' => '<i class="glyphicon glyphicon-align-justify gm" aria-hidden="true"></i>',
             'items' => [
                 ['label' => 'Наши услуги', 'url' => Yii::$app->homeUrl.'#service', 'linkOptions' => ['id'=>'m1']],
                 ['label' => 'Жилые комплексы', 'url' => '/#'],
