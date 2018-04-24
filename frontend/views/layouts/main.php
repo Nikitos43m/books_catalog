@@ -140,12 +140,10 @@ AppAsset::register($this);
 
                 <div class="col-md-4 col-xs-12 text-center sl">
                     <h3> Ищите и продавайте жилье вместе нами!</h3><br> 
-                    <div class="about">На нашем сайте организован поиск при помощи карты и виде таблицы с возможностью выгрузки данных. </div>
+                    <div class="about">На нашем сайте Вы можете искать недвижимость при помощи карты и таблицы, а также выгружать полученные данные. </div>
                     <div class="your_rooms">yourooms.ru</div>
                 </div>
             </div>
-
-
 
           </div>
         <br>

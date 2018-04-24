@@ -525,7 +525,7 @@ $session->open();
                 }
             ],
 
-            'telephone',
+            //'telephone',
              
              [  'attribute' => 'telephone',
                 'label' => 'Контактный телефон',

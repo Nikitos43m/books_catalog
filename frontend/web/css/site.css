@@ -216,6 +216,8 @@ a.desc:after {
         width: 90%;
         padding: 10px;
     }
+    
+
 }
 
 
@@ -223,6 +225,10 @@ a.desc:after {
 	.nav li > form {
 	    padding: 3px;
 	}
+        
+        .complex-but{
+            padding: 6px 40px;
+        }
 }
 
 .nav > li > form > button:hover {
