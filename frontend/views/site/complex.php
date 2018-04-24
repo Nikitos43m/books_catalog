@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use common\widgets\CityWidget;
 ?>
 
 
@@ -26,7 +27,7 @@ use yii\helpers\Html;
             
              <? else: ?>
              <div class="row">
-                <h4>Пока по данному разделу информация отсутствует.</h4>
+                <h4>По данному разделу информация пока отсутствует.</h4>
              </div>
              <div class="row">
                  
@@ -36,3 +37,5 @@ use yii\helpers\Html;
         </div>
     </div>
 </section>
+
+<?= CityWidget::widget([]) ?>

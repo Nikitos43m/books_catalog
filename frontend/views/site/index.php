@@ -526,13 +526,30 @@ $session->open();
             ],
 
             'telephone',
-             //'created_at',
-            [
+             
+             [  'attribute' => 'telephone',
+                'label' => 'Контактный телефон',
+                'content' => function($model){
+                    
+                    return '<i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> '.$model->telephone;
+                }
+            ],        
+                    
+             
+          /*  [
                 'attribute' => 'created_at',
                 'label'=>'Размещено',
                 'format' =>  ['date', 'd.MM.Y'],
 
-            ],
+            ], */
+                    
+            [   'attribute' => 'created_at',
+                'label' => 'Размещено',
+                'content' => function($model){
+                    
+                    return '<i class="glyphicon glyphicon-calendar" aria-hidden="true" ></i> '.date('d.m.Y', $model->created_at);
+                }
+            ],    
 
 
             //['class' => 'yii\grid\ActionColumn'],

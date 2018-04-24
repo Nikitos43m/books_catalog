@@ -813,6 +813,14 @@ footer li {
       margin-left: 0;
    }
    
+   .our{
+       clear: both;
+   }
+   
+   .main-complex{
+       font-size: 26px;
+   }
+   
    .modal-footer{
        text-align: center;
    }

@@ -83,7 +83,7 @@ AppAsset::register($this);
             'label' => '<i class="glyphicon glyphicon-align-justify gm" aria-hidden="true"></i>',
             'items' => [
                 ['label' => 'Наши услуги', 'url' => Yii::$app->homeUrl.'#service', 'linkOptions' => ['id'=>'m1']],
-                ['label' => 'Жилые комплексы', 'url' => '/#'],
+                ['label' => 'Жилые комплексы', 'url' => ['/site/complex']],
             ],
         ],
     ],
