@@ -12,7 +12,7 @@ use common\widgets\CityWidget;
 /* @var $arr_ads array */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Apartaments', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Объявление', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 $session = Yii::$app->session;
@@ -170,7 +170,7 @@ $session->open();
     <div  class="info-view" style="width: 100%">
         <div class="left-info" >
             <div class="right-box">
-              <div class="col-md-12" style="margin-bottom: 10px"><span  class="price_view">
+              <div class="col-md-12 text-center" style="margin-bottom: 10px;"><span  class="price_view">
                        <?php
 	                    $number = $model->price;
 	                    $prise = number_format($number, 0, "", " ");
@@ -188,7 +188,7 @@ $session->open();
               </div>
               <div class="col-md-12" style="margin-top: 20px"><i class="glyphicon glyphicon-earphone t_ph" aria-hidden="true"></i>  Телефон: <?=$model->telephone;?></div>
 
-              <div class="col-md-12 col-xs-12" style="margin-top: 10px">
+              <div class="col-md-12 col-xs-12 text-center" style="margin-top: 10px">
               <?php if ($model->getAuthorId() == Yii::$app->user->id): ?>
                   <span style="color: grey; font-size: 13px;">Ваше объявление</span>
               <? else: ?>

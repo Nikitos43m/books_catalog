@@ -84,6 +84,7 @@ AppAsset::register($this);
             'items' => [
                 ['label' => 'Наши услуги', 'url' => Yii::$app->homeUrl.'#service', 'linkOptions' => ['id'=>'m1']],
                 ['label' => 'Жилые комплексы', 'url' => ['/site/complex']],
+                ['label' => 'Контакты', 'url' => Yii::$app->homeUrl.'#contacts', 'linkOptions' => ['id'=>'m2']],
             ],
         ],
     ],
@@ -119,7 +120,7 @@ AppAsset::register($this);
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12 contacts">
-                <div class="col-md-3 cn">
+                <div class="col-md-3 cn" id="contacts">
                     <ul>
                         <h3>Контакты</h3>
                         <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> г. Ростов-на-Дону, ул. Заводская, 11</li>

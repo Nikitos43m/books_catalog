@@ -59,6 +59,10 @@ $script = <<< JS
          $('#m1').click(function(){
             $('html,body').animate({scrollTop:$('#service').offset().top}, 500);
          });
+        
+         $('#m2').click(function(){
+            $('html,body').animate({scrollTop:$('#contacts').offset().top}, 500);
+         });
 });
 
 

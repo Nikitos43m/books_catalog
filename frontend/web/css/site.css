@@ -227,15 +227,7 @@ a.desc:after {
 }
 
 
-@media(max-width:768px) {
-	.nav li > form {
-	    padding: 3px;
-	}
-        
-        .complex-but{
-            padding: 6px 40px;
-        }
-}
+
 
 .nav > li > form > button:hover {
     text-decoration: none;
@@ -624,7 +616,6 @@ footer li {
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus,
 .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus{
 
-//    border-bottom: 2px solid;
 }
 
 .attach-title{
@@ -869,7 +860,26 @@ footer li {
     .left-box{
        float: none;
     }
+    
+    .nav li > form {
+	padding: 3px;
+    }
+        
+    .complex-but{
+        padding: 6px 40px;
+    }
+    
+    .contact-modal{
+       padding: 8px 30px;
+    }
+    
+    .open_but{
+       padding: 6px 70px; 
+    }
 }
+
+
+
 
 @media (max-width: 400px)  {
     .contact-modal{
