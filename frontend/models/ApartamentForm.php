@@ -33,6 +33,7 @@ class ApartamentForm extends Model
     public $term;
     public $floor_all; 
     public $year;
+    public $san_uzel;
     
     /**
      * @inheritdoc
@@ -40,7 +41,7 @@ class ApartamentForm extends Model
     public function rules()
     {
         return [
-            [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type'], 'required'],
+            [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type', 'san_uzel'], 'required'],
             [ ['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
             [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'term', 'floor_all', 'year'], 'number'],
             [ ['lat', 'lng'], 'double'],
@@ -97,6 +98,7 @@ class ApartamentForm extends Model
         $apartament->term = $this->term;
         $apartament->floor_all = $this->floor_all;
         $apartament->year = $this->year;
+        $apartament->san_uzel = $this->san_uzel;
         
         return $apartament->save() ? $apartament : null;
 

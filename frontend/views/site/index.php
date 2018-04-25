@@ -416,8 +416,8 @@ $session->open();
                 'class' => 'kartik\grid\ExpandRowColumn',
                 'expandAllTitle' => 'Expand all',
                 'collapseTitle' => 'Collapse all',
-                'expandIcon'=>'<i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color: rgb(116, 180, 175)"></i>',
-                'collapseIcon' =>'<i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color: rgb(116, 180, 175)"></i>',
+                'expandIcon'=>'<i class="glyphicon glyphicon-camera" aria-hidden="true" style="color: rgb(97, 97, 97)"></i>',
+                'collapseIcon' =>'<i class="glyphicon glyphicon-camera" aria-hidden="true" style="color: rgb(97, 97, 97)"></i>',
                 'detailRowCssClass' => GridView::ICON_ACTIVE,
                 'value' => function ($model, $key, $index, $column) {
                     return GridView::ROW_COLLAPSED;

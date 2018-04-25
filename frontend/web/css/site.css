@@ -11,11 +11,7 @@ body {
     width:95%;
 }
 
-@media (max-width: 768px) {
-    .container {
-        width: 100%;
-    }
-}
+
 
 .form-control:focus {
     border-color: #949494;
@@ -49,9 +45,19 @@ body {
 }
 
 .view-title{
-    font-size: 24px;
+    border-radius: 40px;
+    background: #d4d4d4b0;
+    font-size: 22px;
+    padding: 1px 20px;
+    color: #3bafa5;
+    margin-right: 10px;
 }
 
+.right-box{
+   width:270px; 
+   display: inline-block; 
+   padding: 10px;
+}
 .term{
     color: gray;
     font-size: 16px;
@@ -472,6 +478,10 @@ a:hover{
     text-decoration: none
 }
 
+.left-view{ 
+    text-align: center; 
+    font-size: 18px
+}
 
 footer li {
     list-style-type: none;
@@ -673,6 +683,10 @@ footer li {
     width: 180px;
 }
 
+.row.kom{
+    margin-right: unset;
+}
+
 .sales{
     font-size: 15px;
 }
@@ -733,6 +747,12 @@ footer li {
 
 .contact-modal:hover{
     color: white;
+}
+
+.left-info{ 
+    float: right; 
+    font-size: 16px; 
+    border-bottom: 1px solid rgb(225, 225, 225);
 }
 
 .contact-modal:focus{
@@ -810,6 +830,10 @@ footer li {
     padding: 17px;
 }
 
+.left-box{
+    float: left;
+}
+
 #w3{
    
 }
@@ -837,6 +861,16 @@ footer li {
    }
 }
 
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    
+    .left-box{
+       float: none;
+    }
+}
+
 @media (max-width: 400px)  {
     .contact-modal{
         width: 80%;
@@ -859,12 +893,23 @@ footer li {
     .service{
         height: auto;
     }
+    
+    .left-info{
+        float: none;
+        text-align: center;
+    }
 }
 
 
 @media (max-width: 1500px){
     .steps-md p{
         clear: both;
+    }
+}
+
+@media (max-width: 1650px){
+    .view-date{
+        margin-top: 20px;
     }
 }
 

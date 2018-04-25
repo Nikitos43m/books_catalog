@@ -221,7 +221,12 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
             <?= $form->field($model, 'street')->label('Улица') ?>
             <?= $form->field($model, 'floor')->label('Этаж') ?>
-           
+            <?= $form->field($model, 'san_uzel')->label('Сан-узел')->dropDownList([
+            '0' => 'Совмещенный',
+            '1' => 'Раздельный',
+             ], 
+            ['prompt'=> 'Выберите тип сан-узла'
+            ]); ?>
 
             
         </div>
@@ -229,6 +234,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
             <?= $form->field($model, 'area')->label('Площадь в кв.м.') ?>
             <?= $form->field($model, 'house') ->label('Дом')?>
             <?= $form->field($model, 'floor_all')->label('Этажей в доме') ?>
+            
 
 
             <?= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->getId()])->label(false) ?>

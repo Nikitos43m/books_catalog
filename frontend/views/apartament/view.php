@@ -92,28 +92,28 @@ $session->open();
         <div class="row">
             <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
                 <span class="view-title">Вторичка</span> <span class="term"> <?php if (isset($model->year)): ?> (год постройки: <?=$model->year;?>)<? endif;?></span>
+                 
             </div>
         </div>
         <? elseif ($model->type_appart == 1): ?>
             <div class="row">
             <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
-                <span class="view-title">Новостройка </span> <span class="term"> (
-                                <?php switch($model->term): 
-                                case 0:?>дом сдан <? break; ?>
-                               <?php case 1: ?>срок сдачи:  2018<? break; ?>
-                               <?php case 2: ?>срок сдачи:  2019<? break; ?>
-                               <?php case 3: ?>срок сдачи:  2020<? break; ?>
-                               <?php case 4: ?>срок сдачи:  позднее 2020-го <? break; ?>
-                            <?php endswitch ?>
-                               )
+                <span class="view-title">Новостройка </span> <?=$model->street;?> <?=$model->house;?> <span class="term">
+                           (<?php switch($model->term): 
+                                case 0:?>дом сдан<? break; ?>
+                               <?php case 1:?>срок сдачи: 2018<? break; ?>
+                               <?php case 2:?>срок сдачи: 2019<? break; ?>
+                               <?php case 3:?>срок сдачи: 2020<? break; ?>
+                               <?php case 4:?>срок сдачи: позднее 2020-го<?break;?>
+                            <?php endswitch?>)
                              </span>
             </div>
         </div>
         <? endif;?>
     <? endif;?> 
     
-    <div  style="text-align: center; font-size: 18px">
-        <div style="float: left">
+    <div class="left-view">
+        <div class="left-box">
          <?php switch($model->type): 
              case 0:?> Продается <? break; ?>
             <?php case 1: ?> Сдается <? break; ?>
@@ -139,19 +139,27 @@ $session->open();
                     <?=$model->floor;?> из <?=$model->floor_all;?> этаж
                 </div>
             <? endif;?>
+            
+            <div class="col-sm-2"> 
+                <?php if ($model->san_uzel == 0): ?>
+                    Совмещенный сан-узел 
+                <?else: ?>
+                    Раздельный сан-узел 
+                <?endif;?>
+            </div>
+            
             <div class="col-sm-2">
                 <?=$model->street;?>
                 <?=$model->house;?>
             </div>
+
             <div class="col-sm-2">
                 <?php $created_date = date('d-m-Y', $model->created_at); ?>
-                <div class="view-date"><i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i> Размещено: <?=$created_date ?> </div> 
+                <div class="view-date"><i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i> Размещено: <?=$created_date ?> <br>
+                 Просмотров: <?=$model->count_views ?> </div>
             </div>
             
-            <div class="col-sm-2">
-                <div class="view-date"> Просмотров: <?=$model->count_views ?> </div>
-                 
-            </div>
+            
         </div>
         
 
@@ -160,8 +168,8 @@ $session->open();
     </div>
 </div>
     <div  class="info-view" style="width: 100%">
-        <div style="float: right; font-size: 16px; border-bottom: 1px solid rgb(225, 225, 225);">
-          <div style="width:270px; display: inline-block; padding: 10px;">
+        <div class="left-info" >
+            <div class="right-box">
               <div class="col-md-12" style="margin-bottom: 10px"><span  class="price_view">
                        <?php
 	                    $number = $model->price;

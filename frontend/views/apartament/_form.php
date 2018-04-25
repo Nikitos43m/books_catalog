@@ -260,7 +260,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
        <?= $form->field($model, 'area')->textInput() ?>
        <?= $form->field($model, 'floor')->textInput() ?> 
        <?= $form->field($model, 'floor_all')->textInput() ?>
-       
+      
     </div>
     
     <div class="col-md-2">
@@ -270,7 +270,12 @@ $this->registerJs($script, yii\web\View::POS_READY);
        <?= $form->field($model, 'telephone')->textInput(['maxlength' => true])->label('Телефон')->widget(\yii\widgets\MaskedInput::className(), [
                 'mask' => '8(999)-999-9999',
         ]) ?>
-        
+         <?= $form->field($model, 'san_uzel')->label('Сан-узел')->dropDownList([
+            '0' => 'Совмещенный',
+            '1' => 'Раздельный',
+             ], 
+            ['prompt'=> 'Выберите тип сан-узла'
+            ]); ?>
     </div> 
   </div>
    <div class="row">   

@@ -49,7 +49,7 @@ AppAsset::register($this);
        // ['label' => 'Каталог книг', 'url' => ['/authors/index']],
     ];
 
-   // $menuItemsLeft[] =Html::a('<img src="images/logo2.png" width="140px" style="float: left">', [Yii::$app->homeUrl]);
+    //$menuItemsLeft[] =Html::a('<img src="images/logo2.png" width="140px" style="float: left; margin-top: 9px;">', [Yii::$app->homeUrl]);
     $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'].' <i class="glyphicon glyphicon-globe" aria-hidden="true" style="top: 4px;"></i>', ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
          <li>';
     
@@ -94,7 +94,7 @@ AppAsset::register($this);
 
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
-        'items' => $menuItemsLeft,
+        'items' => $menuItemsLeft
     ]);
     
     
