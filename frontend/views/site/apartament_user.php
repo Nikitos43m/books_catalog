@@ -85,11 +85,14 @@ $script = <<< JS
           if( realty == 2){
         
               $(".field-apartamentform-rooms").hide();
+              $(".field-apartamentform-kitchen").hide();
+              $('#apartamentform-kitchen').val('');
               $('#apartamentform-rooms').append($("<option></option>", {value:0, text: 0}));
               $('#apartamentform-rooms').val(0);
           }else{
               $('#apartamentform-rooms :last').remove();
               $(".field-apartamentform-rooms").show();
+              $(".field-apartamentform-kitchen").show();
           }
         
          if( realty == 1){
@@ -203,12 +206,10 @@ $this->registerJs($script, yii\web\View::POS_READY);
             ]); ?>
         </div>
     </div>
-            
+    
     <div class="row">
-        <div class="col-md-4">
-
-            <?//= $form->field($model, 'rooms')->label('Количество комнат') ?>
-            <?= $form->field($model, 'rooms')->label('Количество комнат')->dropDownList([
+        <div class="col-md-5">
+           <?= $form->field($model, 'rooms')->label('Количество комнат')->dropDownList([
                 '1' => '1',
                 '2' => '2',
                 '3' => '3',
@@ -218,7 +219,15 @@ $this->registerJs($script, yii\web\View::POS_READY);
             ],[
             'prompt' => 'Выберите количество комнат...'
     ]); ?>
+        </div>
+    </div>
+            
+    <div class="row">
+        <div class="col-md-4">
 
+            <?//= $form->field($model, 'rooms')->label('Количество комнат') ?>
+            
+            <?= $form->field($model, 'area')->label('Площадь в м<sup>2</sup>') ?>
             <?= $form->field($model, 'street')->label('Улица') ?>
             <?= $form->field($model, 'floor')->label('Этаж') ?>
             <?= $form->field($model, 'san_uzel')->label('Сан-узел')->dropDownList([
@@ -231,7 +240,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
             
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'area')->label('Площадь в кв.м.') ?>
+            <?= $form->field($model, 'kitchen')->label('Площадь кухни в м<sup>2</sup>') ?>
             <?= $form->field($model, 'house') ->label('Дом')?>
             <?= $form->field($model, 'floor_all')->label('Этажей в доме') ?>
             

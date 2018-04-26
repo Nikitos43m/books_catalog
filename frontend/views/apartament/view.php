@@ -140,13 +140,6 @@ $session->open();
                 </div>
             <? endif;?>
             
-            <div class="col-sm-2"> 
-                <?php if ($model->san_uzel == 0): ?>
-                    Совмещенный сан-узел 
-                <?else: ?>
-                    Раздельный сан-узел 
-                <?endif;?>
-            </div>
             
             <div class="col-sm-2">
                 <?=$model->street;?>
@@ -210,12 +203,28 @@ $session->open();
           </div>
         </div>
     </div>
+    
+    
+    
     <div>
         <div class="col-md-3" style="font-size: 16px"><b>Описание</b></div>
-
+        
     </div>
     <div class="col-lg-9 col-md-8 col-sm-10 description_view"  >
-
+        <div class="row" style="margin-bottom: 10px; font-weight: bold"> 
+            <div class="col-md-3" >
+            <?php if ($model->san_uzel == 0): ?>
+                     <i class="glyphicon glyphicon-tint" aria-hidden="true" style="font-size: 14px"></i>  Совмещенный сан-узел 
+                   <?else: ?>
+                     <i class="glyphicon glyphicon-tint" aria-hidden="true" style="font-size: 14px"></i>  Раздельный сан-узел 
+            <?endif;?>
+            </div>
+            <?php if ($model->kitchen != NULL): ?>
+            <div class="col-md-3">
+                <i class="glyphicon glyphicon-cutlery" aria-hidden="true" style="font-size: 14px"></i> кухня <span class="kitch"> <?=$model->kitchen;?>м<sup>2</sup></span>
+            </div>
+            <?endif;?>
+        </div>
         <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
 
     </div>

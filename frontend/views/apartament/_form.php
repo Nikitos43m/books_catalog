@@ -258,6 +258,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
             ]); ?>
         
        <?= $form->field($model, 'area')->textInput() ?>
+       <?= $form->field($model, 'kitchen')->textInput() ?>
        <?= $form->field($model, 'floor')->textInput() ?> 
        <?= $form->field($model, 'floor_all')->textInput() ?>
       
