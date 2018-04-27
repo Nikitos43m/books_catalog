@@ -38,7 +38,7 @@ $script = <<< JS
         
         
         $("#apartamentform-type").change(function () {
-        tip = $('#apartamentform-type').val();
+        tip = $('#apartamentform-type :checked').val();
              if( tip == 0){
                 $(".tip").show();
         
@@ -71,14 +71,19 @@ $script = <<< JS
         var realty;
         
         $('#apartamentform-realty_type').change(function () {
-         realty = $('#apartamentform-realty_type option:selected').val();
+         realty = $('#apartamentform-realty_type :checked').val();
         
          if( realty == 0){
               $(".field-apartamentform-type_appart").show();
 
          } else{
               $(".field-apartamentform-type_appart").hide();
-             
+              $(".field-apartamentform-otdelka").hide();
+              $(".field-apartamentform-term").hide();
+        
+              $('.btn.btn-default.form-check-label.tp.active').removeClass("active");
+              $('.btn.btn-default.form-check-label.ot.active').removeClass("active");
+              $('.btn.btn-default.form-check-label.ss.active').removeClass("active");
            }
         
         
@@ -87,10 +92,12 @@ $script = <<< JS
               $(".field-apartamentform-rooms").hide();
               $(".field-apartamentform-kitchen").hide();
               $('#apartamentform-kitchen').val('');
-              $('#apartamentform-rooms').append($("<option></option>", {value:0, text: 0}));
-              $('#apartamentform-rooms').val(0);
+            //  $('#apartamentform-rooms').append($("<option></option>", {value:0, text: 0}));
+            //  $('#apartamentform-rooms').val(0);
+              $('.btn.btn-default.form-check-label.rms.active').removeClass("active");
+
           }else{
-              $('#apartamentform-rooms :last').remove();
+             // $('#apartamentform-rooms :last').remove();
               $(".field-apartamentform-rooms").show();
               $(".field-apartamentform-kitchen").show();
           }
@@ -113,7 +120,7 @@ $script = <<< JS
         
         
    $('#apartamentform-type_appart').change(function () {
-         vtor = $('#apartamentform-type_appart option:selected').val();
+         vtor = $('#apartamentform-type_appart :checked').val();
          if( vtor == 1){
               $(".year").hide();
               $(".field-apartamentform-otdelka").show();
@@ -136,38 +143,112 @@ $this->registerJs($script, yii\web\View::POS_READY);
     <div class="step">
         <h2 class="title-step">Шаг 1</h2>
     </div>
+ <!--   
+<div class="btn-group" data-toggle="buttons">
+
+    <label class="btn btn-default active form-check-label">
+        <input class="form-check-input" type="radio" checked autocomplete="off"> radio 1 (pre-checked)
+    </label>
+
+    <label class="btn btn-default form-check-label">
+        <input class="form-check-input" type="radio" autocomplete="off"> radio 2
+    </label>
+
+    <label class="btn btn-default form-check-label">
+        <input class="form-check-input" type="radio" autocomplete="off"> radio 3
+    </label>
+
+</div>
+    -->
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <div class="row">
         <div class="col-md-5">
-        <?= $form->field($model, 'type')->label('Тип объявления')->dropDownList([
+        <?/*= $form->field($model, 'type')->label('Тип объявления')->dropDownList([
             '0' => 'Продать',
             '1' => 'Сдать',
             '2' => 'Посуточно'
             ],[
                'prompt' => 'Выберите тип объявления...'
               ]); 
-        ?>
+       */ ?>
+            
+        <?= $form->field($model, 'type')->label('Тип объявления')->radioList([
+            '0' => 'Продать',
+            '1' => 'Сдать',
+            '2' => 'Посуточно'
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           ?>    
+            
         </div>
     </div>
     <div class="row">
         <div class="col-md-5">
-            <?= $form->field($model, 'realty_type')->label('Тип недвижимости')->dropDownList([
+            <?/*= $form->field($model, 'realty_type')->label('Тип недвижимости')->dropDownList([
             '0' => 'Квартира',
             '1' => 'Дом',
             '2' => 'Комната'
             ],[
                'prompt' => 'Выберите тип недвижимости...'
               ]); 
-        ?>
+             */?>
+            
+            <?= $form->field($model, 'realty_type')->label('Тип недвижимости')->radioList([
+            '0' => 'Квартира',
+            '1' => 'Дом',
+            '2' => 'Комната'
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           ?> 
         </div>
     </div>
     
     <div class="row tip">
         <div class="col-md-5">
-            <?= $form->field($model, 'type_appart')->label('Тип квартиры')->dropDownList([
+            <?/*= $form->field($model, 'type_appart')->label('Тип квартиры')->dropDownList([
             '0' => 'Вторичка',
             '1' => 'Новостройка'
-        ]); ?>
+        ]); */ ?>
+            
+            <?= $form->field($model, 'type_appart')->label('Тип квартиры')->radioList([
+             '0' => 'Вторичка',
+             '1' => 'Новостройка'
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label tp'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           ?> 
         </div>
 
         
@@ -183,19 +264,38 @@ $this->registerJs($script, yii\web\View::POS_READY);
     
     <div class="row">
         <div class="col-md-5">
-            <?= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
+            <?/*= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
             '0' => 'Строй вариант',
             '1' => 'Чистовая',
             '2' => 'Под ключ'
              ], 
             ['prompt'=> 'Выберите отделку'
-            ]); ?>
+            ]); */?>
+            
+            <?= $form->field($model, 'otdelka')->label('Отделка')->radioList([
+              '0' => 'Строй вариант',
+              '1' => 'Чистовая',
+              '2' => 'Под ключ'
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label ot'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           ?>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-5">
-            <?= $form->field($model, 'term')->label('Срок сдачи')->dropDownList([
+            <?/*= $form->field($model, 'term')->label('Срок сдачи')->dropDownList([
             '0' => 'Сдан',
             '1' => '2018',
             '2' => '2019',
@@ -203,13 +303,34 @@ $this->registerJs($script, yii\web\View::POS_READY);
             '4' => 'Позднее'   
              ], 
             ['prompt'=> 'Выберите срок сдачи'
-            ]); ?>
+            ]); */?>
+            
+            <?= $form->field($model, 'term')->label('Срок сдачи')->radioList([
+              '0' => 'Сдан',
+              '1' => '2018',
+              '2' => '2019',
+              '3' => '2020',
+              '4' => 'Позднее'
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label ss'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           ?>
         </div>
     </div>
     
     <div class="row">
         <div class="col-md-5">
-           <?= $form->field($model, 'rooms')->label('Количество комнат')->dropDownList([
+           <?/*= $form->field($model, 'rooms')->label('Количество комнат')->dropDownList([
                 '1' => '1',
                 '2' => '2',
                 '3' => '3',
@@ -218,7 +339,28 @@ $this->registerJs($script, yii\web\View::POS_READY);
                 '11' => 'Студия'
             ],[
             'prompt' => 'Выберите количество комнат...'
-    ]); ?>
+    ]); */?>
+            <?= $form->field($model, 'rooms')->label('Количество комнат')->radioList([
+                '1' => '1',
+                '2' => '2',
+                '3' => '3',
+                '4' => '4',
+                '5' => '5',
+                '11' => 'Студия'
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label rms'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           ?> 
         </div>
     </div>
             
@@ -230,13 +372,30 @@ $this->registerJs($script, yii\web\View::POS_READY);
             <?= $form->field($model, 'area')->label('Площадь в м<sup>2</sup>') ?>
             <?= $form->field($model, 'street')->label('Улица') ?>
             <?= $form->field($model, 'floor')->label('Этаж') ?>
-            <?= $form->field($model, 'san_uzel')->label('Сан-узел')->dropDownList([
+            <?/*= $form->field($model, 'san_uzel')->label('Сан-узел')->dropDownList([
             '0' => 'Совмещенный',
             '1' => 'Раздельный',
              ], 
             ['prompt'=> 'Выберите тип сан-узла'
-            ]); ?>
-
+            ]); */?>
+            
+            <?= $form->field($model, 'san_uzel')->label('Сан-узел')->radioList([
+              '0' => 'Совмещенный',
+              '1' => 'Раздельный',
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label ot'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           ?>
             
         </div>
         <div class="col-md-4">
@@ -396,6 +555,13 @@ document.body.appendChild(script);
     .wrap > .container{
         background-image: url(images/k.jpg);
     }
+    
+    .btn-default:active, .btn-default:focus, .btn-default.active, .open > .dropdown-toggle.btn-default {
+        color: #828282;
+        background-color: #12afc569;
+        border-color: #adadad;
+    }
+
 </style>
 
  <?= CityWidget::widget([]) ?>

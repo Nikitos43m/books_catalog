@@ -373,6 +373,11 @@ li>a>i{
     letter-spacing: 0.6px;
 }
 
+.obe{
+    width: unset;
+    padding: 6px 22px;
+}
+
 .in_but a{
 
     text-decoration: none;
@@ -687,6 +692,9 @@ footer li {
     display: -ms-flexbox;
     display: flex;
 }
+
+
+
 
 /*  Список объявлений   */
 .left_item{
