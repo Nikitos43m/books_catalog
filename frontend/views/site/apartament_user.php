@@ -639,8 +639,21 @@ document.body.appendChild(script);
     .btn-default:active, .btn-default:focus, .btn-default:focus-within, .btn-default:hover, .btn-default.active, .open > .dropdown-toggle.btn-default {
         color: #828282;
         background-color: #12afc569;
-        border-color: #12afc569;
+        border-color: rgba(218, 218, 218, 0.4117647058823529);
         
+    }
+    
+    .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus{
+        outline: none;
+    }
+    
+    .btn-default:active:hover, .btn-default.active:hover, .open > .dropdown-toggle.btn-default:hover, 
+    .btn-default:active:focus, .btn-default.active:focus, .open > .dropdown-toggle.btn-default:focus, 
+    .btn-default:active.focus, .btn-default.active.focus, .open > .dropdown-toggle.btn-default.focus{
+        
+        color: #828282;
+        background-color: #12afc569;
+        border-color: rgba(218, 218, 218, 0.4117647058823529);
     }
     
 

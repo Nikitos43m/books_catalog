@@ -218,7 +218,7 @@ $session->open();
         <div class="row" style="margin-bottom: 10px; font-weight: bold">
             
             <?php if (isset($model->material)): ?>
-            <div class="col-md-3" ><i class="glyphicon glyphicon-wrench" aria-hidden="true" style="font-size: 14px"></i>
+            <div class="col-md-3 text-center" ><i class="glyphicon glyphicon-wrench" aria-hidden="true" style="font-size: 14px"></i>
                 <?php switch($model->material): 
                     case 0:?> Кирпичный дом<? break; ?>
                    <?php case 1: ?> Монолитный дом<? break; ?>
@@ -231,7 +231,7 @@ $session->open();
             <?endif;?>
             
              <?php if( isset($model->san_uzel)): ?>
-            <div class="col-md-3" >
+            <div class="col-md-3 text-center" >
             <?php if ($model->san_uzel == 0): ?>
                      <i class="glyphicon glyphicon-tint" aria-hidden="true" style="font-size: 14px"></i>  Совмещенный сан-узел 
                    <?else: ?>
@@ -241,13 +241,13 @@ $session->open();
             <?endif;?>
             
             <?php if (isset($model->kitchen)): ?>
-            <div class="col-md-3">
+            <div class="col-md-3 text-center">
                 <i class="glyphicon glyphicon-cutlery" aria-hidden="true" style="font-size: 14px"></i> кухня <span class="kitch"> <?=$model->kitchen;?>м<sup>2</sup></span>
             </div>
             <?endif;?>
             
             <?php if( isset($model->balkon)): ?>
-            <div class="col-md-3">
+            <div class="col-md-3 text-center">
                 
                 <?php switch($model->balkon): 
                     case 0:?> Есть балкон<? break; ?>
