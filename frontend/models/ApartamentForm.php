@@ -35,6 +35,9 @@ class ApartamentForm extends Model
     public $year;
     public $san_uzel;
     public $kitchen;
+    public $material;
+    public $balkon;
+    public $ipoteka;
     
     /**
      * @inheritdoc
@@ -44,12 +47,12 @@ class ApartamentForm extends Model
         return [
             [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type', 'san_uzel'], 'required'],
             [ ['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
-            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'term', 'floor_all', 'year', 'kitchen'], 'number'],
+            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'term', 'floor_all', 'year', 'kitchen', 'material', 'balkon'], 'number'],
             [ ['lat', 'lng'], 'double'],
             [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],
             [ ['description'], 'string', 'max' => 1000],
-            [ ['active'], 'boolean']
+            [ ['active', 'ipoteka'], 'boolean']
         ];
     }
 
@@ -101,6 +104,9 @@ class ApartamentForm extends Model
         $apartament->year = $this->year;
         $apartament->san_uzel = $this->san_uzel;
         $apartament->kitchen = $this->kitchen;
+        $apartament->material = $this->material;
+        $apartament->balkon = $this->balkon;
+        $apartament->ipoteka = $this->ipoteka;
         
         return $apartament->save() ? $apartament : null;
 

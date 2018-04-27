@@ -20,6 +20,7 @@ $script = <<< JS
         tip = $('#apartament-type option:selected').val();
         if( tip == 0){
                 $(".tip").show();
+                $(".form-group.field-apartament-ipoteka").show();
         
                 $(".cost").css('display','inline-block');
                 $(".sale").show();
@@ -29,7 +30,8 @@ $script = <<< JS
         
              if( tip == 1){
                 $(".tip").hide();
-             
+                $(".form-group.field-apartament-ipoteka").hide();
+        
                 $("cost").css('display','inline-block');
                 $(".arenda").show();
                 $(".sale").hide(); 
@@ -38,6 +40,7 @@ $script = <<< JS
         
              if( tip == 2){
                 $(".tip").hide();
+                $(".form-group.field-apartament-ipoteka").hide();
         
                 $(".cost").css('display','inline-block');
                 $(".sutki").show();
@@ -225,6 +228,18 @@ $this->registerJs($script, yii\web\View::POS_READY);
             '1' => 'Новостройка'
         ], ['disabled' => true]); ?>
         
+        <?= $form->field($model, 'material')->label('Тип дома')->dropDownList([
+             '0' => 'Кирпичный',
+             '1' => 'Монолитный',
+             '2' => 'Монолитно-кирпичный',
+             '3' => 'Панельный',
+             '4' => 'Блочный',
+             '5' => 'Деревянный'
+            ],[
+               'prompt' => 'Выберите тип дома...'
+              ]); 
+             ?>
+        
         <?= $form->field($model, 'year')->label('Год постройки')->widget(\yii\widgets\MaskedInput::className(), [
                 'mask' => '9999',
             ]) ?>
@@ -277,6 +292,15 @@ $this->registerJs($script, yii\web\View::POS_READY);
              ], 
             ['prompt'=> 'Выберите тип сан-узла'
             ]); ?>
+       
+       <?= $form->field($model, 'balkon')->label('Лоджия/балкон')->dropDownList([
+              '0' => 'Балкон',
+              '1' => 'Лоджия',
+              '2' => 'Нет', 
+             ], 
+            ['prompt'=> 'Выберите лоджию/балкон'
+            ]); 
+        ?>
     </div> 
   </div>
    <div class="row">   
@@ -285,7 +309,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
            <span class="cost arenda">Цена в месяц (руб.)</span>
            <span class="cost sutki">Цена в сутки (руб.)</span>
             <?= $form->field($model, 'price')->label(false)->textInput(['placeholder' => "руб."]) ?>
-            
+            <?= $form->field($model, 'ipoteka')->label(false)->checkbox(['label' => "Возможна ипотека", 'style'=>'transform: scale(1.4);margin-top: 10px; font-size:16px']) ?>
        </div>
    </div>
     

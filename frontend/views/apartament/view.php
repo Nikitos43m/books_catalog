@@ -178,6 +178,10 @@ $session->open();
                           <?php $month = $model->price/$model->area; $month = number_format($month, 0, "", " ") ?>
                          <br><div style="font-size: 14px; color: gray; margin-left: 10px; margin-top: 20px"> <?= $month ?> &#x584;/м² </div>
                       <? endif;?>
+                      <br>
+                      <?php if ($model->ipoteka == true): ?>
+                            <span style="font-weight: bold; font-size: 14px;">Возможна ипотека</span>
+                      <? endif;?>
               </div>
               <div class="col-md-12" style="margin-top: 20px"><i class="glyphicon glyphicon-earphone t_ph" aria-hidden="true"></i>  Телефон: <?=$model->telephone;?></div>
 
@@ -211,7 +215,22 @@ $session->open();
         
     </div>
     <div class="col-lg-9 col-md-8 col-sm-10 description_view"  >
-        <div class="row" style="margin-bottom: 10px; font-weight: bold"> 
+        <div class="row" style="margin-bottom: 10px; font-weight: bold">
+            
+            <?php if (isset($model->material)): ?>
+            <div class="col-md-3" ><i class="glyphicon glyphicon-wrench" aria-hidden="true" style="font-size: 14px"></i>
+                <?php switch($model->material): 
+                    case 0:?> Кирпичный дом<? break; ?>
+                   <?php case 1: ?> Монолитный дом<? break; ?>
+                   <?php case 2: ?> Монолитно-кирпичный дом<? break; ?>
+                   <?php case 3: ?> Панельный дом<? break; ?>
+                   <?php case 4: ?> Блочный дом<? break; ?>
+                   <?php case 5: ?> Деревянный дом<? break; ?>
+                <?php endswitch ?>
+            </div>
+            <?endif;?>
+            
+             <?php if( isset($model->san_uzel)): ?>
             <div class="col-md-3" >
             <?php if ($model->san_uzel == 0): ?>
                      <i class="glyphicon glyphicon-tint" aria-hidden="true" style="font-size: 14px"></i>  Совмещенный сан-узел 
@@ -219,11 +238,25 @@ $session->open();
                      <i class="glyphicon glyphicon-tint" aria-hidden="true" style="font-size: 14px"></i>  Раздельный сан-узел 
             <?endif;?>
             </div>
-            <?php if ($model->kitchen != NULL): ?>
+            <?endif;?>
+            
+            <?php if (isset($model->kitchen)): ?>
             <div class="col-md-3">
                 <i class="glyphicon glyphicon-cutlery" aria-hidden="true" style="font-size: 14px"></i> кухня <span class="kitch"> <?=$model->kitchen;?>м<sup>2</sup></span>
             </div>
             <?endif;?>
+            
+            <?php if( isset($model->balkon)): ?>
+            <div class="col-md-3">
+                
+                <?php switch($model->balkon): 
+                    case 0:?> Есть балкон<? break; ?>
+                   <?php case 1: ?>Есть лоджия<? break; ?>
+                   <?php case 2: ?> Балкона/лоджии нет<? break; ?>
+                <?php endswitch ?>
+            </div>
+            <?endif;?>
+            
         </div>
         <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
 

@@ -41,6 +41,7 @@ $script = <<< JS
         tip = $('#apartamentform-type :checked').val();
              if( tip == 0){
                 $(".tip").show();
+                $(".ipt").show();
         
                 $(".cost").css('display','inline-block');
                 $(".sale").show();
@@ -50,6 +51,8 @@ $script = <<< JS
         
              if( tip == 1){
                 $(".tip").hide();
+                $(".ipt").hide();
+                $('#apartamentform-ipoteka').prop('checked', false);
              
                 $("cost").css('display','inline-block');
                 $(".arenda").show();
@@ -59,6 +62,8 @@ $script = <<< JS
         
              if( tip == 2){
                 $(".tip").hide();
+                $(".ipt").hide();
+                $('#apartamentform-ipoteka').prop('checked', false);
         
                 $(".cost").css('display','inline-block');
                 $(".sutki").show();
@@ -75,8 +80,12 @@ $script = <<< JS
         
          if( realty == 0){
               $(".field-apartamentform-type_appart").show();
+              $("#balkon").show();
 
          } else{
+              $("#balkon").hide();
+              $('.btn.btn-default.form-check-label.bl.active').removeClass("active");
+        
               $(".field-apartamentform-type_appart").hide();
               $(".field-apartamentform-otdelka").hide();
               $(".field-apartamentform-term").hide();
@@ -253,6 +262,45 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
         
     </div>
+    <div class="row">
+        <div class="col-md-5">
+            <?= $form->field($model, 'material')->label('Тип дома')->dropDownList([
+             '0' => 'Кирпичный',
+             '1' => 'Монолитный',
+             '2' => 'Монолитно-кирпичный',
+             '3' => 'Панельный',
+             '4' => 'Блочный',
+             '5' => 'Деревянный'
+            ],[
+               'prompt' => 'Выберите тип дома...'
+              ]); 
+             ?>
+              <?/*= $form->field($model, 'material')->label('Тип дома')->radioList([
+             '0' => 'Кирпичный',
+             '1' => 'Монолитный',
+             '2' => 'Монолитно-кирпичный',
+             '3' => 'Панельный',
+             '4' => 'Блочный',
+             '5' => 'Деревянный',
+             '6' => 'Хрущевка',
+             '7' => 'Сталинка',
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label tp'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           */?>
+            
+        </div>
+    </div>
     
     <div class="row">
         <div class="col-md-5 year">
@@ -363,6 +411,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
            ?> 
         </div>
     </div>
+    
+
             
     <div class="row">
         <div class="col-md-4">
@@ -398,6 +448,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
            ?>
             
         </div>
+        
+
+        
         <div class="col-md-4">
             <?= $form->field($model, 'kitchen')->label('Площадь кухни в м<sup>2</sup>') ?>
             <?= $form->field($model, 'house') ->label('Дом')?>
@@ -413,6 +466,28 @@ $this->registerJs($script, yii\web\View::POS_READY);
         <div class="col-md-4">
             
             
+        </div>
+    </div>
+    <div class="row" id="balkon">
+        <div class="col-md-4">
+            <?= $form->field($model, 'balkon')->label('Лоджия/балкон')->radioList([
+              '0' => 'Балкон',
+              '1' => 'Лоджия',
+              '2' => 'Нет',  
+            ],
+           ['class'=>'btn-group form-check-input',
+             
+              "data-toggle"=>"buttons",  
+               
+             'itemOptions'=>
+                 ['labelOptions'=>[ 'class'=>'btn btn-default form-check-label bl'],
+                  
+                      
+                 ],
+              
+               ]
+           );
+           ?>
         </div>
     </div>
     
@@ -433,12 +508,17 @@ $this->registerJs($script, yii\web\View::POS_READY);
     </div>
     
     <div class="row">
+        <div style="font-weight: bold;border-bottom: 1px solid gainsboro;margin-bottom: 20px; margin-top: 20px;">Условия сделки</div>
         <div class="col-md-4">
             <span class="cost sale">Цена</span>
             <span class="cost arenda">Цена в месяц</span>
             <span class="cost sutki">Цена в сутки</span>
             
             <?= $form->field($model, 'price')->label(false)->textInput(['placeholder' => "руб."]) ?>
+        </div>
+        
+        <div class="col-md-4 ipt">
+            <?= $form->field($model, 'ipoteka')->label(false)->checkbox(['label' => "Возможна ипотека", 'style'=>'transform: scale(1.4);margin-top: 10px; font-size:16px']) ?>
         </div>
     </div>
     <br>
@@ -556,11 +636,13 @@ document.body.appendChild(script);
         background-image: url(images/k.jpg);
     }
     
-    .btn-default:active, .btn-default:focus, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    .btn-default:active, .btn-default:focus, .btn-default:focus-within, .btn-default:hover, .btn-default.active, .open > .dropdown-toggle.btn-default {
         color: #828282;
         background-color: #12afc569;
-        border-color: #adadad;
+        border-color: #12afc569;
+        
     }
+    
 
 </style>
 

@@ -34,6 +34,9 @@ use yii\behaviors\TimestampBehavior;
  * $property integer year
  * @property integer $san_uzel
  * @property integer $kitchen
+ * @property integer $material
+ * @property integer $balkon
+ * @property boolean $ipoteka
  */ 
 class Apartament extends \yii\db\ActiveRecord
 {
@@ -59,13 +62,13 @@ class Apartament extends \yii\db\ActiveRecord
     {
         return [
             [['user_id','rooms', 'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 
-              'city_id', 'term', 'floor_all', 'year', 'san_uzel', 'kitchen'], 'integer'],
+              'city_id', 'term', 'floor_all', 'year', 'san_uzel', 'kitchen', 'material', 'balkon'], 'integer'],
             
             [['lat', 'lng'], 'number'],
             [['type', 'street', 'house', 'telephone'], 'string', 'max' => 100],
             [['image_path'], 'string'],
             [['description'], 'string', 'max' => 1000],
-            [['active'], 'boolean']
+            [['active', 'ipoteka'], 'boolean']
         ];
     }
 
@@ -99,7 +102,10 @@ class Apartament extends \yii\db\ActiveRecord
             'city_id' => 'Город',
             'term' => 'Срок сдачи',
             'san_uzel' => 'Сан-узел',
-            'kitchen' => 'Площадь кухни'
+            'kitchen' => 'Площадь кухни',
+            'material' => 'Тип дома',
+            'balkon' => 'Балкон/лоджия',
+            'ipoteka' => 'Возможна ипотека'
            
          
         ];
