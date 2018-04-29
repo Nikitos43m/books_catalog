@@ -44,6 +44,10 @@ body {
     padding: 14px 24px;
 }
 
+.red{
+    color: red;
+}
+
 .view-title{
     border-radius: 40px;
     background: #d4d4d4b0;
@@ -58,10 +62,7 @@ body {
    display: inline-block; 
    padding: 10px;
 }
-.term{
-    color: gray;
-    font-size: 16px;
-}
+
 
 a.buy_but{
     letter-spacing: 1px;

@@ -58,6 +58,8 @@ $script = <<< JS
                 $(".arenda").show();
                 $(".sale").hide(); 
                 $(".sutki").hide(); 
+              //  $(".otdelka").hide(); 
+              //  $(".term").hide();
              }
         
              if( tip == 2){
@@ -91,8 +93,13 @@ $script = <<< JS
               $(".field-apartamentform-term").hide();
         
               $('.btn.btn-default.form-check-label.tp.active').removeClass("active");
+              $('input[name="ApartamentForm[type_appart]"]:checked').attr('checked', false);
+              
               $('.btn.btn-default.form-check-label.ot.active').removeClass("active");
+              $('input[name="ApartamentForm[otdelka]"]:checked').attr('checked', false);
+              
               $('.btn.btn-default.form-check-label.ss.active').removeClass("active");
+              $('input[name="ApartamentForm[term]"]:checked').attr('checked', false);
            }
         
         
@@ -103,10 +110,16 @@ $script = <<< JS
               $('#apartamentform-kitchen').val('');
             //  $('#apartamentform-rooms').append($("<option></option>", {value:0, text: 0}));
             //  $('#apartamentform-rooms').val(0);
+           // $('#apartamentform-rooms').append($("<input type='radio' name='ApartamentForm[rooms]' value='0' checked ></input>", {value:0, text: 0}));
+              $('#apartamentform-rooms :last').prop("checked");
+            
               $('.btn.btn-default.form-check-label.rms.active').removeClass("active");
-
+              $('.btn.btn-default.form-check-label.rms:first').addClass("active");
+              $('input[name="ApartamentForm[rooms]"]:last').prop("checked",true);
+              
           }else{
-             // $('#apartamentform-rooms :last').remove();
+              
+              $('.btn.btn-default.form-check-label.rms.active').removeClass("active");
               $(".field-apartamentform-rooms").show();
               $(".field-apartamentform-kitchen").show();
           }
@@ -138,6 +151,12 @@ $script = <<< JS
              $(".year").show();
              $(".field-apartamentform-otdelka").hide();
              $(".field-apartamentform-term").hide();
+             
+              $('.btn.btn-default.form-check-label.ot.active').removeClass("active");
+              $('input[name="ApartamentForm[otdelka]"]:checked').attr('checked', false);
+              
+              $('.btn.btn-default.form-check-label.ss.active').removeClass("active");
+              $('input[name="ApartamentForm[term]"]:checked').attr('checked', false);
          }
    });     
         
@@ -181,7 +200,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
               ]); 
        */ ?>
             
-        <?= $form->field($model, 'type')->label('Тип объявления')->radioList([
+        <?= $form->field($model, 'type')->label('Тип объявления <span class="red">*</span>')->radioList([
             '0' => 'Продать',
             '1' => 'Сдать',
             '2' => 'Посуточно'
@@ -213,7 +232,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
               ]); 
              */?>
             
-            <?= $form->field($model, 'realty_type')->label('Тип недвижимости')->radioList([
+            <?= $form->field($model, 'realty_type')->label('Тип недвижимости <span class="red">*</span>')->radioList([
             '0' => 'Квартира',
             '1' => 'Дом',
             '2' => 'Комната'
@@ -310,8 +329,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
         </div>
     </div>
     
-    <div class="row">
-        <div class="col-md-5">
+    <div class="row otdelka">
+        <div class="col-md-8">
             <?/*= $form->field($model, 'otdelka')->label('Отделка')->dropDownList([
             '0' => 'Строй вариант',
             '1' => 'Чистовая',
@@ -341,8 +360,8 @@ $this->registerJs($script, yii\web\View::POS_READY);
         </div>
     </div>
     
-    <div class="row">
-        <div class="col-md-5">
+    <div class="row term">
+        <div class="col-md-8">
             <?/*= $form->field($model, 'term')->label('Срок сдачи')->dropDownList([
             '0' => 'Сдан',
             '1' => '2018',
@@ -388,7 +407,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
             ],[
             'prompt' => 'Выберите количество комнат...'
     ]); */?>
-            <?= $form->field($model, 'rooms')->label('Количество комнат')->radioList([
+            <?= $form->field($model, 'rooms')->label('Количество комнат <span class="red">*</span>')->radioList([
                 '1' => '1',
                 '2' => '2',
                 '3' => '3',
@@ -411,7 +430,15 @@ $this->registerJs($script, yii\web\View::POS_READY);
            ?> 
         </div>
     </div>
-    
+
+    <div class="row">
+       <div class="col-md-4">
+           <?= $form->field($model, 'street')->label('Улица <span class="red">*</span>') ?>
+       </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'house') ->label('Дом <span class="red">*</span>')?>
+        </div>
+    </div>
 
             
     <div class="row">
@@ -419,9 +446,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
             <?//= $form->field($model, 'rooms')->label('Количество комнат') ?>
             
-            <?= $form->field($model, 'area')->label('Площадь в м<sup>2</sup>') ?>
-            <?= $form->field($model, 'street')->label('Улица') ?>
-            <?= $form->field($model, 'floor')->label('Этаж') ?>
+            <?= $form->field($model, 'area')->label('Площадь в м<sup>2</sup> <span class="red">*</span>') ?>
+
+            <?= $form->field($model, 'floor')->label('Этаж <span class="red">*</span>') ?>
             <?/*= $form->field($model, 'san_uzel')->label('Сан-узел')->dropDownList([
             '0' => 'Совмещенный',
             '1' => 'Раздельный',
@@ -453,7 +480,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
         
         <div class="col-md-4">
             <?= $form->field($model, 'kitchen')->label('Площадь кухни в м<sup>2</sup>') ?>
-            <?= $form->field($model, 'house') ->label('Дом')?>
+
             <?= $form->field($model, 'floor_all')->label('Этажей в доме') ?>
             
 
@@ -500,7 +527,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     <div class="row">
         <div class="col-md-4">
     
-            <?= $form->field($model, 'telephone')->label('Контактный телефон')->widget(\yii\widgets\MaskedInput::className(), [
+            <?= $form->field($model, 'telephone')->label('Контактный телефон <span class="red">*</span>')->widget(\yii\widgets\MaskedInput::className(), [
                 'mask' => '8(999)-999-9999',
             ]) ?>
             
@@ -510,9 +537,9 @@ $this->registerJs($script, yii\web\View::POS_READY);
     <div class="row">
         <div style="font-weight: bold;border-bottom: 1px solid gainsboro;margin-bottom: 20px; margin-top: 20px;">Условия сделки</div>
         <div class="col-md-4">
-            <span class="cost sale">Цена</span>
-            <span class="cost arenda">Цена в месяц</span>
-            <span class="cost sutki">Цена в сутки</span>
+            <span class="cost sale">Цена <span class="red">*</span></span>
+            <span class="cost arenda">Цена в месяц <span class="red">*</span></span>
+            <span class="cost sutki">Цена в сутки <span class="red">*</span></span>
             
             <?= $form->field($model, 'price')->label(false)->textInput(['placeholder' => "руб."]) ?>
         </div>

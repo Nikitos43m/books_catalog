@@ -45,9 +45,9 @@ class ApartamentForm extends Model
     public function rules()
     {
         return [
-            [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type', 'san_uzel'], 'required', 'message' => 'Заполните поле'],
+            [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type'], 'required', 'message' => 'Заполните поле'],
             [ ['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
-            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'term', 'floor_all', 'year', 'kitchen', 'material', 'balkon'], 'number'],
+            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'san_uzel','term', 'floor_all', 'year', 'kitchen', 'material', 'balkon'], 'number'],
             [ ['lat', 'lng'], 'double'],
             [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],

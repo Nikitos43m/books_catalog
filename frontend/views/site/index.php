@@ -478,7 +478,7 @@ $session->open();
                 // 'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
                 'content'=>function($model){
 
-                    return $model->rooms."-комн.";
+                    return "<div style='font-weight: bold'>".$model->rooms."-комн.</div>";
                 }
             ],
 
