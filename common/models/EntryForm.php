@@ -17,7 +17,7 @@ class EntryForm extends Model
     public function rules()
     {
         return [
-            [['name', 'email'], 'required'],
+            [['name', 'email'], 'required', 'message' => 'Заполните поле'],
             ['email', 'email'],
         ];
     }

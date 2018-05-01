@@ -85,11 +85,23 @@ $session->open();
     #apartamentsearch-rooms label{
         margin-left: 15px;
     }
+
+    #w1{
+        box-shadow: 0px 0px 6px 5px rgba(0, 0, 0, 0.14);
+    }
     
     .wrap {
       min-height: unset;
     }
+    
+    tbody {
+        background: url(../web/images/34.jpg);
+        background-size: cover;
+    }
 
+    tr{
+        box-shadow: 0px 0px 8px rgba(62, 62, 62, 0.14);
+    }
 </style>
 
 <div class="site-index">
@@ -389,7 +401,7 @@ $session->open();
 </div>
 
 
-<div class="container">
+<div class="container" style="width: 100%">
     <?= GridView::widget([
         'dataProvider' => $dataProviderTable,
        // 'filterModel' => $searchModel,
@@ -646,7 +658,7 @@ $session->open();
         </div>
         
         <div class="col-sm-6 col-md-5 col-xs-12" >
-            <div class="howto-label"><div>4</div></div><h3> Загрузка фотографий Вашего объекта</h3>
+            <div class="howto-label"><div>4</div></div><h3> Загрузите фотографии Вашего объекта</h3>
             <p>Добавьте фотографии Вашего объекта недвижимости для привлечения большего числа посетителей</p>
         </div>
 
@@ -663,19 +675,19 @@ $session->open();
                     <div class="ico-xs col-md-4 col-sm-6 col-xs-12">
                         <div class="img-ico one"></div>
                         <h3>Поиск недвижимости</h3>
-                        <p class="sales">На нашем ресурсе реализован максимально удобный поиск недвижимости.</p>
+                        <p class="sales">На нашем ресурсе реализован максимально удобный поиск недвижимости</p>
                     </div>
 
                     <div class="ico-xs col-md-4 col-sm-4 col-xs-12">
                         <div class="img-ico two"></div>
                         <h3>Размещение объявлений</h3>
-                        <p class="sales">Простой и удобный интерфейс для публикации объявлений.</p>
+                        <p class="sales">Простой и удобный интерфейс для публикации объявлений</p>
                     </div>
 
                     <div class="ico-xs col-md-4 col-sm-4 col-xs-12">
                         <div class="img-ico three"></div>
-                        <h3>Сотрудничетво с агентствами</h3>
-                        <p class="sales">Предоставление услуг для агентов.</p>
+                        <h3>Сотрудничетво</h3>
+                        <p class="sales">Предоставление услуг для агентов и застройщиков</p>
                     </div>
 
 
@@ -696,7 +708,7 @@ $session->open();
 <!-- HTML-код модального окна -->
 <div id="myModal" class="modal fade">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content cart">
       <!-- Заголовок модального окна -->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

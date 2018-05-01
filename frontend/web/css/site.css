@@ -71,12 +71,12 @@ a.buy_but{
 }
 .buy_but{
     width: 400px;
-    background-color: rgba(0, 0, 0, 0.69);
+    background-color: rgb(10, 150, 140);
     text-decoration: none;
     color: white;
     border-color: #bccfbe;
     display: inline-block;
-    padding: 12px 76px;
+    padding: 8px 76px;
     margin-bottom: 16px;
     font-size: 15px;
     font-weight: normal;
@@ -343,9 +343,7 @@ li>a>i{
     padding-bottom: 0;
 }
 
-.panel{
-    box-shadow: -1px 1px 2px 6px rgba(31, 27, 27, 0.08);
-}
+
 
 .in_but{
     background-color:  rgba(0, 0, 0, 0.69);
@@ -520,7 +518,7 @@ footer li {
     width: 60px;
     float: left;
     margin: 10px 20px;
-    background-color: rgba(39, 135, 136, 0.49019607843137253);
+    background-color: rgba(243, 223, 39, 0.65);
     color: #fff;
 }
 
@@ -548,6 +546,11 @@ footer li {
     background-size: cover;
     height: 400px;
     margin-top: 20px;
+}
+
+.modal-content.cart{
+    background: url(../images/c1.jpg);
+    background-size: cover;
 }
 
 .btn-toolbar.kv-grid-toolbar.toolbar-container.pull-right{
@@ -645,7 +648,7 @@ footer li {
     background: rgb(241, 241, 241);
     border-radius: 50px;
     text-align: center;
-    color: #f58054;
+    color: rgb(47, 119, 114);
     font-size: 15px;
 }
 
@@ -668,7 +671,7 @@ footer li {
 
 .area{
     padding: 14px 12px;
-    background: rgba(241, 241, 241, 0.6196078431372549);
+    background: rgba(255, 240, 59, 0.2);
     border-radius: 50px;
     text-align: center;
     color: #3f3d3d;
@@ -721,10 +724,16 @@ footer li {
 
 .city{
     font-size: 15px;
+    border-bottom: 1px dashed;
 }
 
 .city:focus{
     outline: none;
+    border-bottom: 1px dashed;
+}
+
+.city:hover{
+    border-bottom: 1px dashed;
 }
 
 #map-canvas{

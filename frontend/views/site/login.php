@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use common\widgets\CityWidget;
 
 $this->title = 'Вход';
 $this->params['breadcrumbs'][] = $this->title;
@@ -45,7 +46,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <style>
     .site-login{
-        background-image: url("images/k.jpg");
+
         padding-bottom: 150px;
     }
+
+    .wrap{
+        background: url(../web/images/54.jpg);
+    }
+
+    .col-lg-5{
+        background: #ffffff9c;
+        border-radius: 30px;
+        padding: 20px 50px;
+    }
+
+    .breadcrumb{
+        background-color: rgba(255, 255, 255, 0.5882352941176471);
+    }
 </style>
+<?= CityWidget::widget([]) ?>

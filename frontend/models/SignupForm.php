@@ -22,17 +22,17 @@ class SignupForm extends Model
     {
         return [
             ['username', 'trim'],
-            ['username', 'required'],
+            ['username', 'required', 'message' => 'Обязательное поле'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Пользователь с таким именем уже есть'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required', 'message' => 'Введите email'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Пользователь с таким email уже есть'],
 
-            ['password', 'required'],
+            ['password', 'required', 'message' => 'Установите пароль'],
             ['password', 'string', 'min' => 6],
             [['my_appart'], 'string']
 

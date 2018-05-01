@@ -6,7 +6,7 @@ use yii\helpers\Html;
 ?>
 <div id="myModal" class="modal fade">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content cart">
       <!-- Заголовок модального окна -->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

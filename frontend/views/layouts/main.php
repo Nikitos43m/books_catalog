@@ -50,7 +50,8 @@ AppAsset::register($this);
     ];
 
     //$menuItemsLeft[] =Html::a('<img src="images/logo2.png" width="140px" style="float: left; margin-top: 9px;">', [Yii::$app->homeUrl]);
-    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'].' <i class="glyphicon glyphicon-globe" aria-hidden="true" style="top: 4px;"></i>', ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
+    $menuItemsLeft[] = '<li  class="font-menu">'.Html::a($session['my_city_name'].' <i class="
+glyphicon glyphicon-map-marker" aria-hidden="true" style="top: 2px;"></i>', ['/site/index', 'src' => '', '#' => 'myModal'], ['class' => 'btn btn-link city',  'data-toggle'=>'modal']).'</li>
          <li>';
     
     if (Yii::$app->user->isGuest) {
