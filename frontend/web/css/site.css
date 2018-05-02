@@ -10,9 +10,10 @@ body {
 .container{
     width:95%;
 }
-
-
-
+.desc_search{
+    text-align: center;
+    color: #757474;
+}
 .form-control:focus {
     border-color: #949494;
 }
@@ -906,10 +907,24 @@ footer li {
 
 @media (max-width: 400px)  {
     .contact-modal{
-        width: 80%;
+        width: 100%;
+        /* height: 40px; */
         padding: unset;
+        padding: 5px;
+    }
+    
+    .main-title{
+        font-size: 26px;
     }
 
+    .complex{
+        height: 300px;
+    }
+    
+    .main-complex{
+        margin-top: 40px;
+    }
+    
     .contact-button{
         display: none;
     }

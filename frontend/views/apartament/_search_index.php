@@ -178,7 +178,7 @@ $this->registerJs($js);
 
 
 <div class="apartament-search">
-
+    <div class="desc_search">Под картой представлены объявления в виде таблицы</div>
     <?php $form = ActiveForm::begin([
         'options' => [
             'class' => 'search-form'
