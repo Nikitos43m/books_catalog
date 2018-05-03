@@ -74,7 +74,7 @@ $session->open();
         ],
     ]) */?>
 
-    <? $path = $model->image_path;
+    <?php $path = $model->image_path;
        $images = scandir($path); // сканируем папку
        $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
 
@@ -84,7 +84,11 @@ $session->open();
     ?>
       
     <div style="text-align: center; margin-bottom: 40px; padding: 12px; background: rgba(242, 242, 242, 0.3215686274509804)">
-        <?=$fimg ?>
+        <?php if (!empty($images)): ?>
+          <?=$fimg ?>
+         <?else: ?>
+         <h3>Нет фотографий</h3>
+        <? endif;?> 
     </div>
     
     <?php if ($model->type == 0): ?>
@@ -258,8 +262,11 @@ $session->open();
             <?endif;?>
             
         </div>
-        <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
-
+        <?php if( !empty($model->description)): ?>
+            <span style="font-size: 14px"> <? echo nl2br($model->description);?> </span>
+        <? else: ?>
+             <span style="color: dimgrey; font-size: 13px; margin-left: 15px;"> Описание отсутствует </span>
+        <?endif;?>
     </div>
     <style>
    @media(max-width:768px) {
