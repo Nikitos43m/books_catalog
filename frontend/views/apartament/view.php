@@ -92,18 +92,18 @@ $session->open();
          <h3>Нет фотографий</h3>
         <? endif;?> 
     </div>
-    
+    <div class="tip-acc"> тип аккаунта: <?php if ($type_account == 1): ?>
+        <b style="color: black">Собственник</b>
+        <? else: ?>
+        <b style="color: black">Агент</b>
+        <? endif;?>
+    </div>
     <?php if ($model->type == 0): ?>
         <?php if ($model->type_appart == 0): ?>
-        <div class="row">
+        <div class="row" style="clear: both">
             <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
                 <span class="view-title">Вторичка</span> <span class="term"> <?php if (isset($model->year)): ?> (год постройки: <?=$model->year;?>)<? endif;?></span>
-                <div class="tip-acc"> тип аккаунта: <?php if ($type_account == 1): ?>
-                                        <b style="color: black">Собственник</b>
-                                    <? else: ?>
-                                        <b style="color: black">Агент</b>
-                                    <? endif;?>
-                </div>
+
             </div>
         </div>
         <? elseif ($model->type_appart == 1): ?>

@@ -51,9 +51,9 @@ body {
 
 .view-title{
     border-radius: 40px;
-    background: #d4d4d4b0;
+    background: rgba(212, 212, 212, 0.3215686274509804);
     font-size: 22px;
-    padding: 1px 20px;
+    padding: 5px 26px;
     color: #3bafa5;
     margin-right: 10px;
 }
@@ -896,8 +896,9 @@ footer li {
 }
 
 .tip-acc{
-    margin-right: 50px;
-    float: right;
+    font-size: 16px;
+    margin-bottom: 20px;
+    float: left;
 }
 
 @media (max-width: 600px){
