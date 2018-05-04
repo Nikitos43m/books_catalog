@@ -81,7 +81,11 @@ glyphicon glyphicon-map-marker" aria-hidden="true" style="top: 2px;"></i>', ['/s
     echo Nav::widget([
         'items' => [
         [
-            'label' => '<i class="glyphicon glyphicon-align-justify gm" aria-hidden="true"></i>',
+            'label' => '<div class="menu">
+                            <span class="menu-global menu-top"></span>
+                            <span class="menu-global menu-middle"></span>
+                            <span class="menu-global menu-bottom"></span>
+                        </div>',
             'items' => [
                 ['label' => 'Наши услуги', 'url' => Yii::$app->homeUrl.'#service', 'linkOptions' => ['id'=>'m1']],
                 ['label' => 'Жилые комплексы', 'url' => ['/site/complex']],

@@ -853,6 +853,50 @@ footer li {
    
 }
 
+
+.menu {
+  cursor: pointer;
+  margin: 0 auto;
+  padding-left: 1.25em;
+  position: relative;
+  width: 35px;
+  height: 30px;
+}
+.menu-global {
+  backface-visibility: hidden;
+  position: absolute;
+  left: 0;
+  border-top: 2px solid white;
+  width: 70%;
+  transition: 0.25s;
+}
+.menu-top {
+  top: 5px;
+}
+.menu-middle {
+  top: 12px;
+}
+.menu-bottom {
+  top: 19px;
+}
+.menu-top-click {
+  backface-visibility: hidden;
+  top: 12px;
+  transform: rotate(50deg);
+  transition: 0.25s 0.5s;
+  width:15px;
+}
+.menu-middle-click {
+  opacity: 0;
+}
+.menu-bottom-click {
+  backface-visibility: hidden;
+  top: 12px;
+  transform: rotate(-410deg);
+  transition: 0.25s 0.5s;
+  width: 15px;
+}
+
 @media (max-width: 600px){
    #place, #save{
       margin-left: 0;
