@@ -744,7 +744,7 @@ footer li {
 .contact-modal{
     margin-top: 20px;
     padding: 6px 60px;
-    background: rgb(49, 143, 136);
+    background: rgb(49, 181, 171);
     font-size: 18px;
     border: 2px solid;
     border-radius: 25px;
@@ -769,7 +769,7 @@ footer li {
 .complex-but{
     margin-top: 70px;
     padding: 6px 140px;
-    background: rgb(49, 143, 136);
+    background: rgb(49, 181, 171);
     font-size: 22px;
     border: none;
     border-radius: 25px;
@@ -864,7 +864,7 @@ footer li {
   backface-visibility: hidden;
   position: absolute;
   left: 0;
-  border-top: 2px solid white;
+  border-top:2px solid rgb(218, 214, 214);
   width: 70%;
   transition: 0.25s;
 }
