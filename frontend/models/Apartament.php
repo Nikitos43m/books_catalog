@@ -148,5 +148,17 @@ class Apartament extends \yii\db\ActiveRecord
         $username = $user->username;
         return $username;
     }
+    
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTypeAccount($id)
+    {
+        //получить User, затем у этого User получить тип аккаунта
+        $user = User::findById($id);
+        $type_account = $user->who;
+        return $type_account;
+    }
 
 }

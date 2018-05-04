@@ -224,7 +224,7 @@ $this->registerJs($js);
             ]); ?>
      </div>    
      
-    <div class="col-lg-2 col-md-2 col-sm-4 room">
+    <div class="col-lg-2 col-md-2 col-sm-4 room text-center" >
     <?= $form->field($model, 'rooms')->label(false)->dropDownList([
             1 => '1',
             2 => '2',

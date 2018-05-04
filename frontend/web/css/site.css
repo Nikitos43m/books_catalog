@@ -263,7 +263,7 @@ a.desc:after {
 }
 
 .main_but{
-    background-color:  rgba(0, 0, 0, 0.69);
+    background-color:  rgba(31, 173, 241, 0.69);
     border-color: #f2f2f2;
     color: white;
     display: inline-block;
@@ -297,7 +297,7 @@ a.desc:after {
 .main_but:hover{
     text-decoration: none;
     color: white;
-    background-color: #747171;
+    background-color: rgba(93, 201, 253, 0.69);
 }
 
 li>a>.caret{
@@ -347,7 +347,7 @@ li>a>i{
 
 
 .in_but{
-    background-color:  rgba(0, 0, 0, 0.69);
+    background-color: rgb(10, 150, 140);
     border-color: #f2f2f2;
     color: white;
     display: inline-block;
@@ -425,11 +425,7 @@ a{
 }
 
 .info-wind{
-    max-width:350px; 
-    border-bottom: 1px solid rgb(222, 222, 222);
-    border-top: 1px solid rgb(222, 222, 222);
-    padding-bottom: 10px;
-    padding-top: 10px;
+
 }
 
 .gm-style img {
@@ -797,13 +793,24 @@ footer li {
 }
 
 .open_but{
-    background: rgba(49, 143, 136, 0.6705882352941176);
+    background: rgba(31, 173, 241, 0.69);
     border: none;
     padding: 6px 13px;
     border-radius: 20px;
     color: white;
 
 }
+.open_but:hover{
+    text-decoration: none;
+    background: rgb(164, 228, 247);
+    color: white;
+    border: none;
+}
+
+.open_but:focus{
+    text-decoration: none;
+}
+
 
 .table_first{
     color: rgb(116, 118, 118);
@@ -818,16 +825,7 @@ footer li {
     font-weight: bold;
 }
 
-.open_but:hover{
-    text-decoration: none;
-    background: rgba(76, 195, 171, 0.6705882352941176);
-    color: white;
-    border: none;
-}
 
-.open_but:focus{
-    text-decoration: none;
-}
 
 .table-hover > tbody > tr:hover {
     background-color: rgba(245, 245, 245, 0.38823529411764707);
@@ -950,6 +948,7 @@ footer li {
 
 
 @media (max-width: 400px)  {
+    
     .contact-modal{
         width: 100%;
         /* height: 40px; */
@@ -1044,7 +1043,7 @@ footer li {
 
 @media (min-width: 1200px) {
     .i-am-centered{
-        margin-left: 40%;
+        margin-left: 35%;
     }
     
 @media (min-width: 1400px){

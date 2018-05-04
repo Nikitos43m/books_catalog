@@ -96,6 +96,9 @@ class ApartamentController extends Controller
         $session->open();
         //Cессия для ограничения счетчика
        
+        //$type_account = getTypeAccount($model->user_id);
+       
+        
         if(!isset($session['count.'.$model->id])){
             
             if(Yii::$app->user->id!= $model->getAuthorId()){
@@ -127,7 +130,8 @@ class ApartamentController extends Controller
         return $this->render('view', [
             'model' => $model,
             'model2' => $model2,
-            'arr_ads' => $arr_int
+            'arr_ads' => $arr_int,
+          //  'type_account' => $type_account
             
         ]);}
     }
@@ -151,8 +155,12 @@ class ApartamentController extends Controller
             $model->save();
             $session['count.'.$model->id] = 'set';
         }
+        
+       // $type_account = getTypeAccount($model->user_id);
+        
         return $this->render('view', [
-            'model' => $model,            
+            'model' => $model,
+          //  'type_account' => $type_account            
         ]);
     }
 

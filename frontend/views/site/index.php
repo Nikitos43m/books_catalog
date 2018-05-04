@@ -119,7 +119,7 @@ $session->open();
     <div style="text-align: center">
        <!-- <a class="buy_but" href="#">Разместить объявление</a>-->
         <?php if ((!Yii::$app->user->isGuest) && ($count == 0)): ?>
-                <?= Html::a('Разместить объявление <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>', ['apartament_user'], ['class' => 'buy_but']); ?>
+                <?= Html::a('Разместить объявление', ['apartament_user'], ['class' => 'buy_but']); ?>
 
         <?php endif; ?>
     </div>
@@ -129,9 +129,14 @@ $session->open();
         <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
-        <div  class="open-filter clear" style="margin: 0 auto;width: 220px; font-size: 15px; cursor: pointer">
+        <div  class="open-filter clear" style="margin: 0 auto;width: 210px; font-size: 15px; cursor: pointer">
 
-            <b> Поиск по фильтрам &nbsp </b> <i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 16px; color:rgba(60, 119, 142, 0.8);"></i>
+            <b> Поиск по фильтрам &nbsp </b><div class="menu" style="float:right">
+                            <span class="menu-global menu-top" style="border-top: 2px solid rgb(21, 121, 114);"></span>
+                            <span class="menu-global menu-middle" style="border-top: 2px solid rgb(21, 121, 114);"></span>
+                            <span class="menu-global menu-bottom" style="border-top: 2px solid rgb(21, 121, 114);"></span>
+                        </div> 
+            <!--<i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 16px; color:rgba(60, 119, 142, 0.8);"></i> -->
         </div>
     </div>
     <div class="filter">
@@ -257,13 +262,11 @@ $session->open();
         }
         
         if(Yii::$app->user->isGuest){
-            $button_info =  '<div class="col-md-12" style="margin-top:8px">'.Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/viewguest", "id"=>$apart->id],  
-                                    ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
-                                   . '</div>';
+            $button_info = Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/viewguest", "id"=>$apart->id],  
+                                    ['class' => 'open_but', 'style' => 'float:right']);
         }else{
-            $button_info = '<div class="col-md-12" style="margin-top:8px">'.Html::a("Открыть <i class='glyphicon glyphicon-share' aria-hidden='true'></i>", ["/apartament/view", "id"=>$apart->id],  
-                                    ['style' => 'float:right; font-size: 14px; margin-top:8px; font-weight:bold;']).''
-                                   . '</div>';
+            $button_info = Html::a("Открыть", ["/apartament/view", "id"=>$apart->id],  
+                                    ['class' => 'open_but', 'style' => 'float:right']);
         }
         
         

@@ -13,6 +13,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $my_appart;
+    public $who;
    
 
     /**
@@ -26,6 +27,8 @@ class SignupForm extends Model
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Пользователь с таким именем уже есть'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
+            ['who', 'required', 'message'=>'Выберите тип аккаунта'],
+            
             ['email', 'trim'],
             ['email', 'required', 'message' => 'Введите email'],
             ['email', 'email'],
@@ -53,6 +56,7 @@ class SignupForm extends Model
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
+        $user->who = $this->who;
         $user->my_appart = '00';
         $user->setPassword($this->password);
         $user->generateAuthKey();

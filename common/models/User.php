@@ -23,6 +23,7 @@ use yii\base\BaseObject;
  * @property integer $updated_at
  * @property string $password write-only password
  * @property string $my_appart
+ * @property integer $who
  */
 class User extends ActiveRecord implements IdentityInterface
 {
