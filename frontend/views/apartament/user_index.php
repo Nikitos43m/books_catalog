@@ -8,6 +8,8 @@ use common\widgets\CityWidget;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ApartamentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $count integer */
+/* @var $type_account integer */
 
 $this->title = 'Ваши объявления';
 $this->params['breadcrumbs'][] = $this->title;
@@ -18,7 +20,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?//php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
+       
+    <?php if ($type_account == 1): ?>   
+        <?php if ($count < 2): ?> 
+                 <?= Html::a('Разместить объявление', ['site/apartament_user'], ['class' => 'in_but obe']); ?>
+        <?php endif; ?>
+        
+    <? else: ?>
         <?= Html::a('Разместить объявление', ['site/apartament_user'], ['class' => 'in_but obe']); ?>
+    <?php endif; ?>
+        
+        <?//= Html::a('Разместить объявление', ['site/apartament_user'], ['class' => 'in_but obe']); ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

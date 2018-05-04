@@ -895,6 +895,11 @@ footer li {
   width: 15px;
 }
 
+.tip-acc{
+    margin-right: 50px;
+    float: right;
+}
+
 @media (max-width: 600px){
    #place, #save{
       margin-left: 0;

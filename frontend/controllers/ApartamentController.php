@@ -47,6 +47,13 @@ class ApartamentController extends Controller
         $user_id = Yii::$app->user->getId();
         $user = Yii::$app->user->identity->username;
         
+        $model = \common\models\User::findById($user_id);
+        $counts = $model->getApartament()->count();
+        $count = (int)$counts;
+                
+        $type_account = $model->getTypeAccount();
+       // var_dump($count); die();
+        
        // if ($user == 9){
         if ($user == "admin"){
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $session['my_city']);
@@ -70,6 +77,8 @@ class ApartamentController extends Controller
             return $this->render('user_index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
+                'type_account' => $type_account,
+                'count' => $count
             ]);
         }
         
@@ -96,7 +105,7 @@ class ApartamentController extends Controller
         $session->open();
         //Cессия для ограничения счетчика
        
-        //$type_account = getTypeAccount($model->user_id);
+        $type_account = $model->getTypeAccount($model->user_id);
        
         
         if(!isset($session['count.'.$model->id])){
@@ -156,11 +165,11 @@ class ApartamentController extends Controller
             $session['count.'.$model->id] = 'set';
         }
         
-       // $type_account = getTypeAccount($model->user_id);
+        $type_account = $model->getTypeAccount($model->user_id);
         
         return $this->render('view', [
             'model' => $model,
-          //  'type_account' => $type_account            
+            'type_account' => $type_account            
         ]);
     }
 

@@ -141,7 +141,9 @@ class SiteController extends Controller
                 $model = \common\models\User::findById($user_id);
                 $counts = $model->getApartament()->count();
                 $count = (int)$counts;
-                //var_dump($count); die();
+                
+                $type_account = $model->getTypeAccount();
+                //var_dump($type_account); die();
 
             }
 
@@ -155,6 +157,7 @@ class SiteController extends Controller
             'dataProvider' => $dataProvider,
             'dataProviderTable' => $dataProviderTable,
             'count' => $count,
+            'type_account' => $type_account,
             //'region' => $region,
             //'city' => $city
             'location_arr' => $geo_city,

@@ -10,6 +10,8 @@ use common\widgets\CityWidget;
 /* @var $model2 app\models\User */
 /* @var $form ActiveForm */
 /* @var $arr_ads array */
+/* @var $type_account integer */
+
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Объявление', 'url' => ['index']];
@@ -96,7 +98,12 @@ $session->open();
         <div class="row">
             <div class="col-md-12" style="margin-bottom: 20px; font-size: 18px; color: gray">
                 <span class="view-title">Вторичка</span> <span class="term"> <?php if (isset($model->year)): ?> (год постройки: <?=$model->year;?>)<? endif;?></span>
-                 
+                <div class="tip-acc"> тип аккаунта: <?php if ($type_account == 1): ?>
+                                        <b style="color: black">Собственник</b>
+                                    <? else: ?>
+                                        <b style="color: black">Агент</b>
+                                    <? endif;?>
+                </div>
             </div>
         </div>
         <? elseif ($model->type_appart == 1): ?>
@@ -123,7 +130,7 @@ $session->open();
             <?php case 1: ?> Сдается <? break; ?>
             <?php case 2: ?> Сдается посуточно <? break; ?>
          <?php endswitch ?>
-            
+
            <?php switch($model->realty_type): 
              case 0:?> квартира <? break; ?>
             <?php case 1: ?> дом <? break; ?>

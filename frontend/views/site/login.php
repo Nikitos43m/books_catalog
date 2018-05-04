@@ -63,5 +63,12 @@ $this->params['breadcrumbs'][] = $this->title;
     .breadcrumb{
         background-color: rgba(255, 255, 255, 0.5882352941176471);
     }
+    
+    
+    @media (min-width: 1200px){
+        .i-am-centered {
+           margin-left: 37%;
+        }
+    }
 </style>
 <?= CityWidget::widget([]) ?>

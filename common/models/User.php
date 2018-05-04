@@ -164,6 +164,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function getMyappart(){
         return $this->my_appart;
     }
+    
+    /**
+     * 
+     * @return integer
+     */
+    public function getTypeAccount(){
+        return $this->who;
+    }
 
 
         /**
