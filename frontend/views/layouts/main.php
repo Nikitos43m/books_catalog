@@ -35,7 +35,7 @@ AppAsset::register($this);
 
     <?php
     NavBar::begin([
-        'brandLabel' => '<img src="images/logo2.png" width="140px">',
+        'brandLabel' => '<img src="images/logo2.png" width="120px" style="margin-top: 2px">',
         'brandUrl' => Yii::$app->homeUrl,
         'brandOptions' => ['class' => 'brand', 'style'=>''],//options of the brand
         'options' => [
