@@ -72,7 +72,7 @@ a.buy_but{
 }
 .buy_but{
     width: 400px;
-    background-color: rgb(10, 150, 140);
+    background-color: rgb(49, 181, 171);
     text-decoration: none;
     color: white;
     border-color: #bccfbe;
@@ -473,8 +473,23 @@ a:hover{
 
 .left-view{ 
     text-align: center; 
-    font-size: 18px
+    font-size: 18px;
+    clear: both;
 }
+
+.open-filter, .open-filter.clear{
+    background: rgba(206, 206, 206, 0.25098039215686274);
+    margin: 0 auto;
+    width: 300px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 30px;
+    padding: 10px 40px;
+    color: rgb(74, 157, 218);
+    font-size: 16px;
+}
+
+
 
 footer li {
     list-style-type: none;
@@ -864,8 +879,9 @@ footer li {
   backface-visibility: hidden;
   position: absolute;
   left: 0;
-  border-top:2px solid rgb(218, 214, 214);
-  width: 70%;
+  border-top:1px solid rgb(218, 214, 214);
+  width: 65%;
+    height: 30px;
   transition: 0.25s;
 }
 .menu-top {

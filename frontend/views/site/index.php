@@ -80,6 +80,8 @@ $session->open();
     .site-index{
         background-image: url("images/k.jpg");
         padding-bottom: 60px;
+        margin-left: -15px;
+        margin-right: -15px;
     }
     
     #apartamentsearch-rooms label{
@@ -129,13 +131,14 @@ $session->open();
         <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
     </div> -->
     <div style="text-align: center; margin-bottom: 10px;">
-        <div  class="open-filter clear" style="margin: 0 auto;width: 210px; font-size: 15px; cursor: pointer">
+        <div  class="open-filter clear">
 
-            <b> Поиск по фильтрам &nbsp </b><div class="menu" style="float:right">
-                            <span class="menu-global menu-top" style="border-top: 2px solid rgb(21, 121, 114);"></span>
-                            <span class="menu-global menu-middle" style="border-top: 2px solid rgb(21, 121, 114);"></span>
-                            <span class="menu-global menu-bottom" style="border-top: 2px solid rgb(21, 121, 114);"></span>
-                        </div> 
+            <span> Поиск по фильтрам &nbsp </span>
+                        <div class="menu" style="float:right">
+                            <span class="menu-global menu-top" style="top:6px; border-top: 1px solid rgb(74, 157, 218);"></span>
+                            <span class="menu-global menu-middle" style="border-top: 1px solid rgb(74, 157, 218);"></span>
+                            <span class="menu-global menu-bottom" style="top:18px; border-top: 1px solid rgb(74, 157, 218);"></span>
+                        </div>
             <!--<i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 16px; color:rgba(60, 119, 142, 0.8);"></i> -->
         </div>
     </div>

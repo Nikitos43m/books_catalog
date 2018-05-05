@@ -160,7 +160,7 @@ $session->open();
             <div class="col-sm-2">
                 <?php $created_date = date('d-m-Y', $model->created_at); ?>
                 <div class="view-date"><i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i> Размещено: <?=$created_date ?> <br>
-                 Просмотров: <?=$model->count_views ?> </div>
+                    <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i> <?=$model->count_views ?> </div>
             </div>
             
             
