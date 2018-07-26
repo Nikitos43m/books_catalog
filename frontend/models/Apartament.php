@@ -16,7 +16,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $house
  * @property integer $rooms
  * @property integer $floor
- * @property integer $area
+ * @property double $area
  * @property integer $price
  * @property string $telephone
  * @property double $lat
@@ -61,9 +61,9 @@ class Apartament extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id','rooms', 'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 
+            [['user_id','rooms', 'floor',  'price', 'realty_type', 'count_views', 'type_appart', 'otdelka',
               'city_id', 'term', 'floor_all', 'year', 'san_uzel', 'kitchen', 'material', 'balkon'], 'integer'],
-            
+            [['area'], 'double'],
             [['lat', 'lng'], 'number'],
             [['type', 'street', 'house', 'telephone'], 'string', 'max' => 100],
             [['image_path'], 'string'],

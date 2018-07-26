@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
     }
 
     .wrap{
-        background: url(../web/images/54.jpg);
+        background: url(../images/54.jpg);
     }
 
     .reg{
@@ -139,6 +139,12 @@ $this->params['breadcrumbs'][] = $this->title;
            text-align: center;
            width: 100%;
         }
+    }
+    
+    @media (min-width: 1500px){
+        .wrap{
+            background-size: cover;
+        } 
     }
 </style>
 

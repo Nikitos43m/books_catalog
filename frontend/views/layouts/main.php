@@ -18,6 +18,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <link rel="shortcut icon" href="yr.ico" />
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -25,6 +26,36 @@ AppAsset::register($this);
     <?php $this->head() ?>
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <meta name="yandex-verification" content="8bab4085b0d277e3" />
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter49522690 = new Ya.Metrika2({
+                    id:49522690,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks2");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/49522690" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -35,7 +66,7 @@ AppAsset::register($this);
 
     <?php
     NavBar::begin([
-        'brandLabel' => '<img src="images/logo2.png" width="120px" style="margin-top: 2px">',
+        'brandLabel' => '<img src="images/logo2.png" width="120px" style="margin-top: 2px; margin-left: 10px">',
         'brandUrl' => Yii::$app->homeUrl,
         'brandOptions' => ['class' => 'brand', 'style'=>''],//options of the brand
         'options' => [
@@ -57,23 +88,27 @@ glyphicon glyphicon-map-marker" aria-hidden="true" style="top: 2px;"></i>', ['/s
     if (Yii::$app->user->isGuest) {
         
         //$menuItems[]='<a href="#myModal" class="btn btn-primary" data-toggle="modal">'.$this->params['my_city'].'</a>';
-        
+        $menuItems[] = '<li class="font-menu"><div class="but_outer">'.Html::a('+ Подать объявление', ['/site/login'], ['class' => 'buy_but inhead']).'</div></li>
+               <li>';
         
        // $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
-        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-user" aria-hidden="true"></i> Регистрация', ['/site/signup'], ['class' => 'btn btn-link']).'</li>
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-user" aria-hidden="true"></i> Регистрация', ['/site/signup'], ['class' => 'btn btn-link reg_but', 'style'=>'padding: 4px 18px;']).'</li>
                <li>';
         //$menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
-        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-log-in" aria-hidden="true"></i> Вход', ['/site/login'], ['class' => 'btn btn-link']).'</li>
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-log-in" aria-hidden="true"></i> Вход', ['/site/login'], ['class' => 'btn btn-link reg_but', 'style'=> 'padding: 4px 16px;']).'</li>
                <li>';
     } else {
-        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: rgb(10, 150, 140)"></i> Избранное', ['/site/myappart'], ['class' => 'btn btn-link']).'</li>';
+        $menuItems[] = '<li class="font-menu"><div class="but_outer">'.Html::a('+ Подать объявление', ['apartament_user'], ['class' => 'buy_but inhead']).'</div></li>
+               <li>';
+        
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: rgb(10, 150, 140)"></i> Избранное', ['/site/myappart'], ['class' => 'btn btn-link reg_but', 'style'=>'padding: 4px 18px;']).'</li>';
 
-        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-list-alt" aria-hidden="true" style=" margin-right: 10px;"></i>Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link']).'</li>
+        $menuItems[] = '<li class="font-menu">'.Html::a('<i class="glyphicon glyphicon-list-alt" aria-hidden="true" style=" margin-right: 10px;"></i>Мои объявления', ['/apartament/index'], ['class' => 'btn btn-link reg_but', 'style'=>'padding: 4px 18px;']).'</li>
                <li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 '<i class="glyphicon glyphicon-log-out" aria-hidden="true"></i> <span class="font-menu"> Выход </span>(<span class="font-menu">' . Yii::$app->user->identity->username . '</span>)',
-                ['class' => 'btn btn-link', 'style' => 'width:100%' ]
+                ['class' => 'btn btn-link reg_but', 'style' => 'width:100%;', ['data' => ['method' => 'post']] ]
             )
             . Html::endForm()
             . '</li>';
@@ -128,7 +163,7 @@ glyphicon glyphicon-map-marker" aria-hidden="true" style="top: 2px;"></i>', ['/s
                 <div class="col-md-3 cn" id="contacts">
                     <ul>
                         <h3>Контакты</h3>
-                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> г. Ростов-на-Дону, ул. Заводская, 11</li>
+                        <li><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> г. Ростов-на-Дону</li>
                         <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <a href="mailto:info@credit-history24.ru"> info@yourooms.ru</a></li>
                         <li>
                             <a target="_blank" href="https://vk.com"><div class="icon-button vk"></div></a>

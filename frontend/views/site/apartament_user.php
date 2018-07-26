@@ -23,6 +23,8 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $model frontend\models\ApartamentForm */
 /* @var $form ActiveForm */
 /* @var $city_id integer*/
+
+$this->title = 'Размещение объявления';
 $session = Yii::$app->session;
 $session->open();
 
@@ -599,7 +601,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     <div id="map-canvas" style="height: 512px;"></div> 
     </div>
 </div>
-    
+
  <script>
 function GoogleMap_init () {
 
@@ -636,7 +638,7 @@ function GoogleMap_init () {
 var script = document.createElement('script');
 script.type = 'text/javascript';
 script.async = true;
-script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=GoogleMap_init';
+script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCFroM8VHflBLVxuJVlb2GPCFR_W8oVBbk&callback=GoogleMap_init';
 document.body.appendChild(script);
 
 

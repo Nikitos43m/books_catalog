@@ -169,16 +169,36 @@ $this->registerJs($js);
        margin-bottom: unset;
     }
     
-    @media (max-width: 768px){
-       .col-md-1, .col-md-2{
-        padding-right: 20px;
-    } 
+    .form-control{
+        font-size: 14px;
+        font-weight: 400;
+        text-align: left;
+        line-height: 22px;
+        color: #555;
+        /* background: none; */
+        /* width: 100%; */
+        height: 40px;
+        border: none;
+        border-radius: 0;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        outline: none;
+        box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.33);
+        /* padding: 12px 14px 14px; */
     }
+    
+    .has-success .form-control{
+        box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.33);
+    }
+    
+
 </style>
 
 
 <div class="apartament-search">
-    <div class="desc_search">Под картой представлены объявления в виде таблицы</div>
+ <div class="desc_title"><h1>Новейшая база недвижимости</h1></div>
+   
     <?php $form = ActiveForm::begin([
         'options' => [
             'class' => 'search-form'
@@ -188,7 +208,7 @@ $this->registerJs($js);
     ]); ?>
 
 
-<div>
+ <div class="form-container">
     <div class="col-lg-2 col-md-2 col-sm-4 ">
 
         <?= $form->field($model, 'type')->label(false)->dropDownList([
@@ -234,7 +254,8 @@ $this->registerJs($js);
             11 => 'Студия'
         ],
             [
-               'multiple' => 'true'
+               'multiple' => 'true',
+               'class' => 'komn'
               ]
             
             ); ?>
@@ -255,40 +276,38 @@ $this->registerJs($js);
     </div>
     
     <div class="col-md-2 col-sm-6 col-xs-12 col-lg-3 sq flex">
-        <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
-        <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
-        <span class='m2'> м<sup>2</sup> </span>  
+        <?php  echo $form->field($model, 'area_from')->label(false)->textInput(['placeholder' => "Площадь от", 'style'=>'    border-left: 1px solid #dcdcdce3;']) ?>
+        <?php  echo $form->field($model, 'area_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none;']) ?>
+<!--        <span class='m2'> м<sup>2</sup> </span>  -->
     </div>
     <div class="col-md-2 col-sm-3 col-xs-12 fl flex">
-        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
-        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
+        <?php  echo $form->field($model, 'floor_from')->label(false)->textInput(['placeholder' => "Этаж от", 'style'=>'border-left: 1px solid #dcdcdce3; ']) ?>
+        <?php  echo $form->field($model, 'floor_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; ']) ?>
     </div>
-    
-    <div class="col-md-3 col-sm-4 col-xs-12 flex">
-        <?= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
-        <?= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
-    </div>
+   
+   
+<!--        <div class="col-md-3 col-sm-4 col-xs-12 flex">
+            <?//= $form->field($model, 'street')->label(false)->textInput(['placeholder' => "Улица", 'style'=>'border-right: 1px solid #dcdcdce3;']) ?>
+            <?//= $form->field($model, 'house')->label(false)->textInput(['placeholder' => "Дом", 'style'=>'border-left: none;']) ?>
+        </div>-->
 
+        <div class="col-md-2 col-sm-6 col-xs-12 price flex">
 
-
-
-
-    <div class="col-md-2 col-sm-6 col-xs-12 price flex">
-        
-        <?php  echo $form->field($model, 'cost_from')->label(false)->textInput(['placeholder' => "Цена от", 'style'=>'border-radius:  10px 0 0 10px;']) ?>
-        <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none; border-radius: 0 10px 10px 0;']) ?>
-        <span class='m2'> руб. </span>
-    </div>
+            <?php  echo $form->field($model, 'cost_from')->label(false)->textInput(['placeholder' => "Цена от", 'style'=>'border-left: 1px solid #dcdcdce3; ']) ?>
+            <?php  echo $form->field($model, 'cost_to')->label(false)->textInput(['placeholder' => "до", 'style'=>'border-left: none;']) ?>
+<!--            <span class='m2'> руб. </span>-->
+        </div>
+    </row>
 
     <?=$form->field($model, 'city_id')->label(false)->hiddenInput(['value'=>$session['my_city']]); ?>
     
 
     <div class="form-group" style="text-align: center; clear: both">
-        <?= Html::submitButton('Показать', ['class' => 'main_but show-filter']) ?>
+        <?= Html::submitButton('Найти', ['class' => 'main_but show-filter']) ?>
         <?//= Html::resetButton('Очистить', ['class' => 'btn btn-default']) ?>
     </div>
 
-</div>
+
 
     <?php ActiveForm::end(); ?>
 

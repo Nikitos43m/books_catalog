@@ -22,6 +22,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Response;
 use himiklab\ipgeobase\IpGeoBase;
 use frontend\models\CityForm;
+use yii\data\Pagination;
 /**
  * Site controller
  */
@@ -55,7 +56,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post', 'get'],
                 ],
             ],
         ];
@@ -111,10 +112,10 @@ class SiteController extends Controller
             //GeobaseCity::find()->where(['id' => $my_city])->one();
             $geo_city = GeobaseCity::findById($my_city);
             //$session['geo_city'] = $geo_city;
-            
+            if($geo_city != NULL){
             /* Название города в шапку */
             //$this->view->params['my_city'] = $geo_city->getName();
-            Yii::$app->params['my_city'] = $geo_city->getName();
+           // Yii::$app->params['my_city'] = $geo_city->getName();
              $session['my_city_name'] = $geo_city->getName();
             
             $lat = $geo_city->getLat();
@@ -122,7 +123,7 @@ class SiteController extends Controller
 
             $session['lat'] = $lat;
             $session['lng'] = $lng;
-
+            }
             $regions_list = (new \yii\db\Query())
                 ->select(['id', 'name'])
                 ->from('geobase_region')
@@ -151,12 +152,16 @@ class SiteController extends Controller
             $searchModel = new ApartamentSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $session['my_city']);
             $dataProviderTable = $searchModel->searchTable(Yii::$app->request->queryParams, $session['my_city']);
+            
+            $countQuery = clone  $dataProviderTable;
+            $pages = new Pagination(['totalCount' => $countQuery->getTotalCount(), 'pageSize' => 9]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'dataProviderTable' => $dataProviderTable,
             'count' => $count,
+            'pages' => $pages,
             'type_account' => $type_account,
             //'region' => $region,
             //'city' => $city

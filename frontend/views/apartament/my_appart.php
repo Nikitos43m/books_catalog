@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
      <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'options' => ['class' => 'table table-hover'],
+        'pjax'=>true,
         'tableOptions' => [
             'class' => 'table table-hover'
         ],

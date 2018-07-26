@@ -44,9 +44,9 @@ $images = scandir($path); // сканируем папку
 $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
 
 foreach($images as $image) {
-    $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox".$model->id."' ><img class='photo-view' src='".$path.htmlspecialchars(urlencode($image))."' height='100px' alt='".$image."'></a>";
-   // $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."'  onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img class='photo-view' height='130px' src='".$path.htmlspecialchars(urlencode($image))."' height='40px' alt='".$image."'></a>";
-
+   // $fimg .= "<a href='https://yourooms.ru/".$path.htmlspecialchars(urlencode($image))."' rel='fancybox".$model->id."' ><img class='photo-view' src='https://yourooms.ru/".$path.htmlspecialchars(urlencode($image))."' height='100px' alt='".$image."'></a>";
+   // $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' ><img class='photo-view' height='130px' src='".$path.htmlspecialchars(urlencode($image))."' height='40px' alt='".$image."'></a>";
+$fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox".$model->id."' onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img class='photo-view' height='130px' src='".$path.htmlspecialchars(urlencode($image))."' height='40px' alt='".$image."'></a>";
 }
 ?>
 
@@ -54,7 +54,7 @@ foreach($images as $image) {
 <div class="row">
     
   <?php if (empty($images)): ?>
-    <b> Без фото </b>
+    <div style="margin-left: 20px"><b> Без фото </b></div>
   <? endif;?>
   <div class="col-md-12 grid-photo">
     <?=$fimg ?>

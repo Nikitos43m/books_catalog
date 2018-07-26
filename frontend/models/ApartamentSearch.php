@@ -72,8 +72,14 @@ class ApartamentSearch extends Apartament
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-               // 'pageSize' => 4,
+                'pageSize' => 100,
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+               // 'title' => SORT_ASC, 
+                ]
+             ],
         ]);
 
         $this->load($params);
@@ -171,7 +177,7 @@ class ApartamentSearch extends Apartament
     }
     
     public function searchTable($params, $city_id)
-    {
+    {   
         $query = Apartament::find()->where(['city_id' => $city_id]);
 
         // add conditions that should always apply here
@@ -179,8 +185,14 @@ class ApartamentSearch extends Apartament
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 6,
+                'pageSize' => 9,
             ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+               // 'title' => SORT_ASC, 
+                ]
+             ],
         ]);
 
         $this->load($params);

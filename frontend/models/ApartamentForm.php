@@ -47,8 +47,9 @@ class ApartamentForm extends Model
         return [
             [ ['user_id','rooms','area', 'price', 'type', 'street', 'house', 'telephone', 'floor', 'realty_type'], 'required', 'message' => 'Заполните поле'],
             [ ['lat'], 'required', 'message' => 'Укажите местоположение объекта на карте'],
-            [ ['rooms',  'floor', 'area', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'san_uzel','term', 'floor_all', 'year', 'kitchen', 'material', 'balkon'], 'number'],
+            [ ['rooms',  'floor', 'price', 'realty_type', 'count_views', 'type_appart', 'otdelka', 'city_id', 'san_uzel','term', 'floor_all', 'year', 'kitchen', 'material', 'balkon'], 'number'],
             [ ['lat', 'lng'], 'double'],
+            [ ['area'], 'double', 'message' => 'Дробные значения указываются через точку'],
             [ ['image'], 'file', 'extensions' => 'png, jpg, gif', 'maxFiles' => 8],
             [ ['image_path'], 'string'],
             [ ['description'], 'string', 'max' => 1000],

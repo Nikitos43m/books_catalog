@@ -51,7 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
     }
 
     .wrap{
-        background: url(../web/images/54.jpg);
+        background: url(../images/54.jpg);
+       
     }
 
     .col-lg-5{
@@ -69,6 +70,14 @@ $this->params['breadcrumbs'][] = $this->title;
         .i-am-centered {
            margin-left: 37%;
         }
+        
     }
+    
+    @media (min-width: 1500px){
+        .wrap{
+            background-size: cover;
+        } 
+    }
+    
 </style>
 <?= CityWidget::widget([]) ?>

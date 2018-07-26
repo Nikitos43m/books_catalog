@@ -176,13 +176,18 @@ $this->registerJs($script, yii\web\View::POS_READY);
                     'multiple' => true, 
                 ],
                 
+                'resizeImages' => true,
+              
                 'pluginOptions' => [
                     'uploadUrl' => Url::to (['/apartament/upload_img', 'path' => $path]),
                     'deleteUrl' => Url::to (['/apartament/delete_img', 'path' => $path]),
+                    'maxImageWidth' => 1400,
                     'showCaption' => true,
-                    'showRemove' => true,
                     'showUpload' => true,
+                    'showRemove' => false,
                     'showPreview' => true,
+                    'uploadClass' => 'btn btn-success upl',
+                    'browseClass' => 'browse',
                     
                     'browseClass' => 'btn btn-primary btn-block',
                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
@@ -321,7 +326,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
     
 
     
-    <div class="col-md-2">
+    <div class="col-md-12">
        <?= $form->field($model, 'lat')->label(false)->hiddenInput(); ?>
        <?= $form->field($model, 'lng')->label(false)->hiddenInput(); ?>
        <?= $form->field($model, 'user_id')->label(false)->hiddenInput(); ?>
@@ -330,16 +335,16 @@ $this->registerJs($script, yii\web\View::POS_READY);
 
     
     
-        <h3 class="open-filter" id="place"  style="cursor: pointer;">Местопложение <i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></h3>
+        <div class="open-filter" id="place"  style="cursor: pointer; clear: both">Местопложение <i class="glyphicon glyphicon-chevron-down" aria-hidden="true"></i></div>
         <div class="filter">
-            <div class="col-md-10">
+            <div class="col-md-12" style="margin-top: 10px">
                 <div id="map-canvas" style="height: 512px;"></div> 
             </div>
         </div>
    
      
     <div class="text-center" id="save" >
-        <div class="col-md-10" style="margin-top:40px">
+        <div class="col-md-12" style="margin-top:40px">
             <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Сохранить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'in_but']) ?>
         </div>
     </div>
@@ -388,7 +393,7 @@ function GoogleMap_init () {
 var script = document.createElement('script');
 script.type = 'text/javascript';
 script.async = true;
-script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=GoogleMap_init';
+script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCFroM8VHflBLVxuJVlb2GPCFR_W8oVBbk&callback=GoogleMap_init';
 document.body.appendChild(script);
 
 

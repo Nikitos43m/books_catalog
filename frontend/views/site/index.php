@@ -32,11 +32,34 @@ use dosamigos\google\maps\layers\BicyclingLayer;
 /* @var $regions_list array*/
 /* @var $lat double*/
 /* @var $lng double*/
+/* @var $pages integer*/
+$session = Yii::$app->session;
+$session->open();
 
-$this->title = 'Поиск недвижимости';
+$this->title = 'Квартиры в Ростове-на-Дону';
+$this->registerMetaTag([
+  'name' => 'og:title',
+  'content' => 'Квартиры в Ростове-на-Дону'                     
+]);
+
 $this->registerMetaTag([
   'name' => 'description',
-  'content' => 'Купить, продать, снять квартиру. Поиск по карте. Размещение бесплатных объявлений.'
+  'content' => 'Размещение бесплатных объявлений о продаже и аренде квартир. Удобный интерфейс для поиска жилья по фильтрам и карте.'                     
+]);
+
+$this->registerMetaTag([
+  'name' => 'og:description',
+  'content' => 'Размещение бесплатных объявлений о продаже и аренде квартир. Удобный интерфейс для поиска жилья по фильтрам и карте.'                     
+]);
+
+$this->registerMetaTag([
+  'name' => 'keywords',
+  'content' => 'недвижимость, квартиры, купить квартиру, снять квартиру, новостройки, квартиры в новостройках'                     
+]);
+
+$this->registerMetaTag([
+  'name' => 'og:keywords',
+  'content' => 'недвижимость, квартиры, купить квартиру, снять квартиру, новостройки, квартиры в новостройках'                     
 ]);
 
 $var = 123;
@@ -47,13 +70,14 @@ $script = <<< JS
     // $('a').fancybox();     
     // $('#myModal').modal('show');
     
-
+    /*
             if ($.cookie("modal_shown") == null) {
               
                 $('#myModal').modal('show');
               
               $.cookie('modal_shown', 'true', { expires: 365, path: '/' });
             }
+    */    
                // else {alert($.cookie("modal_shown"));}
 
          $('#m1').click(function(){
@@ -71,15 +95,14 @@ JS;
 $this->registerJs($script, yii\web\View::POS_READY);
 
 
-$session = Yii::$app->session;
-$session->open();
+
 ?>
 
 <style>
 
     .site-index{
         background-image: url("images/k.jpg");
-        padding-bottom: 60px;
+        padding-bottom: 10px;
         margin-left: -15px;
         margin-right: -15px;
     }
@@ -97,16 +120,39 @@ $session->open();
     }
     
     tbody {
-        background: url(../web/images/34.jpg);
+/*        background: url(../images/34.jpg);*/
         background-size: cover;
     }
 
     tr{
-        box-shadow: 0px 0px 8px rgba(62, 62, 62, 0.14);
+        box-shadow: 0px 0px 1px rgba(62, 62, 62, 0.14);
+    }
+    
+    .btn-default:hover, .btn-default:active, .btn-default:focus{
+        background-color: white;
+    }
+    
+    .table > tbody > tr > td{
+        padding: 8px 6px;
+    }
+    
+   
+    
+    @media (max-width: 1200px) {
+       .table > tbody > tr > td{
+          padding: 0;
+       }
+    }
+    
+     @media (max-width: 768px){
+        .table > tbody > tr > td{
+          padding: 8px 6px;
+       }
     }
 </style>
 
 <div class="site-index">
+    
 <!-- <a href="#myModal" class="btn btn-primary" data-toggle="modal">Выбрать город</a> -->
     <? //if (!Yii::$app->user->isGuest): ?>
     <? //echo Html::a('Добавить на карту', ['apartament'], ['class' => 'btn btn-success']); ?><p></p>
@@ -118,34 +164,265 @@ $session->open();
         <?= Html::a('Все объявления', ['/apartament/index'], ['class' => 'btn btn-success']); ?><p></p>
     <? endif; ?>
 
-    <div style="text-align: center">
+    <div class="for-mobile" style="text-align: center">
        <!-- <a class="buy_but" href="#">Разместить объявление</a>-->
+        <?php if (Yii::$app->user->isGuest): ?>
+            <?= Html::a('Разместить объявление', ['/site/login'], ['class' => 'buy_but']); ?>
+        <?php endif; ?>
+
         <?php if ((!Yii::$app->user->isGuest) && ($count == 0)): ?>
                 <?= Html::a('Разместить объявление', ['apartament_user'], ['class' => 'buy_but']); ?>
 
         <?php endif; ?>
     </div>
+    
+<section class="complex_v">
+    <div class="container back" style="">
+        <div class="text-center main-text" >
+    
+             <?php  echo $this->render('/apartament/_search_index', ['model' => $searchModel]); ?>
+        </div>
+        
+        <div id='zk' style="">
+            <div style="text-align: left">
+                <img style="float: left" src="images/logo-ek.png" width="60px">
+                <h3 style="color: white">ЖК Екатериниский</h3>
+                <p style="color: white">Квартиры от 1,2 млн рублей</p>
+                <div class="for-link">
+                    <a href="https://xn--80ajbbnaaicbe8ab2btj.com/" target="_blank" class="link-c">Выбрать квартиру</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- <div style="text-align: center; margin-bottom: 7px;">
-        <//?= Html::a('Квартиры в аренду', ['rent'], ['class' => 'main_but', 'id'=>'rent']); ?>
-        <//?= Html::a('Квартиры в продаже', ['sale'], ['class' => 'main_but']); ?>
-    </div> -->
-    <div style="text-align: center; margin-bottom: 10px;">
+<div class="container gr-table">
+    <?= GridView::widget([
+        'dataProvider' => $dataProviderTable,
+       // 'filterModel' => $searchModel,
+        'tableOptions' => [
+            'class' => 'table table-hover main-table',
+        ],
+        
+        'exportConfig' => [
+            GridView::CSV => [],
+            GridView::EXCEL => [],
+            //GridView::TEXT => [],
+        ],
+        
+        'export' =>[
+            'label' => 'Экспорт',
+            'header' => '<li role="presentation" class="dropdown-header">Экспортировать данные:</li>.',
+            'showConfirmAlert' => false
+        ],
+
+
+
+        'columns' => [
+            //['class' => 'yii\grid\SerialColumn'],
+            // 'id',
+           // 'user_id',
+
+            [
+                'class' => 'kartik\grid\ExpandRowColumn',
+                'expandAllTitle' => 'Expand all',
+                'collapseTitle' => 'Collapse all',
+                'expandIcon'=>'<i class="glyphicon glyphicon-camera" aria-hidden="true" style="color: rgb(49, 47, 47)"></i>',
+                'collapseIcon' =>'<i class="glyphicon glyphicon-chevron-up" aria-hidden="true" style="color: rgb(49, 47, 47)"></i>',
+                'detailRowCssClass' => GridView::ICON_ACTIVE,
+                'value' => function ($model, $key, $index, $column) {
+                    return GridView::ROW_COLLAPSED;
+                },
+                'detail'=>function ($model, $key, $index, $column) {
+                    //$val = "<div class='col-md-4'> <b>Телефон: </b>".$model->telephone."</div>";
+                    return Yii::$app->controller->renderPartial('_view.php', ['model'=>$model]);
+
+                   /* foreach ($model as $value){
+                        echo "{$value} ";
+                    }*/
+                    
+                   /* $fimg="";
+                    $path = $model->image_path;
+
+                    $images = scandir($path); // сканируем папку
+                    $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
+
+                    foreach($images as $image) {
+                        $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' ><img class='photo-view' src='".$path.htmlspecialchars(urlencode($image))."' height='100px' alt='".$image."'></a>";
+                       // $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."'  onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img class='photo-view' height='130px' src='".$path.htmlspecialchars(urlencode($image))."' height='40px' alt='".$image."'></a>";
+                    }
+
+
+                    return $fimg;*/
+                },
+
+            ],
+
+            [
+                'attribute'=>'type',
+                'contentOptions'=>['class'=>'table_first','style'=>'width: 10%'],
+                'content'=>function($model){
+
+                    switch ($model->type){
+                        case 0: $text = 'Продается'; break;
+                        case 1: $text = 'Сдается'; break;
+                        case 2: $text = 'Сдается посуточно'; break;
+                    }
+
+                    switch ($model->realty_type){
+                        case 0: $appart = 'квартира'; break;
+                        case 1: $appart = 'дом'; break;
+                        case 2: $appart = 'комната'; break;
+                    }
+
+                    return $text." ".$appart;
+                }
+            ],
+
+            [
+                'attribute'=>'rooms',
+                'label' => 'Комнат',
+                // 'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
+                'content'=>function($model){
+
+                    return "<div style='font-weight: bold'>".$model->rooms."-комн.</div>";
+                }
+            ],
+
+            [
+                'attribute'=>'area',
+                 'contentOptions'=>['class'=>'table_area'],
+                'content'=>function($model){
+                    return "<div class='area'>".$model->area."м<sup>2</sup></div>";
+                }
+            ],
+
+            [
+                'attribute'=>'street',
+                'label' => false,
+                //'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
+                'content'=>function($model){
+                    return $model->street." ".$model->house;
+                }
+            ],
+
+            //'street',
+            //'house',
+            //'rooms',
+            //'floor',
+
+            [
+                'attribute'=>'floor',
+                //'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
+                'content'=>function($model){
+                    if($model->realty_type != 1){
+                        return '<span class="tel">'.$model->floor." из ".$model->floor_all." этаж</span>";
+                    }else{ return '-';}
+                }
+            ],
+            //'area',
+
+
+
+            //'price',
+
+            [   'attribute' => 'price',
+                'label' => 'Цена',
+                'contentOptions' =>['class' => 'table_price'],
+                'content' => function($model){
+                    $number = $model->price;
+                    $prise = number_format($number, 0, "", " ");
+                    return "<div class='price_format'>".$prise."<i class=\"glyphicon glyphicon-ruble\" aria-hidden=\"true\"></i> </div>";
+                }
+            ],
+
+            //'telephone',
+             
+             [  'attribute' => 'telephone',
+                'label' => 'Контактный телефон',
+                'content' => function($model){
+                    
+                    return '<i class="glyphicon glyphicon-earphone t_ph" aria-hidden="true"></i> <span class="tel">'.$model->telephone.'</span>';
+                }
+            ],        
+                    
+             
+          /*  [
+                'attribute' => 'created_at',
+                'label'=>'Размещено',
+                'format' =>  ['date', 'd.MM.Y'],
+
+            ], */
+                    
+            [   'attribute' => 'created_at',
+                'label' => 'Размещено',
+                'content' => function($model){
+                    
+                    return '<i class="glyphicon glyphicon-calendar" aria-hidden="true" ></i> '.date('d.m.Y', $model->created_at);
+                }
+            ],    
+
+
+            //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{open}',
+                'buttons' => [
+                    'open' => function ($url,$model) {
+                        if(Yii::$app->user->isGuest){
+                            return Html::a("открыть ", ["/apartament/viewguest", "id"=>$model->id], ['class' => 'open_but']);
+                        }else{
+                            return Html::a("открыть ", ["/apartament/view", "id"=>$model->id], ['class' => 'open_but']);
+                        }
+                    },
+                ],
+            ],        
+                    
+        ],
+
+        
+        'pjax' => true,
+        'bordered' => false,
+        'striped' => false,
+        'responsive' => true,
+        'panel' => [
+            'type' => GridView::TYPE_ACTIVE,
+        ],
+
+        'toggleDataOptions' => [
+            'all' => [
+                 'icon' => 'resize-full' ,
+                'label' => 'Показать все',
+                'class' => 'btn btn-default' ,
+                'title' => 'Показать все данные'
+            ],
+            
+            'page' => [
+                'icon' => 'resize-small',
+                'label' => '1-ая страница',
+                'class' => 'btn btn-default',
+                'title' => 'Показать первую страницу'
+            ],
+            
+        ]
+
+    ]);?>
+</div>    
+
+   <!-- <div style="text-align: center; margin-bottom: 10px;">
         <div  class="open-filter clear">
 
             <span> Поиск по фильтрам &nbsp </span>
                         <div class="menu" style="float:right">
-                            <span class="menu-global menu-top" style="top:6px; border-top: 1px solid rgb(74, 157, 218);"></span>
-                            <span class="menu-global menu-middle" style="border-top: 1px solid rgb(74, 157, 218);"></span>
-                            <span class="menu-global menu-bottom" style="top:18px; border-top: 1px solid rgb(74, 157, 218);"></span>
+                            <span class="menu-global menu-top" style="top:6px; border-top: 1px solid rgb(24, 131, 208);"></span>
+                            <span class="menu-global menu-middle" style="border-top: 1px solid rgb(24, 131, 208);"></span>
+                            <span class="menu-global menu-bottom" style="top:18px; border-top: 1px solid rgb(24, 131, 208);"></span>
                         </div>
-            <!--<i  class="glyphicon glyphicon-align-justify" aria-hidden="true" style="top: 3px; font-size: 16px; color:rgba(60, 119, 142, 0.8);"></i> -->
         </div>
     </div>
     <div class="filter">
-        <?php  echo $this->render('/apartament/_search_index', ['model' => $searchModel]); ?>
+        <?php // echo $this->render('/apartament/_search_index', ['model' => $searchModel]); ?>
     </div>
-
+-->
     <?php
     //$coord = new LatLng(['lat' => 47.231620, 'lng' => 39.695463]);
     //$coord = new LatLng(['lat' => $location_arr['lat'], 'lng' => $location_arr['lng']]);
@@ -200,7 +477,7 @@ $session->open();
             'position' => new LatLng(['lat' => $apart["lat"], 'lng' => $apart["lng"]]),
             //'title' => Html::encode("{$apart["telephone"]}"),
             'title' => $apart["telephone"],
-            'icon' =>'images/poi.png'
+            'icon' =>'images/circle.png'
         ]);
 
         // Для вывода картинок объявления
@@ -379,11 +656,19 @@ $session->open();
 
     // Display the map -finally :)
 
-    echo $map->display();
+    
 
     ?>
     
     </div>
+<section class="mobile_list">
+    <div class="container">
+       <?php  echo $this->render('/apartament/_m_list', ['model' => $searchModel, 'pages'=>$pages, 'provider'=>$dataProviderTable]); ?>
+    </div>
+</section>
+<section>
+    <div class="container"><? echo $map->display(); ?></div>
+</section>
 <script>
  function message(url){  
           //$('a').fancybox();
@@ -407,223 +692,13 @@ $session->open();
 </div>
 
 
-<div class="container" style="width: 100%">
-    <?= GridView::widget([
-        'dataProvider' => $dataProviderTable,
-       // 'filterModel' => $searchModel,
-        'tableOptions' => [
-            'class' => 'table table-hover main-table',
-        ],
-        
-        'exportConfig' => [
-            GridView::CSV => [],
-            GridView::EXCEL => [],
-            //GridView::TEXT => [],
-        ],
-        
-        'export' =>[
-            'label' => 'Экспорт',
-            'header' => '<li role="presentation" class="dropdown-header">Экспортировать данные:</li>.',
-            'showConfirmAlert' => false
-        ],
 
-
-
-        'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
-            // 'id',
-           // 'user_id',
-
-            [
-                'class' => 'kartik\grid\ExpandRowColumn',
-                'expandAllTitle' => 'Expand all',
-                'collapseTitle' => 'Collapse all',
-                'expandIcon'=>'<i class="glyphicon glyphicon-camera" aria-hidden="true" style="color: rgb(97, 97, 97)"></i>',
-                'collapseIcon' =>'<i class="glyphicon glyphicon-camera" aria-hidden="true" style="color: rgb(97, 97, 97)"></i>',
-                'detailRowCssClass' => GridView::ICON_ACTIVE,
-                'value' => function ($model, $key, $index, $column) {
-                    return GridView::ROW_COLLAPSED;
-                },
-                'detail'=>function ($model, $key, $index, $column) {
-                    //$val = "<div class='col-md-4'> <b>Телефон: </b>".$model->telephone."</div>";
-                    return Yii::$app->controller->renderPartial('_view.php', ['model'=>$model]);
-
-                   /* foreach ($model as $value){
-                        echo "{$value} ";
-                    }*/
-                    
-                   /* $fimg="";
-                    $path = $model->image_path;
-
-                    $images = scandir($path); // сканируем папку
-                    $images = preg_grep("/\.(?:png|gif|jpe?g)$/i", $images);
-
-                    foreach($images as $image) {
-                        $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."' rel='fancybox' ><img class='photo-view' src='".$path.htmlspecialchars(urlencode($image))."' height='100px' alt='".$image."'></a>";
-                       // $fimg .= "<a href='".$path.htmlspecialchars(urlencode($image))."'  onclick='message(\"".$path.htmlspecialchars(urlencode($image))."\"); return false;'><img class='photo-view' height='130px' src='".$path.htmlspecialchars(urlencode($image))."' height='40px' alt='".$image."'></a>";
-                    }
-
-
-                    return $fimg;*/
-                },
-
-            ],
-
-            [
-                'attribute'=>'type',
-                'contentOptions'=>['class'=>'table_first','style'=>'width: 10%'],
-                'content'=>function($model){
-
-                    switch ($model->type){
-                        case 0: $text = 'Продается'; break;
-                        case 1: $text = 'Сдается'; break;
-                        case 2: $text = 'Сдается посуточно'; break;
-                    }
-
-                    switch ($model->realty_type){
-                        case 0: $appart = 'квартира'; break;
-                        case 1: $appart = 'дом'; break;
-                        case 2: $appart = 'комната'; break;
-                    }
-
-                    return $text." ".$appart;
-                }
-            ],
-
-            [
-                'attribute'=>'rooms',
-                'label' => 'Комнат',
-                // 'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
-                'content'=>function($model){
-
-                    return "<div style='font-weight: bold'>".$model->rooms."-комн.</div>";
-                }
-            ],
-
-            [
-                'attribute'=>'area',
-                 'contentOptions'=>['class'=>'table_area'],
-                'content'=>function($model){
-                    return "<div class='area'>".$model->area."м<sup>2</sup></div>";
-                }
-            ],
-
-            [
-                'attribute'=>'street',
-                'label' => false,
-                //'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
-                'content'=>function($model){
-                    return $model->street." ".$model->house;
-                }
-            ],
-
-            //'street',
-            //'house',
-            //'rooms',
-            //'floor',
-
-            [
-                'attribute'=>'floor',
-                //'contentOptions'=>['class'=>'table_class','style'=>'display:block;'],
-                'content'=>function($model){
-                    if($model->realty_type != 1){
-                        return $model->floor." из ".$model->floor_all." этаж";
-                    }else{ return '-';}
-                }
-            ],
-            //'area',
-
-
-
-            //'price',
-
-            [   'attribute' => 'price',
-                'label' => 'Цена',
-                'contentOptions' =>['class' => 'table_price'],
-                'content' => function($model){
-                    $number = $model->price;
-                    $prise = number_format($number, 0, "", " ");
-                    return "<div class='price_format'>".$prise."<i class=\"glyphicon glyphicon-ruble\" aria-hidden=\"true\"></i> </div>";
-                }
-            ],
-
-            //'telephone',
-             
-             [  'attribute' => 'telephone',
-                'label' => 'Контактный телефон',
-                'content' => function($model){
-                    
-                    return '<i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> '.$model->telephone;
-                }
-            ],        
-                    
-             
-          /*  [
-                'attribute' => 'created_at',
-                'label'=>'Размещено',
-                'format' =>  ['date', 'd.MM.Y'],
-
-            ], */
-                    
-            [   'attribute' => 'created_at',
-                'label' => 'Размещено',
-                'content' => function($model){
-                    
-                    return '<i class="glyphicon glyphicon-calendar" aria-hidden="true" ></i> '.date('d.m.Y', $model->created_at);
-                }
-            ],    
-
-
-            //['class' => 'yii\grid\ActionColumn'],
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{open}',
-                'buttons' => [
-                    'open' => function ($url,$model) {
-                        if(Yii::$app->user->isGuest){
-                            return Html::a("открыть ", ["/apartament/viewguest", "id"=>$model->id], ['class' => 'open_but']);
-                        }else{
-                            return Html::a("открыть ", ["/apartament/view", "id"=>$model->id], ['class' => 'open_but']);
-                        }
-                    },
-                ],
-            ],        
-                    
-        ],
-
-        
-        'pjax' => true,
-        'bordered' => false,
-        'striped' => false,
-        'responsive' => true,
-        'panel' => [
-            'type' => GridView::TYPE_ACTIVE,
-        ],
-
-        'toggleDataOptions' => [
-            'all' => [
-                 'icon' => 'resize-full' ,
-                'label' => 'Показать все',
-                'class' => 'btn btn-default' ,
-                'title' => 'Показать все данные'
-            ],
-            
-            'page' => [
-                'icon' => 'resize-small',
-                'label' => '1-ая страница',
-                'class' => 'btn btn-default',
-                'title' => 'Показать первую страницу'
-            ],
-            
-        ]
-
-    ]);?>
-</div>
 
 <section class="complex">
     <div class="container" >
         <div class="text-center">
             <h2 class="main-complex">Жилые комплексы Вашего города</h2>
-            <?=Html::a("Ознакомиться", ['site/complex'], ['class' => 'btn contact-modal complex-but'])?>
+            <?=Html::a("Открыть", ['site/complex'], ['class' => 'btn contact-modal complex-but'])?>
         </div>
        <?php /*echo Carousel::widget([
         'items' => [
@@ -674,7 +749,7 @@ $session->open();
     <div class="container" >
         <div class="row" >
             <div class="col-sm-12 text-center" style="margin-bottom: 60px; margin-top: 30px">
-                <h1 class="title-service" >Наши услуги</h1>
+                <div class="title-service" >Наши услуги</div>
             </div>
             <div class="col-sm-12 text-center">
                 <div class="row" style="color: white">
